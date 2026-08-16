@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Brand Builder</title>
+<meta name="description" content="The methodology behind building a following. Six questions. One honest session. A brand with a centre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════
+   TOKENS — dark, premium, single-theme
+══════════════════════════════════════════════════ */
+:root {
+  --bg:           #0a0a0a;
+  --bg-raised:    #101010;
+  --bg-elevated:  #161616;
+  --border-1:     #1c1c1c;
+  --border-2:     #262626;
+  --gold:         #C9A84C;
+  --gold-muted:   #7a5e22;
+  --gold-subtle:  #1a1300;
+  --text-1:       #e2e2e2;
+  --text-2:       #8a8a8a;
+  --text-3:       #464646;
+  --white:        #ffffff;
+  --nav-h:        60px;
+}
+
+/* ══════════════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+textarea, input { font-family: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ══════════════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════════════ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.eyebrow {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════════ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(10,10,10,0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-1);
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ══════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--nav-h) + 5rem) 0 6rem;
+  border-bottom: 1px solid var(--border-1);
+  position: relative;
+  scroll-margin-top: 0;
+}
+
+/* Structural editorial line — left column accent */
+#hero::before {
+  content: '';
+  position: absolute;
+  left: calc(2rem - 1px);
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, var(--gold-muted) 30%, var(--gold-muted) 70%, transparent 100%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.hero-inner { max-width: 860px; }
+
+.hero-tag { margin-bottom: 2.75rem; }
+
+.hero-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 6.5vw, 6rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.02;
+  margin-bottom: 2.75rem;
+  letter-spacing: -0.01em;
+}
+
+/* The thesis word — italic gold, commanding its own line */
+.hero-feeling {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1.05;
+}
+
+/* The second line of the headline, smaller weight for rhythm */
+.hero-headline-close {
+  display: block;
+  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+  font-weight: 400;
+  color: var(--text-2);
+  margin-top: 0.25em;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 2rem;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--text-2);
+  max-width: 500px;
+  line-height: 1.9;
+  margin-bottom: 2.75rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #0a0a0a;
+}
+.btn-primary:hover { background: #d9b95e; }
+.btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--border-2);
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn-ghost:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.hero-foot {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-1);
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.03em;
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION SHARED
+══════════════════════════════════════════════════ */
+.section-base {
+  padding: 8rem 0;
+  border-bottom: 1px solid var(--border-1);
+  scroll-margin-top: var(--nav-h);
+}
+
+.section-intro { margin-bottom: 4rem; }
+
+.section-intro h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  color: var(--white);
+  font-weight: 700;
+  margin: 0.65rem 0 0.9rem;
+}
+
+.section-intro p {
+  font-size: 0.925rem;
+  color: var(--text-2);
+  max-width: 520px;
+  line-height: 1.85;
+}
+
+/* ══════════════════════════════════════════════════
+   PROFILES GRID
+══════════════════════════════════════════════════ */
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-1);
+  border-left: 1px solid var(--border-1);
+}
+
+.profile-card {
+  background: var(--bg-raised);
+  padding: 1.875rem 1.625rem 1.625rem;
+  border-right: 1px solid var(--border-1);
+  border-bottom: 1px solid var(--border-1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+/* Gold sweep across the top on hover */
+.profile-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--gold);
+  transition: width 0.32s ease;
+}
+.profile-card:hover { background: var(--bg-elevated); }
+.profile-card:hover::after { width: 100%; }
+.profile-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.card-num {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--text-3);
+  margin-bottom: 1.25rem;
+}
+
+.card-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+
+.card-feeling {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 0.85rem;
+  line-height: 1.4;
+}
+
+.card-desc {
+  font-size: 0.775rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.5rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+.profile-card:hover .card-cta { color: var(--gold); }
+
+/* ══════════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 500;
+  overflow-y: auto;
+  padding: 3rem 1.5rem;
+  overscroll-behavior: contain;
+}
+.modal-overlay.open { display: block; }
+
+.modal-box {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  position: relative;
+  animation: modalReveal 0.28s ease;
+}
+
+@keyframes modalReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: 1px solid var(--border-2);
+  color: var(--text-2);
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+  line-height: 1;
+}
+.modal-close-btn:hover { border-color: var(--gold); color: var(--gold); }
+.modal-close-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.modal-head {
+  padding: 2.25rem 2.5rem 1.75rem;
+  border-bottom: 1px solid var(--border-1);
+}
+
+.modal-person {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0.5rem 0 0.3rem;
+  line-height: 1.1;
+}
+
+.modal-person-sub {
+  font-size: 0.825rem;
+  color: var(--text-2);
+}
+
+.modal-body { padding: 0 2.5rem 2.5rem; }
+
+.modal-section {
+  padding: 1.625rem 0;
+  border-bottom: 1px solid var(--border-1);
+}
+.modal-section:last-child { border-bottom: none; }
+
+.modal-sec-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin: 0.4rem 0 0.65rem;
+}
+
+.modal-sec-text {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.88;
+}
+
+/* ══════════════════════════════════════════════════
+   BUILDER
+══════════════════════════════════════════════════ */
+#builder {
+  padding: 8rem 0;
+  border-bottom: 1px solid var(--border-1);
+  scroll-margin-top: var(--nav-h);
+}
+
+/* Name input */
+.name-row { margin-bottom: 2.75rem; }
+
+.name-row label {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 0.65rem;
+}
+.name-opt {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-3);
+}
+
+.name-row input[type="text"] {
+  width: 100%;
+  max-width: 360px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  color: var(--text-1);
+  font-size: 0.925rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.name-row input[type="text"]::placeholder { color: var(--text-3); }
+.name-row input[type="text"]:focus { border-color: var(--gold); }
+
+/* Progress bar */
+.progress-wrap { margin-bottom: 3.25rem; }
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+  font-size: 0.72rem;
+}
+
+.progress-section-name {
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.progress-pct { color: var(--text-3); }
+
+.progress-track {
+  height: 1px;
+  background: var(--border-2);
+  position: relative;
+}
+
+.progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--gold);
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  width: 0%;
+}
+
+/* Steps */
+.builder-step { display: none; }
+.builder-step.active {
+  display: block;
+  animation: stepReveal 0.32s ease;
+}
+
+@keyframes stepReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-label { margin-bottom: 0.65rem; }
+
+.step-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+}
+
+.step-subtitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--text-3);
+  margin-bottom: 2rem;
+}
+
+.step-explanation {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.95;
+  max-width: 660px;
+  margin-bottom: 2.5rem;
+  padding: 1.375rem 1.625rem;
+  border-left: 2px solid var(--border-2);
+}
+.step-explanation p + p { margin-top: 0.875rem; }
+
+/* Questions */
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.question-block label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.55;
+  margin-bottom: 0.5rem;
+}
+
+.question-block textarea {
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-2);
+  color: var(--text-1);
+  font-size: 0.875rem;
+  line-height: 1.75;
+  padding: 0.825rem 1rem;
+  resize: vertical;
+  min-height: 88px;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.question-block textarea::placeholder { color: var(--text-3); }
+.question-block textarea:focus { border-color: var(--gold); }
+
+/* Example toggle */
+.example-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-3);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  padding: 0;
+  transition: color 0.2s;
+}
+.example-toggle:hover { color: var(--gold); }
+.example-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.toggle-icon {
+  width: 15px;
+  height: 15px;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.example-toggle.open .toggle-icon { transform: rotate(45deg); }
+
+.example-drawer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease, margin-top 0.4s ease;
+  margin-top: 0;
+}
+.example-drawer.open {
+  max-height: 700px;
+  margin-top: 0.875rem;
+}
+
+.example-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-1);
+  border-left: 2px solid var(--gold-muted);
+  padding: 1.25rem 1.5rem;
+}
+
+.example-card-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+
+.example-card-person {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.example-card-text {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.88;
+  font-style: italic;
+}
+
+/* Step navigation */
+.step-actions {
+  display: flex;
+  gap: 0.875rem;
+  align-items: center;
+  margin-top: 2.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-1);
+  flex-wrap: wrap;
+}
+
+/* ══════════════════════════════════════════════════
+   OUTPUT
+══════════════════════════════════════════════════ */
+#output {
+  padding: 8rem 0;
+  display: none;
+  scroll-margin-top: var(--nav-h);
+}
+#output.visible { display: block; }
+
+.output-wrap { max-width: 740px; }
+
+.output-top-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.output-doc-head {
+  margin-bottom: 2.75rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-2);
+}
+
+.output-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  color: var(--white);
+  font-weight: 700;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.output-generated {
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+.output-section {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-1);
+}
+.output-section:last-of-type { border-bottom: none; }
+
+.output-sec-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.125rem;
+  color: var(--white);
+  font-weight: 600;
+  margin: 0.4rem 0 1.375rem;
+}
+
+.output-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.output-q {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text-3);
+  margin-bottom: 0.3rem;
+}
+
+.output-a {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.82;
+  white-space: pre-wrap;
+}
+.output-a.empty {
+  color: var(--text-3);
+  font-style: italic;
+}
+
+/* What next */
+.what-next {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-2);
+}
+
+.what-next h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  font-weight: 700;
+  margin: 0.5rem 0 2rem;
+}
+
+.next-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.next-list li {
+  display: flex;
+  gap: 1.125rem;
+  align-items: flex-start;
+}
+
+.next-num {
+  flex-shrink: 0;
+  width: 1.625rem;
+  height: 1.625rem;
+  border: 1px solid var(--gold-muted);
+  color: var(--gold);
+  font-size: 0.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+.next-text {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.82;
+}
+
+/* ══════════════════════════════════════════════════
+   PRINT STYLES
+══════════════════════════════════════════════════ */
+@media print {
+  #nav, #hero, #profiles, .modal-overlay, #builder, .output-top-actions, .what-next { display: none !important; }
+  #output { display: block !important; padding: 0; }
+  body { background: #fff; color: #000; }
+  .output-title, .output-sec-title { color: #000; }
+  .output-a { color: #333; white-space: pre-wrap; }
+  .output-q { color: #777; }
+  .output-a.empty { color: #aaa; }
+  .output-section { border-bottom: 1px solid #ddd; }
+  .output-doc-head { border-bottom: 2px solid #000; }
+  .eyebrow { color: #8a6d2f; }
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .profiles-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  #nav { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+
+  .container { padding: 0 1.25rem; }
+
+  #hero { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 4rem; }
+  #hero::before { display: none; }
+
+  .section-base, #builder, #output { padding: 5rem 0; }
+
+  .profiles-grid { grid-template-columns: 1fr; }
+
+  .modal-overlay { padding: 1.25rem 0.875rem; }
+  .modal-head { padding: 1.75rem 1.5rem 1.5rem; }
+  .modal-body { padding: 0 1.5rem 2rem; }
+
+  .step-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .step-actions .btn { width: 100%; }
+
+  .output-top-actions { flex-direction: column; align-items: stretch; }
+  .output-top-actions .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV
+═══════════════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo">Brand<span>Builder</span></a>
+  <ul class="nav-links">
+    <li><a href="#profiles">Profiles</a></li>
+    <li><a href="#builder">The Builder</a></li>
+    <li id="nav-output-li" style="display:none"><a href="#output">Your Brand</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section id="hero" aria-label="Introduction">
+  <div class="container">
+    <div class="hero-inner">
+      <p class="eyebrow hero-tag">Personal Brand Methodology</p>
+      <h1 class="hero-headline">
+        Your brand is a
+        <span class="hero-feeling">feeling.</span>
+        <span class="hero-headline-close">Build it deliberately.</span>
+      </h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="hero-sub">Building a following is not a content problem. It is a clarity problem. Before strategy, before platform, before a single post — you need to know what feeling you are selling. This tool helps you find it.</p>
+      <a href="#builder" class="btn btn-primary">Build Your Brand</a>
+    </div>
+    <p class="hero-foot">Built for founders, athletes, creators, and executives who are serious about the long game.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     BRAND PROFILES
+═══════════════════════════════════════ -->
+<section id="profiles" class="section-base" aria-label="Brand profiles">
+  <div class="container">
+    <div class="section-intro reveal">
+      <p class="eyebrow">Case Studies</p>
+      <h2>Learn from the best</h2>
+      <p>Every great brand has already answered these questions. Study them before you answer your own.</p>
+    </div>
+    <div class="profiles-grid" id="profiles-grid" role="list">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MODAL
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-person-name">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close-btn" id="modal-close" aria-label="Close profile">&times;</button>
+    <div id="modal-content"><!-- Rendered by JS --></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BUILDER
+═══════════════════════════════════════ -->
+<section id="builder" aria-label="Brand Builder">
+  <div class="container">
+    <div class="section-intro reveal" style="margin-bottom:2.5rem">
+      <p class="eyebrow">The Methodology</p>
+      <h2>Build Your Brand</h2>
+      <p>Answer honestly. Surface level answers produce surface level brands.</p>
+    </div>
+
+    <div class="name-row">
+      <label for="your-name">
+        Your name or brand name
+        <span class="name-opt">&ensp;optional</span>
+      </label>
+      <input type="text" id="your-name" placeholder="e.g. Alex Morgan" autocomplete="name">
+    </div>
+
+    <div class="progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Builder progress">
+      <div class="progress-info">
+        <span class="progress-section-name" id="progress-label">Section 1 of 6 — The Feeling</span>
+        <span class="progress-pct" id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <div id="builder-steps"><!-- Rendered by JS --></div>
+
+    <div class="step-actions">
+      <button class="btn btn-ghost" id="btn-back" onclick="navigateStep(-1)" style="display:none">← Back</button>
+      <button class="btn btn-primary" id="btn-next" onclick="navigateStep(1)">Next Section</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     OUTPUT
+═══════════════════════════════════════ -->
+<section id="output" aria-label="Your brand profile">
+  <div class="container">
+    <div class="output-wrap">
+      <div class="output-top-actions">
+        <button class="btn btn-primary" onclick="downloadProfile()">Download Profile</button>
+        <button class="btn btn-ghost" onclick="copyProfile()">Copy to Clipboard</button>
+        <button class="btn btn-ghost" onclick="restartBuilder()">Start Over</button>
+      </div>
+      <div id="output-doc"><!-- Rendered by JS --></div>
+    </div>
+  </div>
+</section>
+
+<script>
+'use strict';
+
+/* ═══════════════════════════════════════════
+   DATA — sourced from methodology document
+═══════════════════════════════════════════ */
+
+const SECTIONS = [
+  {
+    id: 'feeling',
+    title: 'The Feeling',
+    subtitle: 'What is your product?',
+    explanation: [
+      'Before strategy. Before content. Before platform. Before anything visible — what feeling are you selling? Not what you do. Not your niche. Not your area of expertise. The internal experience someone has when they spend time in your world.',
+      'Think about the people you follow most loyally. The ones whose notifications you actually turn on. You don\'t follow them because they post consistently. You follow them because something about being in their world makes you feel a certain way. That feeling is their product. And your job before you create a single piece of content is to decide what yours is.',
+      'Once you know the feeling — everything else has a filter. Does this create that feeling? Then it belongs. Does it not? Then it doesn\'t, regardless of how good it is in isolation.',
+    ],
+    questions: [
+      'When someone spends 10 minutes in your world — watching your content, reading your posts, listening to you speak — how do you want them to feel when they stop?',
+      'If your brand was a place, what kind of place would it be and how would people feel walking out of it?',
+      'What feeling do you want someone to have that makes them come back tomorrow?',
+    ],
+    examplePerson: 'David Goggins',
+    exampleAnswer: 'When someone spends 10 minutes in Goggins\' world they feel like their excuses are smaller than they thought and their potential is bigger than they believed. His brand is like a boxing gym at 5am — brutal, uncomfortable, but you walk out feeling capable of things you didn\'t think you could do. People come back because that feeling of capability is addictive.',
+  },
+  {
+    id: 'association',
+    title: 'Association',
+    subtitle: 'What does your name load?',
+    explanation: [
+      'People do not remember paragraphs. They do not remember carefully crafted bios or mission statements. They remember words. Images. Moments. Feelings attached to a name.',
+      'When you hear Ronaldo your brain does not load a biography. It loads goals. GOAT. Sui. CR7. The image of him in the air. The body. The relentless obsession with being the best. That is not an accident. That is a deliberately built web of associations reinforced thousands of times over years until it became automatic.',
+      'The associations are the real brand. The content is just the ongoing reinforcement of them. The question this section answers: what do you want people\'s brain to load when they hear your name?',
+    ],
+    questions: [
+      'Write down 5 words or images you want attached to your name. Not what you do — what you represent.',
+      'What is the one thing you want to be known for above everything else?',
+      'What is your story arc — where did you start, what happened, where are you now, where are you going?',
+    ],
+    examplePerson: 'Conor McGregor',
+    exampleAnswer: 'Five words — precision, belief, audacity, style, hunger. Known above everything else for making the impossible seem inevitable through sheer self belief. Story arc — grew up in a council estate in Dublin, trained while on welfare payments, told everyone he would be world champion before he had a single professional win, became the first to hold two UFC titles simultaneously. The story makes every association feel earned not performed.',
+  },
+  {
+    id: 'enemy',
+    title: 'The Enemy',
+    subtitle: 'What are you fighting against?',
+    explanation: [
+      'Every great story has conflict. Every great movement has opposition. Every great brand has an enemy. This is the most misunderstood element of personal branding. Having an enemy does not mean being negative or controversial. It means standing for something clearly enough that you also stand against something.',
+      'When you define your enemy clearly two things happen simultaneously. The people who share that opposition feel immediately connected to you. And the people who do not self-select out. That is not a loss. That is a clarification of exactly who your brand is for.',
+      'The only rule is that the enemy must be real. Performed opposition is hollow and people feel it immediately.',
+    ],
+    questions: [
+      'What is something in your world or the world generally that genuinely makes you angry or frustrated?',
+      'What is the belief, system, or way of thinking that you think holds people back?',
+      'What would you change if you could change one thing about the culture or industry you are in?',
+    ],
+    examplePerson: 'Gary Vaynerchuk',
+    exampleAnswer: 'What makes him genuinely angry is people who complain about their circumstances without taking responsibility for changing them. The belief that holds people back is that conditions need to be perfect before you start. His enemy is the excuse. Every piece of content is a direct assault on it.',
+  },
+  {
+    id: 'transcendence',
+    title: 'Transcendence',
+    subtitle: 'Why would someone outside your world care?',
+    explanation: [
+      'This is the question that separates brands with a ceiling from brands that break through it. If the only people who connect with you are already inside your world — your growth stops at the edge of that world.',
+      'The ones that break through have found something specific. Underneath their particular story is a universal human feeling. Something that transcends the specific context and lands in the chest of someone who has never been interested in that world at all.',
+      'The five most powerful emotions in personal branding: Redemption. Belonging. Proving them wrong. Survival. Legacy. Your transcendence is which one sits beneath your story — and how clearly you can make people feel it.',
+    ],
+    questions: [
+      'Describe the hardest moment in your journey. Not the facts of it — the feeling of it.',
+      'What emotion were you feeling at your lowest point that you think other people feel regardless of what they do?',
+      'Why would someone who has never been interested in your world still feel something watching your story?',
+    ],
+    examplePerson: 'Anthony Joshua',
+    exampleAnswer: 'The hardest moment was not a fight. It was the period before boxing when he was directionless, getting into trouble, watching his peers move forward while he stood still. The feeling was not failure — it was invisibility. Like he existed but didn\'t matter yet. That feeling is felt by millions of people in completely different lives. They recognise the moment before everything changed because they are living their own version of it.',
+  },
+  {
+    id: 'community',
+    title: 'Community',
+    subtitle: 'Whose mountain are you on?',
+    explanation: [
+      'Social media has not just connected people. It has sorted them. Clustered them into dense concentrated groups around shared identities, beliefs, aesthetics and feelings. The middle ground is empty. Trying to appeal to everyone produces content that resonates with no one.',
+      'Your community is not a demographic — it is a psychographic. Not "men aged 18 to 35" but "men who feel like the world has gotten soft and want to be challenged." The more specific you get, the more powerful the connection. Specificity feels like risk. It is actually safety.',
+      'Understand the difference between an audience and a community. An audience watches you. A community belongs to something together through you. An audience leaves when you stop posting. A community stays because they are connected to each other, not just to you.',
+    ],
+    questions: [
+      'Describe the person who gets you completely. Not their age or demographics — their mindset, their values, what they believe, what frustrates them, what they are reaching for.',
+      'What does being part of your world say about a person? What does it mean to be one of your people?',
+      'What separates your community from every other community in your space?',
+    ],
+    examplePerson: 'Joe Rogan',
+    exampleAnswer: 'The person who gets Rogan completely is deeply curious, slightly suspicious of mainstream narratives, values long form thinking over hot takes, and feels like most public conversation is too sanitised to be real. Being a Rogan listener says you are willing to sit with uncomfortable ideas and think for yourself. What separates his community is the specific combination of curiosity and contrarianism at that intensity — it exists almost nowhere else.',
+  },
+  {
+    id: 'entertainment',
+    title: 'Entertainment',
+    subtitle: 'Are you feeding the whole person?',
+    explanation: [
+      'There is a psychological truth beneath every human being. We operate on multiple levels simultaneously. There is the higher self — the part that wants meaning, purpose, growth, connection. And there is the lower self — the part that wants to be entertained, stimulated, amused, provoked.',
+      'The mistake serious brands make is only speaking to the higher self. The message is deep, the values are clear — but somewhere it becomes worthy and boring. The lower self starts looking elsewhere. And nobody can explain why because the message hasn\'t changed.',
+      'The greatest brands in history have always done both. Meaning and entertainment. Substance and stimulation. If you only feed the higher self your community has a ceiling. If you only feed the lower self you attract a crowd with no loyalty. The ones who last do both. Always.',
+    ],
+    questions: [
+      'What do people find naturally compelling about you when you are just being yourself — your humour, your intensity, your honesty, your unpredictability?',
+      'When you are at your most entertaining without trying — what is happening?',
+      'How do you make people feel something in the moment — not inspired, not motivated, but immediately gripped?',
+    ],
+    examplePerson: 'Tyson Fury',
+    exampleAnswer: 'When Fury is just being himself people find his complete unpredictability compelling. He is either being brutally honest about something everyone else is being careful about, or finding humour in situations that have no right to be funny. The higher self gets the comeback, the mental health honesty, the resilience. The lower self gets the chaos, the singing, the dancing, the refusal to be serious when seriousness is expected. He is the most alive person in every room he enters.',
+  },
+];
+
+const PROFILES = [
+  {
+    name: 'Conor McGregor',
+    descriptor: 'UFC world champion. Two-division title holder.',
+    feeling: 'Permission and inevitability',
+    data: {
+      'The Feeling': 'Permission and inevitability — being in his world makes you feel like the impossible is just a decision away.',
+      'Association': 'Precision, belief, audacity, style, hunger. Two division champion. The suit. The strut. The absolute unshakeable belief reinforced thousands of times until the world had no choice but to believe it too.',
+      'The Enemy': 'Mediocrity. People who accept their limits. The voice that says you can\'t.',
+      'Transcendence': 'Anyone who has ever been told no and refused to accept it. The sport was irrelevant. The feeling was everything.',
+      'Community': 'People who back themselves completely when nobody else does. People who see self belief not as arrogance but as the only rational response to a world that won\'t hand you anything.',
+      'Entertainment': 'Theatrical confidence, trash talk that always backed itself up, style that demanded attention before he threw a single punch. The show was as compelling as the fight.',
+    },
+  },
+  {
+    name: 'David Goggins',
+    descriptor: 'Navy SEAL. Ultra-endurance athlete. Author.',
+    feeling: 'Capability',
+    data: {
+      'The Feeling': 'Capability — your excuses feel smaller, your potential feels bigger. Being in his world makes you feel like you have been operating below what you are actually capable of.',
+      'Association': 'Can\'t Hurt Me. 4am. Suffering. No excuses. Navy SEAL. Ultra marathons. The 40% rule — when your mind says stop your body is only 40% done.',
+      'The Enemy': 'Comfort. The voice that tells you to stop. The easy path. Everything soft inside a person that lets them settle.',
+      'Transcendence': 'Anyone who has ever wanted to quit something and kept going. The sport or discipline is irrelevant — the feeling of refusing to stop is universal.',
+      'Community': 'People who believe most humans are operating at 40% of their potential and who want to live in the other 60%.',
+      'Entertainment': 'Brutal honesty, extreme physical challenge, the shock of watching someone do what seems physically impossible. The content is compelling because the discomfort is real.',
+    },
+  },
+  {
+    name: 'Tyson Fury',
+    descriptor: 'The Gypsy King. Two-time heavyweight champion.',
+    feeling: 'Hope',
+    data: {
+      'The Feeling': 'Hope — if he can come back from where he was, anyone can come back from anywhere.',
+      'Association': 'The Gypsy King. Comeback. Mental health. Unpredictability. Showmanship. The man who got up when everyone thought he was done.',
+      'The Enemy': 'Being counted out. Depression. The people and the voice inside him that said he was finished.',
+      'Transcendence': 'Anyone who has ever been at rock bottom and wondered if they had the strength to get back. The boxing is the arena. The comeback is the universal story.',
+      'Community': 'People who believe in second chances and refuse to be defined by their lowest point.',
+      'Entertainment': 'Complete unpredictability — you genuinely never know what he will say or do next. The singing, the dancing, the chaos, the humour in situations that have no right to be funny. Higher self gets the resilience. Lower self gets the spectacle.',
+    },
+  },
+  {
+    name: 'Anthony Joshua',
+    descriptor: 'Olympic gold medallist. Multiple world heavyweight champion.',
+    feeling: 'Inspiration through discipline',
+    data: {
+      'The Feeling': 'Inspiration — that discipline and hard work can take you from nothing to everything.',
+      'Association': 'Discipline. Humble champion. From the streets. Olympic gold. The people\'s champion. The combination of physical power and quiet articulacy that nobody expected.',
+      'The Enemy': 'Wasted potential. The circumstances that tell you who you are allowed to become.',
+      'Transcendence': 'Anyone who has ever felt invisible before finding their purpose. That feeling of existing without mattering yet is felt by millions of people in completely different lives.',
+      'Community': 'People who believe in the power of self discipline and that your starting point does not have to be your ending point.',
+      'Entertainment': 'The physique that demands attention, the performance that delivers, the combination of power and articulacy that surprised everyone and kept them watching.',
+    },
+  },
+  {
+    name: 'Joe Rogan',
+    descriptor: 'Comedian. UFC commentator. Host of the world\'s most-listened podcast.',
+    feeling: 'Freedom',
+    data: {
+      'The Feeling': 'Freedom — like you are in a conversation where anything can actually be said and nobody is performing the right opinion.',
+      'Association': 'Long form. Curiosity. Elk meat. DMT. Comedian. UFC commentator. No filter. Three hours of actual thinking.',
+      'The Enemy': 'Sanitised public conversation. Hot takes. The performance of having the correct opinion. The shortening of everything real into something safe.',
+      'Transcendence': 'Anyone who has ever felt like real conversations have disappeared from public life. Anyone tired of everyone performing their views rather than actually having them.',
+      'Community': 'Deeply curious, slightly contrarian, values long form thinking over consensus, suspicious of official narratives. Being a Rogan listener says something specific about who you are.',
+      'Entertainment': 'Genuine unpredictability, the willingness to go anywhere a conversation leads, the three hour format that rewards actual attention in a world optimised for the opposite.',
+    },
+  },
+  {
+    name: 'Gary Vaynerchuk',
+    descriptor: 'Entrepreneur. Investor. Content creator.',
+    feeling: 'Permission and urgency',
+    data: {
+      'The Feeling': 'Permission and urgency — that it is not too late and the excuses are not real and the time is now.',
+      'Association': 'Hustle. Wine Library. Document don\'t create. Self awareness. No excuses. The immigrant work ethic. Doing the unglamorous thing for years before anyone watches.',
+      'The Enemy': 'Excuses. Waiting for the right moment. Complaining about circumstances without changing them. The obsession with overnight success.',
+      'Transcendence': 'Anyone who has ever felt stuck and needed someone to tell them to just start. The industry is irrelevant. The paralysis is universal.',
+      'Community': 'Entrepreneurs, builders, people who back themselves before anyone else does, people willing to look stupid for long enough to get good.',
+      'Entertainment': 'The volume, the energy, the relentless consistency, the complete absence of filter, the genuine anger at wasted potential that comes through every video.',
+    },
+  },
+  {
+    name: 'KSI',
+    descriptor: 'YouTuber. Boxer. Recording artist. Entrepreneur.',
+    feeling: 'Excitement',
+    data: {
+      'The Feeling': 'Excitement — that you can be more than one thing and reinvent yourself whenever you decide to.',
+      'Association': 'YouTube. Boxing. Music. JJ. Sidemen. Drama. Transformation. The person who kept doing new things and kept being better than people expected.',
+      'The Enemy': 'Labels. Being put in a box. People who say stick to what you know and stop trying new things.',
+      'Transcendence': 'Anyone who has ever wanted to be more than one thing. Anyone who has been told their lane and refused to stay in it.',
+      'Community': 'People who grew up on YouTube and believe entertainment has no rules and no ceiling anymore.',
+      'Entertainment': 'The drama, the feuds, the unexpected competence in entirely new arenas, the chaos that always resolves into something real and earned.',
+    },
+  },
+  {
+    name: 'Andrew Tate',
+    descriptor: 'Kickboxing champion. Entrepreneur.',
+    feeling: 'Permission to be unfiltered',
+    data: {
+      'The Feeling': 'Permission to be completely unfiltered — that you do not have to perform softness or agreement you do not feel.',
+      'Association': 'Bugatti. Top G. War Room. Romania. Cigar. Polarising. The person everyone has an opinion on.',
+      'The Enemy': 'Weakness in all its forms. Mediocrity. The systems and narratives he believes are designed to keep people small and compliant.',
+      'Transcendence': 'Anyone who has ever felt like the world wanted them to shrink. The specifics of his message are divisive. The feeling of being told you are too much is not.',
+      'Community': 'One of the most concentrated and intensely loyal communities ever built around a personal brand. Built by planting an extremely specific flag at an extremely specific peak. The intensity of the community is directly proportional to the specificity of the flag.',
+      'Entertainment': 'Complete polarisation, the shock of someone saying what most will not, confidence that admits no doubt, the spectacle of a person who generates a reaction from everyone who encounters them.',
+    },
+  },
+];
+
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+
+let currentStep = 0;
+let answers = SECTIONS.map(s => s.questions.map(() => ''));
+let exampleOpen = SECTIONS.map(() => false);
+
+/* ═══════════════════════════════════════════
+   PROFILES
+═══════════════════════════════════════════ */
+
+function renderProfiles() {
+  const grid = document.getElementById('profiles-grid');
+  grid.innerHTML = PROFILES.map((p, i) => `
+    <div
+      class="profile-card reveal"
+      role="listitem button"
+      tabindex="0"
+      onclick="openModal(${i})"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal(${i});}"
+      aria-label="Open ${p.name} brand profile"
+    >
+      <div class="card-num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-feeling">${p.feeling}</div>
+      <div class="card-desc">${p.descriptor}</div>
+      <div class="card-cta">View profile <span aria-hidden="true">→</span></div>
+    </div>
+  `).join('');
+}
+
+function openModal(idx) {
+  const p = PROFILES[idx];
+  const SECTION_ORDER = ['The Feeling', 'Association', 'The Enemy', 'Transcendence', 'Community', 'Entertainment'];
+
+  const sectionsHTML = SECTION_ORDER.map((key, i) => `
+    <div class="modal-section">
+      <p class="eyebrow" style="margin-bottom:0.35rem">Section ${i + 1} of 6</p>
+      <h3 class="modal-sec-title">${key}</h3>
+      <p class="modal-sec-text">${esc(p.data[key])}</p>
+    </div>
+  `).join('');
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-head">
+      <p class="eyebrow">Brand Profile</p>
+      <h2 class="modal-person" id="modal-person-name">${p.name}</h2>
+      <p class="modal-person-sub">${p.descriptor}</p>
+    </div>
+    <div class="modal-body">${sectionsHTML}</div>
+  `;
+
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.add('open');
+  overlay.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-close').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+
+document.getElementById('modal-overlay').addEventListener('click', function (e) {
+  if (e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && document.getElementById('modal-overlay').classList.contains('open')) {
+    closeModal();
+  }
+});
+
+/* ═══════════════════════════════════════════
+   BUILDER
+═══════════════════════════════════════════ */
+
+function renderBuilderSteps() {
+  const container = document.getElementById('builder-steps');
+
+  container.innerHTML = SECTIONS.map((section, si) => {
+    const explanationHTML = section.explanation.map(p => `<p>${p}</p>`).join('');
+
+    const questionsHTML = section.questions.map((q, qi) => `
+      <div class="question-block">
+        <label for="ans-${si}-${qi}">${q}</label>
+        <textarea
+          id="ans-${si}-${qi}"
+          rows="3"
+          placeholder="Write your answer here…"
+          oninput="saveAnswer(${si},${qi},this.value)"
+        >${esc(answers[si][qi])}</textarea>
+      </div>
+    `).join('');
+
+    return `
+      <div class="builder-step${si === 0 ? ' active' : ''}" id="step-${si}">
+        <p class="eyebrow step-label">Section ${si + 1} of ${SECTIONS.length}</p>
+        <h3 class="step-title">${section.title}</h3>
+        <p class="step-subtitle">${section.subtitle}</p>
+        <div class="step-explanation">${explanationHTML}</div>
+        <div class="questions-list">${questionsHTML}</div>
+        <button
+          class="example-toggle"
+          id="ex-btn-${si}"
+          onclick="toggleExample(${si})"
+          aria-expanded="false"
+          aria-controls="ex-drawer-${si}"
+        >
+          <span class="toggle-icon" aria-hidden="true">+</span>
+          See example — ${section.examplePerson}
+        </button>
+        <div class="example-drawer" id="ex-drawer-${si}" aria-hidden="true">
+          <div class="example-card">
+            <p class="example-card-label">Example answer</p>
+            <p class="example-card-person">${section.examplePerson}</p>
+            <p class="example-card-text">"${esc(section.exampleAnswer)}"</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function saveAnswer(si, qi, value) {
+  answers[si][qi] = value;
+}
+
+function syncAnswers() {
+  SECTIONS.forEach(function (section, si) {
+    section.questions.forEach(function (q, qi) {
+      const el = document.getElementById('ans-' + si + '-' + qi);
+      if (el) answers[si][qi] = el.value;
+    });
+  });
+}
+
+function toggleExample(si) {
+  exampleOpen[si] = !exampleOpen[si];
+  const drawer = document.getElementById('ex-drawer-' + si);
+  const btn = document.getElementById('ex-btn-' + si);
+  const isOpen = exampleOpen[si];
+
+  drawer.classList.toggle('open', isOpen);
+  btn.classList.toggle('open', isOpen);
+  btn.setAttribute('aria-expanded', String(isOpen));
+  drawer.setAttribute('aria-hidden', String(!isOpen));
+}
+
+function navigateStep(dir) {
+  syncAnswers();
+
+  const next = currentStep + dir;
+
+  if (next >= SECTIONS.length) {
+    showOutput();
+    return;
+  }
+
+  if (next < 0) return;
+
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  currentStep = next;
+  document.getElementById('step-' + currentStep).classList.add('active');
+
+  updateProgress();
+  updateNavButtons();
+
+  document.getElementById('builder').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updateProgress() {
+  const pct = Math.round((currentStep / SECTIONS.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-label').textContent =
+    'Section ' + (currentStep + 1) + ' of ' + SECTIONS.length + ' — ' + SECTIONS[currentStep].title;
+  const wrap = document.querySelector('.progress-wrap');
+  if (wrap) wrap.setAttribute('aria-valuenow', String(pct));
+}
+
+function updateNavButtons() {
+  const back = document.getElementById('btn-back');
+  const next = document.getElementById('btn-next');
+  back.style.display = currentStep > 0 ? '' : 'none';
+  next.textContent = currentStep === SECTIONS.length - 1 ? 'Generate Brand Profile' : 'Next Section';
+}
+
+/* ═══════════════════════════════════════════
+   OUTPUT
+═══════════════════════════════════════════ */
+
+function showOutput() {
+  syncAnswers();
+
+  const name = document.getElementById('your-name').value.trim() || 'Your Brand';
+  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const sectionsHTML = SECTIONS.map(function (section, si) {
+    const answersHTML = section.questions.map(function (q, qi) {
+      const a = answers[si][qi].trim();
+      return `
+        <div class="output-qa">
+          <div class="output-q">${q}</div>
+          <div class="output-a${a ? '' : ' empty'}">${a ? esc(a) : 'Not answered'}</div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="output-section">
+        <p class="eyebrow" style="margin-bottom:0.35rem">Section ${si + 1} of 6</p>
+        <h3 class="output-sec-title">${section.title}</h3>
+        <div class="output-answers">${answersHTML}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('output-doc').innerHTML = `
+    <div class="output-doc-head">
+      <p class="eyebrow">Brand Profile</p>
+      <h2 class="output-title">${esc(name)}</h2>
+      <p class="output-generated">Generated ${date}</p>
+    </div>
+    ${sectionsHTML}
+    <div class="what-next">
+      <p class="eyebrow">What next?</p>
+      <h3>Apply what you found.</h3>
+      <ul class="next-list">
+        <li>
+          <span class="next-num">1</span>
+          <span class="next-text">Every piece of content you create should express your feeling. If it doesn't produce the emotion you defined here, it is not your content — it is noise.</span>
+        </li>
+        <li>
+          <span class="next-num">2</span>
+          <span class="next-text">Every decision should pass the filter — does this reinforce my associations and serve my community? If not, it dilutes the brand.</span>
+        </li>
+        <li>
+          <span class="next-num">3</span>
+          <span class="next-text">Return to this document whenever your brand feels unclear. The answers here are your north star. When in doubt, come back to what you wrote.</span>
+        </li>
+      </ul>
+    </div>
+  `;
+
+  document.getElementById('builder').style.display = 'none';
+
+  const outputEl = document.getElementById('output');
+  outputEl.classList.add('visible');
+
+  const navLi = document.getElementById('nav-output-li');
+  if (navLi) navLi.style.display = '';
+
+  outputEl.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════
+   EXPORT
+═══════════════════════════════════════════ */
+
+function buildPlainText() {
+  const name = document.getElementById('your-name').value.trim() || 'Your Brand';
+  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  let out = name + ' — Brand Profile\n';
+  out += '═'.repeat(50) + '\n';
+  out += 'Generated ' + date + '\n\n';
+
+  SECTIONS.forEach(function (section, si) {
+    out += (si + 1) + '. ' + section.title.toUpperCase() + '\n';
+    out += '─'.repeat(30) + '\n\n';
+    section.questions.forEach(function (q, qi) {
+      out += q + '\n';
+      out += (answers[si][qi].trim() || '[Not answered]') + '\n\n';
+    });
+  });
+
+  return out;
+}
+
+function downloadProfile() {
+  const name = document.getElementById('your-name').value.trim() || 'brand';
+  const text = buildPlainText();
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-brand-profile.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function copyProfile() {
+  const text = buildPlainText();
+  const btn = document.querySelector('button[onclick="copyProfile()"]');
+  const orig = btn.textContent;
+
+  const done = function () {
+    btn.textContent = 'Copied';
+    setTimeout(function () { btn.textContent = orig; }, 2200);
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); cb(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+function restartBuilder() {
+  currentStep = 0;
+  answers = SECTIONS.map(function (s) { return s.questions.map(function () { return ''; }); });
+  exampleOpen = SECTIONS.map(function () { return false; });
+
+  document.getElementById('output').classList.remove('visible');
+  document.getElementById('builder').style.display = '';
+
+  renderBuilderSteps();
+  updateProgress();
+  updateNavButtons();
+
+  document.getElementById('builder').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+
+function initReveal() {
+  if (!window.IntersectionObserver) {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+
+  const obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+}
+
+/* ═══════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════ */
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', function () {
+  renderProfiles();
+  renderBuilderSteps();
+  updateProgress();
+  updateNavButtons();
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(initReveal);
+  });
+});
+</script>
+</body>
+</html>
