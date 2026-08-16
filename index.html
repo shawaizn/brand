@@ -10,20 +10,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════════
-   TOKENS — dark, premium, single-theme
+   TOKENS
 ══════════════════════════════════════════════════ */
 :root {
   --bg:           #0a0a0a;
   --bg-raised:    #101010;
   --bg-elevated:  #161616;
   --border-1:     #1c1c1c;
-  --border-2:     #262626;
+  --border-2:     #282828;
   --gold:         #C9A84C;
   --gold-muted:   #7a5e22;
   --gold-subtle:  #1a1300;
-  --text-1:       #e2e2e2;
-  --text-2:       #8a8a8a;
-  --text-3:       #464646;
+  --text-1:       #e4e4e4;
+  /* ↑ contrast lift: was #8a8a8a — now #b2b2b2. Biggest single readability win. */
+  --text-2:       #b2b2b2;
+  --text-3:       #5e5e5e;
   --white:        #ffffff;
   --nav-h:        60px;
 }
@@ -33,10 +34,7 @@
 ══════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
   background: var(--bg);
@@ -58,7 +56,6 @@ h1, h2, h3, h4 {
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
 textarea, input { font-family: inherit; }
-img { max-width: 100%; display: block; }
 
 /* ══════════════════════════════════════════════════
    UTILITIES
@@ -97,7 +94,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  background: rgba(10,10,10,0.94);
+  background: rgba(10,10,10,0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-1);
@@ -139,10 +136,8 @@ img { max-width: 100%; display: block; }
   padding: calc(var(--nav-h) + 5rem) 0 6rem;
   border-bottom: 1px solid var(--border-1);
   position: relative;
-  scroll-margin-top: 0;
 }
 
-/* Structural editorial line — left column accent */
 #hero::before {
   content: '';
   position: absolute;
@@ -156,7 +151,6 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-inner { max-width: 860px; }
-
 .hero-tag { margin-bottom: 2.75rem; }
 
 .hero-headline {
@@ -169,7 +163,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: -0.01em;
 }
 
-/* The thesis word — italic gold, commanding its own line */
 .hero-feeling {
   display: block;
   font-style: italic;
@@ -177,7 +170,6 @@ img { max-width: 100%; display: block; }
   line-height: 1.05;
 }
 
-/* The second line of the headline, smaller weight for rhythm */
 .hero-headline-close {
   display: block;
   font-size: clamp(1.6rem, 3.2vw, 3.2rem);
@@ -203,7 +195,9 @@ img { max-width: 100%; display: block; }
   margin-bottom: 2.75rem;
 }
 
-/* Buttons */
+/* ══════════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════════ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -221,10 +215,7 @@ img { max-width: 100%; display: block; }
   line-height: 1;
 }
 
-.btn-primary {
-  background: var(--gold);
-  color: #0a0a0a;
-}
+.btn-primary { background: var(--gold); color: #0a0a0a; }
 .btn-primary:hover { background: #d9b95e; }
 .btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
@@ -264,10 +255,10 @@ img { max-width: 100%; display: block; }
 }
 
 .section-intro p {
-  font-size: 0.925rem;
+  font-size: 0.95rem;
   color: var(--text-2);
   max-width: 520px;
-  line-height: 1.85;
+  line-height: 1.88;
 }
 
 /* ══════════════════════════════════════════════════
@@ -291,7 +282,6 @@ img { max-width: 100%; display: block; }
   transition: background 0.2s;
 }
 
-/* Gold sweep across the top on hover */
 .profile-card::after {
   content: '';
   position: absolute;
@@ -303,10 +293,7 @@ img { max-width: 100%; display: block; }
 }
 .profile-card:hover { background: var(--bg-elevated); }
 .profile-card:hover::after { width: 100%; }
-.profile-card:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: -2px;
-}
+.profile-card:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 
 .card-num {
   font-size: 0.6rem;
@@ -327,7 +314,7 @@ img { max-width: 100%; display: block; }
 
 .card-feeling {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-style: italic;
   color: var(--gold);
   margin-bottom: 0.85rem;
@@ -335,7 +322,7 @@ img { max-width: 100%; display: block; }
 }
 
 .card-desc {
-  font-size: 0.775rem;
+  font-size: 0.8rem;
   color: var(--text-2);
   line-height: 1.65;
 }
@@ -417,7 +404,7 @@ img { max-width: 100%; display: block; }
 }
 
 .modal-person-sub {
-  font-size: 0.825rem;
+  font-size: 0.85rem;
   color: var(--text-2);
 }
 
@@ -434,13 +421,13 @@ img { max-width: 100%; display: block; }
   font-size: 1rem;
   font-weight: 600;
   color: var(--white);
-  margin: 0.4rem 0 0.65rem;
+  margin: 0.4rem 0 0.7rem;
 }
 
 .modal-sec-text {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--text-2);
-  line-height: 1.88;
+  line-height: 1.9;
 }
 
 /* ══════════════════════════════════════════════════
@@ -482,19 +469,33 @@ img { max-width: 100%; display: block; }
   outline: none;
   transition: border-color 0.2s;
   -webkit-appearance: none;
-  appearance: none;
 }
 .name-row input[type="text"]::placeholder { color: var(--text-3); }
 .name-row input[type="text"]:focus { border-color: var(--gold); }
 
-/* Progress bar */
-.progress-wrap { margin-bottom: 3.25rem; }
+/* ══════════════════════════════════════════════════
+   PROGRESS — sticky so orientation never gets lost
+══════════════════════════════════════════════════ */
+.progress-wrap {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 50;
+  background: var(--bg);
+  padding: 0.9rem 0 1.1rem;
+  border-bottom: 1px solid var(--border-1);
+  margin-bottom: 2.75rem;
+  /* negative horizontal bleed to span container edges */
+  margin-left: -2rem;
+  margin-right: -2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 
 .progress-info {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.55rem;
   font-size: 0.72rem;
 }
 
@@ -509,6 +510,7 @@ img { max-width: 100%; display: block; }
   height: 1px;
   background: var(--border-2);
   position: relative;
+  margin-bottom: 0.75rem;
 }
 
 .progress-fill {
@@ -519,7 +521,42 @@ img { max-width: 100%; display: block; }
   width: 0%;
 }
 
-/* Steps */
+/* Step dots — six pill tabs showing completion state */
+.step-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.step-dot {
+  height: 3px;
+  flex: 1;
+  background: var(--border-2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.25s, transform 0.15s;
+  /* invisible tap target above the visual strip */
+}
+.step-dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px 0;
+}
+
+.step-dot:hover { background: var(--text-3); }
+.step-dot.has-answers { background: var(--gold-muted); }
+.step-dot.is-current {
+  background: var(--gold);
+  transform: scaleY(2);
+  transform-origin: bottom;
+}
+.step-dot.is-current.has-answers { background: var(--gold); }
+.step-dot:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ══════════════════════════════════════════════════
+   BUILDER STEPS
+══════════════════════════════════════════════════ */
 .builder-step { display: none; }
 .builder-step.active {
   display: block;
@@ -546,54 +583,96 @@ img { max-width: 100%; display: block; }
   font-size: 0.875rem;
   font-style: italic;
   color: var(--text-3);
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
-.step-explanation {
-  font-size: 0.875rem;
+/* Context block — visually reads as reference, not instruction */
+.context-block {
+  background: var(--bg-elevated);
+  border-left: 2px solid var(--border-2);
+  padding: 1.375rem 1.625rem;
+  margin-bottom: 2.5rem;
+}
+
+.context-block-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.875rem;
+}
+
+.context-block p {
+  font-size: 0.925rem;
   color: var(--text-2);
   line-height: 1.95;
-  max-width: 660px;
-  margin-bottom: 2.5rem;
-  padding: 1.375rem 1.625rem;
-  border-left: 2px solid var(--border-2);
 }
-.step-explanation p + p { margin-top: 0.875rem; }
+.context-block p + p { margin-top: 0.875rem; }
 
-/* Questions */
+/* Questions zone */
+.questions-zone-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--border-1);
+}
+
 .questions-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.875rem;
   margin-bottom: 1.75rem;
+}
+
+.question-block {}
+
+/* Q-number label above each question */
+.q-num {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
 }
 
 .question-block label {
   display: block;
-  font-size: 0.875rem;
+  font-size: 0.925rem;
   font-weight: 500;
   color: var(--text-1);
   line-height: 1.55;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .question-block textarea {
   width: 100%;
   background: var(--bg-raised);
   border: 1px solid var(--border-2);
+  /* left border thickens to gold when answered — live feedback */
+  border-left-width: 2px;
+  border-left-color: var(--border-2);
   color: var(--text-1);
-  font-size: 0.875rem;
-  line-height: 1.75;
-  padding: 0.825rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  padding: 0.875rem 1rem;
   resize: vertical;
-  min-height: 88px;
+  min-height: 100px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, border-left-color 0.25s;
   -webkit-appearance: none;
-  appearance: none;
 }
 .question-block textarea::placeholder { color: var(--text-3); }
-.question-block textarea:focus { border-color: var(--gold); }
+.question-block textarea:focus { border-color: var(--gold); border-left-color: var(--gold); }
+/* Gold left border once content exists */
+.question-block.answered textarea {
+  border-left-color: var(--gold-muted);
+}
 
 /* Example toggle */
 .example-toggle {
@@ -662,9 +741,9 @@ img { max-width: 100%; display: block; }
 }
 
 .example-card-text {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text-2);
-  line-height: 1.88;
+  line-height: 1.9;
   font-style: italic;
 }
 
@@ -673,7 +752,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   gap: 0.875rem;
   align-items: center;
-  margin-top: 2.25rem;
+  margin-top: 2.5rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border-1);
   flex-wrap: wrap;
@@ -734,7 +813,7 @@ img { max-width: 100%; display: block; }
 .output-answers {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.375rem;
 }
 
 .output-q {
@@ -746,9 +825,9 @@ img { max-width: 100%; display: block; }
 }
 
 .output-a {
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   color: var(--text-2);
-  line-height: 1.82;
+  line-height: 1.85;
   white-space: pre-wrap;
 }
 .output-a.empty {
@@ -756,7 +835,6 @@ img { max-width: 100%; display: block; }
   font-style: italic;
 }
 
-/* What next */
 .what-next {
   margin-top: 3rem;
   padding-top: 3rem;
@@ -799,13 +877,13 @@ img { max-width: 100%; display: block; }
 }
 
 .next-text {
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   color: var(--text-2);
-  line-height: 1.82;
+  line-height: 1.85;
 }
 
 /* ══════════════════════════════════════════════════
-   PRINT STYLES
+   PRINT
 ══════════════════════════════════════════════════ */
 @media print {
   #nav, #hero, #profiles, .modal-overlay, #builder, .output-top-actions, .what-next { display: none !important; }
@@ -833,6 +911,14 @@ img { max-width: 100%; display: block; }
 
   .container { padding: 0 1.25rem; }
 
+  /* Reset the sticky progress bleed on mobile */
+  .progress-wrap {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   #hero { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 4rem; }
   #hero::before { display: none; }
 
@@ -844,10 +930,7 @@ img { max-width: 100%; display: block; }
   .modal-head { padding: 1.75rem 1.5rem 1.5rem; }
   .modal-body { padding: 0 1.5rem 2rem; }
 
-  .step-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
+  .step-actions { flex-direction: column; align-items: stretch; }
   .step-actions .btn { width: 100%; }
 
   .output-top-actions { flex-direction: column; align-items: stretch; }
@@ -865,9 +948,7 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAV
-═══════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <a href="#hero" class="nav-logo">Brand<span>Builder</span></a>
   <ul class="nav-links">
@@ -877,9 +958,7 @@ img { max-width: 100%; display: block; }
   </ul>
 </nav>
 
-<!-- ═══════════════════════════════════════
-     HERO
-═══════════════════════════════════════ -->
+<!-- HERO -->
 <section id="hero" aria-label="Introduction">
   <div class="container">
     <div class="hero-inner">
@@ -897,9 +976,7 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     BRAND PROFILES
-═══════════════════════════════════════ -->
+<!-- BRAND PROFILES -->
 <section id="profiles" class="section-base" aria-label="Brand profiles">
   <div class="container">
     <div class="section-intro reveal">
@@ -913,19 +990,15 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     MODAL
-═══════════════════════════════════════ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-person-name">
   <div class="modal-box" id="modal-box">
     <button class="modal-close-btn" id="modal-close" aria-label="Close profile">&times;</button>
-    <div id="modal-content"><!-- Rendered by JS --></div>
+    <div id="modal-content"></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     BUILDER
-═══════════════════════════════════════ -->
+<!-- BUILDER -->
 <section id="builder" aria-label="Brand Builder">
   <div class="container">
     <div class="section-intro reveal" style="margin-bottom:2.5rem">
@@ -942,6 +1015,7 @@ img { max-width: 100%; display: block; }
       <input type="text" id="your-name" placeholder="e.g. Alex Morgan" autocomplete="name">
     </div>
 
+    <!-- Sticky progress: always visible while scrolling through a section -->
     <div class="progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Builder progress">
       <div class="progress-info">
         <span class="progress-section-name" id="progress-label">Section 1 of 6 — The Feeling</span>
@@ -950,9 +1024,11 @@ img { max-width: 100%; display: block; }
       <div class="progress-track">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
+      <!-- Six pills: gold=current, muted=has answers, grey=untouched -->
+      <div class="step-dots" id="step-dots" aria-hidden="true"></div>
     </div>
 
-    <div id="builder-steps"><!-- Rendered by JS --></div>
+    <div id="builder-steps"></div>
 
     <div class="step-actions">
       <button class="btn btn-ghost" id="btn-back" onclick="navigateStep(-1)" style="display:none">← Back</button>
@@ -961,9 +1037,7 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     OUTPUT
-═══════════════════════════════════════ -->
+<!-- OUTPUT -->
 <section id="output" aria-label="Your brand profile">
   <div class="container">
     <div class="output-wrap">
@@ -972,7 +1046,7 @@ img { max-width: 100%; display: block; }
         <button class="btn btn-ghost" onclick="copyProfile()">Copy to Clipboard</button>
         <button class="btn btn-ghost" onclick="restartBuilder()">Start Over</button>
       </div>
-      <div id="output-doc"><!-- Rendered by JS --></div>
+      <div id="output-doc"></div>
     </div>
   </div>
 </section>
@@ -981,7 +1055,7 @@ img { max-width: 100%; display: block; }
 'use strict';
 
 /* ═══════════════════════════════════════════
-   DATA — sourced from methodology document
+   DATA
 ═══════════════════════════════════════════ */
 
 const SECTIONS = [
@@ -1199,57 +1273,50 @@ const PROFILES = [
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-
 let currentStep = 0;
-let answers = SECTIONS.map(s => s.questions.map(() => ''));
-let exampleOpen = SECTIONS.map(() => false);
+let answers = SECTIONS.map(function(s) { return s.questions.map(function() { return ''; }); });
+let exampleOpen = SECTIONS.map(function() { return false; });
 
 /* ═══════════════════════════════════════════
    PROFILES
 ═══════════════════════════════════════════ */
-
 function renderProfiles() {
-  const grid = document.getElementById('profiles-grid');
-  grid.innerHTML = PROFILES.map((p, i) => `
-    <div
-      class="profile-card reveal"
-      role="listitem button"
-      tabindex="0"
-      onclick="openModal(${i})"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal(${i});}"
-      aria-label="Open ${p.name} brand profile"
-    >
-      <div class="card-num">${String(i + 1).padStart(2, '0')}</div>
-      <div class="card-name">${p.name}</div>
-      <div class="card-feeling">${p.feeling}</div>
-      <div class="card-desc">${p.descriptor}</div>
-      <div class="card-cta">View profile <span aria-hidden="true">→</span></div>
-    </div>
-  `).join('');
+  var grid = document.getElementById('profiles-grid');
+  grid.innerHTML = PROFILES.map(function(p, i) {
+    return '<div class="profile-card reveal" role="listitem button" tabindex="0"' +
+      ' onclick="openModal(' + i + ')"' +
+      ' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openModal(' + i + ');}"' +
+      ' aria-label="Open ' + p.name + ' brand profile">' +
+      '<div class="card-num">' + String(i + 1).padStart(2, '0') + '</div>' +
+      '<div class="card-name">' + p.name + '</div>' +
+      '<div class="card-feeling">' + p.feeling + '</div>' +
+      '<div class="card-desc">' + p.descriptor + '</div>' +
+      '<div class="card-cta">View profile <span aria-hidden="true">→</span></div>' +
+      '</div>';
+  }).join('');
 }
 
 function openModal(idx) {
-  const p = PROFILES[idx];
-  const SECTION_ORDER = ['The Feeling', 'Association', 'The Enemy', 'Transcendence', 'Community', 'Entertainment'];
+  var p = PROFILES[idx];
+  var ORDER = ['The Feeling','Association','The Enemy','Transcendence','Community','Entertainment'];
 
-  const sectionsHTML = SECTION_ORDER.map((key, i) => `
-    <div class="modal-section">
-      <p class="eyebrow" style="margin-bottom:0.35rem">Section ${i + 1} of 6</p>
-      <h3 class="modal-sec-title">${key}</h3>
-      <p class="modal-sec-text">${esc(p.data[key])}</p>
-    </div>
-  `).join('');
+  var sectionsHTML = ORDER.map(function(key, i) {
+    return '<div class="modal-section">' +
+      '<p class="eyebrow" style="margin-bottom:0.35rem">Section ' + (i+1) + ' of 6</p>' +
+      '<h3 class="modal-sec-title">' + key + '</h3>' +
+      '<p class="modal-sec-text">' + esc(p.data[key]) + '</p>' +
+      '</div>';
+  }).join('');
 
-  document.getElementById('modal-content').innerHTML = `
-    <div class="modal-head">
-      <p class="eyebrow">Brand Profile</p>
-      <h2 class="modal-person" id="modal-person-name">${p.name}</h2>
-      <p class="modal-person-sub">${p.descriptor}</p>
-    </div>
-    <div class="modal-body">${sectionsHTML}</div>
-  `;
+  document.getElementById('modal-content').innerHTML =
+    '<div class="modal-head">' +
+      '<p class="eyebrow">Brand Profile</p>' +
+      '<h2 class="modal-person" id="modal-person-name">' + p.name + '</h2>' +
+      '<p class="modal-person-sub">' + p.descriptor + '</p>' +
+    '</div>' +
+    '<div class="modal-body">' + sectionsHTML + '</div>';
 
-  const overlay = document.getElementById('modal-overlay');
+  var overlay = document.getElementById('modal-overlay');
   overlay.classList.add('open');
   overlay.scrollTop = 0;
   document.body.style.overflow = 'hidden';
@@ -1262,66 +1329,123 @@ function closeModal() {
 }
 
 document.getElementById('modal-close').addEventListener('click', closeModal);
-
-document.getElementById('modal-overlay').addEventListener('click', function (e) {
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && document.getElementById('modal-overlay').classList.contains('open')) {
-    closeModal();
-  }
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('modal-overlay').classList.contains('open')) closeModal();
 });
+
+/* ═══════════════════════════════════════════
+   STEP DOTS
+═══════════════════════════════════════════ */
+function renderStepDots() {
+  var container = document.getElementById('step-dots');
+  container.innerHTML = SECTIONS.map(function(s, i) {
+    return '<button class="step-dot" data-step="' + i + '"' +
+      ' title="Section ' + (i+1) + ': ' + s.title + '"' +
+      ' onclick="jumpToStep(' + i + ')"' +
+      ' aria-label="Go to section ' + (i+1) + ': ' + s.title + '"></button>';
+  }).join('');
+  updateStepDots();
+}
+
+function updateStepDots() {
+  var dots = document.querySelectorAll('.step-dot');
+  dots.forEach(function(dot, i) {
+    dot.classList.remove('is-current', 'has-answers');
+    if (i === currentStep) dot.classList.add('is-current');
+    if (sectionHasAnswers(i)) dot.classList.add('has-answers');
+  });
+}
+
+function sectionHasAnswers(si) {
+  return answers[si].some(function(a) { return a.trim().length > 0; });
+}
+
+function jumpToStep(si) {
+  syncAnswers();
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  currentStep = si;
+  document.getElementById('step-' + currentStep).classList.add('active');
+  updateProgress();
+  updateNavButtons();
+  document.getElementById('builder').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 /* ═══════════════════════════════════════════
    BUILDER
 ═══════════════════════════════════════════ */
-
 function renderBuilderSteps() {
-  const container = document.getElementById('builder-steps');
+  var container = document.getElementById('builder-steps');
+  container.innerHTML = SECTIONS.map(function(section, si) {
+    var explanationHTML = section.explanation.map(function(p) { return '<p>' + p + '</p>'; }).join('');
 
-  container.innerHTML = SECTIONS.map((section, si) => {
-    const explanationHTML = section.explanation.map(p => `<p>${p}</p>`).join('');
+    var questionsHTML = section.questions.map(function(q, qi) {
+      var qLabel = 'Q' + (qi + 1);
+      return '<div class="question-block" id="qblock-' + si + '-' + qi + '">' +
+        '<div class="q-num">' + qLabel + '</div>' +
+        '<label for="ans-' + si + '-' + qi + '">' + q + '</label>' +
+        '<textarea' +
+          ' id="ans-' + si + '-' + qi + '"' +
+          ' rows="3"' +
+          ' placeholder="Write your answer here…"' +
+          ' oninput="onAnswerInput(' + si + ',' + qi + ',this)"' +
+        '>' + esc(answers[si][qi]) + '</textarea>' +
+        '</div>';
+    }).join('');
 
-    const questionsHTML = section.questions.map((q, qi) => `
-      <div class="question-block">
-        <label for="ans-${si}-${qi}">${q}</label>
-        <textarea
-          id="ans-${si}-${qi}"
-          rows="3"
-          placeholder="Write your answer here…"
-          oninput="saveAnswer(${si},${qi},this.value)"
-        >${esc(answers[si][qi])}</textarea>
-      </div>
-    `).join('');
-
-    return `
-      <div class="builder-step${si === 0 ? ' active' : ''}" id="step-${si}">
-        <p class="eyebrow step-label">Section ${si + 1} of ${SECTIONS.length}</p>
-        <h3 class="step-title">${section.title}</h3>
-        <p class="step-subtitle">${section.subtitle}</p>
-        <div class="step-explanation">${explanationHTML}</div>
-        <div class="questions-list">${questionsHTML}</div>
-        <button
-          class="example-toggle"
-          id="ex-btn-${si}"
-          onclick="toggleExample(${si})"
-          aria-expanded="false"
-          aria-controls="ex-drawer-${si}"
-        >
-          <span class="toggle-icon" aria-hidden="true">+</span>
-          See example — ${section.examplePerson}
-        </button>
-        <div class="example-drawer" id="ex-drawer-${si}" aria-hidden="true">
-          <div class="example-card">
-            <p class="example-card-label">Example answer</p>
-            <p class="example-card-person">${section.examplePerson}</p>
-            <p class="example-card-text">"${esc(section.exampleAnswer)}"</p>
-          </div>
-        </div>
-      </div>
-    `;
+    return '<div class="builder-step' + (si === 0 ? ' active' : '') + '" id="step-' + si + '">' +
+      '<p class="eyebrow step-label">Section ' + (si+1) + ' of ' + SECTIONS.length + '</p>' +
+      '<h3 class="step-title">' + section.title + '</h3>' +
+      '<p class="step-subtitle">' + section.subtitle + '</p>' +
+      '<div class="context-block">' +
+        '<p class="context-block-label">Context</p>' +
+        explanationHTML +
+      '</div>' +
+      '<p class="questions-zone-label">Your answers</p>' +
+      '<div class="questions-list">' + questionsHTML + '</div>' +
+      '<button class="example-toggle" id="ex-btn-' + si + '"' +
+        ' onclick="toggleExample(' + si + ')"' +
+        ' aria-expanded="false"' +
+        ' aria-controls="ex-drawer-' + si + '">' +
+        '<span class="toggle-icon" aria-hidden="true">+</span>' +
+        ' See example — ' + section.examplePerson +
+      '</button>' +
+      '<div class="example-drawer" id="ex-drawer-' + si + '" aria-hidden="true">' +
+        '<div class="example-card">' +
+          '<p class="example-card-label">Example answer</p>' +
+          '<p class="example-card-person">' + section.examplePerson + '</p>' +
+          '<p class="example-card-text">"' + esc(section.exampleAnswer) + '"</p>' +
+        '</div>' +
+      '</div>' +
+      '</div>';
   }).join('');
+
+  // Restore answered states on re-render
+  updateAllAnswerIndicators();
+}
+
+/* Called on every keystroke — saves + gives immediate gold-border feedback */
+function onAnswerInput(si, qi, textarea) {
+  answers[si][qi] = textarea.value;
+  var block = document.getElementById('qblock-' + si + '-' + qi);
+  if (block) {
+    block.classList.toggle('answered', textarea.value.trim().length > 0);
+  }
+  updateStepDots();
+}
+
+function updateAllAnswerIndicators() {
+  SECTIONS.forEach(function(section, si) {
+    section.questions.forEach(function(q, qi) {
+      var block = document.getElementById('qblock-' + si + '-' + qi);
+      var ta = document.getElementById('ans-' + si + '-' + qi);
+      if (block && ta) {
+        block.classList.toggle('answered', answers[si][qi].trim().length > 0);
+      }
+    });
+  });
 }
 
 function saveAnswer(si, qi, value) {
@@ -1329,9 +1453,9 @@ function saveAnswer(si, qi, value) {
 }
 
 function syncAnswers() {
-  SECTIONS.forEach(function (section, si) {
-    section.questions.forEach(function (q, qi) {
-      const el = document.getElementById('ans-' + si + '-' + qi);
+  SECTIONS.forEach(function(section, si) {
+    section.questions.forEach(function(q, qi) {
+      var el = document.getElementById('ans-' + si + '-' + qi);
       if (el) answers[si][qi] = el.value;
     });
   });
@@ -1339,10 +1463,9 @@ function syncAnswers() {
 
 function toggleExample(si) {
   exampleOpen[si] = !exampleOpen[si];
-  const drawer = document.getElementById('ex-drawer-' + si);
-  const btn = document.getElementById('ex-btn-' + si);
-  const isOpen = exampleOpen[si];
-
+  var drawer = document.getElementById('ex-drawer-' + si);
+  var btn = document.getElementById('ex-btn-' + si);
+  var isOpen = exampleOpen[si];
   drawer.classList.toggle('open', isOpen);
   btn.classList.toggle('open', isOpen);
   btn.setAttribute('aria-expanded', String(isOpen));
@@ -1351,39 +1474,31 @@ function toggleExample(si) {
 
 function navigateStep(dir) {
   syncAnswers();
-
-  const next = currentStep + dir;
-
-  if (next >= SECTIONS.length) {
-    showOutput();
-    return;
-  }
-
+  var next = currentStep + dir;
+  if (next >= SECTIONS.length) { showOutput(); return; }
   if (next < 0) return;
-
   document.getElementById('step-' + currentStep).classList.remove('active');
   currentStep = next;
   document.getElementById('step-' + currentStep).classList.add('active');
-
   updateProgress();
   updateNavButtons();
-
   document.getElementById('builder').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function updateProgress() {
-  const pct = Math.round((currentStep / SECTIONS.length) * 100);
+  var pct = Math.round((currentStep / SECTIONS.length) * 100);
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-pct').textContent = pct + '%';
   document.getElementById('progress-label').textContent =
     'Section ' + (currentStep + 1) + ' of ' + SECTIONS.length + ' — ' + SECTIONS[currentStep].title;
-  const wrap = document.querySelector('.progress-wrap');
+  var wrap = document.querySelector('.progress-wrap');
   if (wrap) wrap.setAttribute('aria-valuenow', String(pct));
+  updateStepDots();
 }
 
 function updateNavButtons() {
-  const back = document.getElementById('btn-back');
-  const next = document.getElementById('btn-next');
+  var back = document.getElementById('btn-back');
+  var next = document.getElementById('btn-next');
   back.style.display = currentStep > 0 ? '' : 'none';
   next.textContent = currentStep === SECTIONS.length - 1 ? 'Generate Brand Profile' : 'Next Section';
 }
@@ -1391,100 +1506,73 @@ function updateNavButtons() {
 /* ═══════════════════════════════════════════
    OUTPUT
 ═══════════════════════════════════════════ */
-
 function showOutput() {
   syncAnswers();
+  var name = document.getElementById('your-name').value.trim() || 'Your Brand';
+  var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-  const name = document.getElementById('your-name').value.trim() || 'Your Brand';
-  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-
-  const sectionsHTML = SECTIONS.map(function (section, si) {
-    const answersHTML = section.questions.map(function (q, qi) {
-      const a = answers[si][qi].trim();
-      return `
-        <div class="output-qa">
-          <div class="output-q">${q}</div>
-          <div class="output-a${a ? '' : ' empty'}">${a ? esc(a) : 'Not answered'}</div>
-        </div>
-      `;
+  var sectionsHTML = SECTIONS.map(function(section, si) {
+    var answersHTML = section.questions.map(function(q, qi) {
+      var a = answers[si][qi].trim();
+      return '<div class="output-qa">' +
+        '<div class="output-q">' + q + '</div>' +
+        '<div class="output-a' + (a ? '' : ' empty') + '">' + (a ? esc(a) : 'Not answered') + '</div>' +
+        '</div>';
     }).join('');
 
-    return `
-      <div class="output-section">
-        <p class="eyebrow" style="margin-bottom:0.35rem">Section ${si + 1} of 6</p>
-        <h3 class="output-sec-title">${section.title}</h3>
-        <div class="output-answers">${answersHTML}</div>
-      </div>
-    `;
+    return '<div class="output-section">' +
+      '<p class="eyebrow" style="margin-bottom:0.35rem">Section ' + (si+1) + ' of 6</p>' +
+      '<h3 class="output-sec-title">' + section.title + '</h3>' +
+      '<div class="output-answers">' + answersHTML + '</div>' +
+      '</div>';
   }).join('');
 
-  document.getElementById('output-doc').innerHTML = `
-    <div class="output-doc-head">
-      <p class="eyebrow">Brand Profile</p>
-      <h2 class="output-title">${esc(name)}</h2>
-      <p class="output-generated">Generated ${date}</p>
-    </div>
-    ${sectionsHTML}
-    <div class="what-next">
-      <p class="eyebrow">What next?</p>
-      <h3>Apply what you found.</h3>
-      <ul class="next-list">
-        <li>
-          <span class="next-num">1</span>
-          <span class="next-text">Every piece of content you create should express your feeling. If it doesn't produce the emotion you defined here, it is not your content — it is noise.</span>
-        </li>
-        <li>
-          <span class="next-num">2</span>
-          <span class="next-text">Every decision should pass the filter — does this reinforce my associations and serve my community? If not, it dilutes the brand.</span>
-        </li>
-        <li>
-          <span class="next-num">3</span>
-          <span class="next-text">Return to this document whenever your brand feels unclear. The answers here are your north star. When in doubt, come back to what you wrote.</span>
-        </li>
-      </ul>
-    </div>
-  `;
+  document.getElementById('output-doc').innerHTML =
+    '<div class="output-doc-head">' +
+      '<p class="eyebrow">Brand Profile</p>' +
+      '<h2 class="output-title">' + esc(name) + '</h2>' +
+      '<p class="output-generated">Generated ' + date + '</p>' +
+    '</div>' +
+    sectionsHTML +
+    '<div class="what-next">' +
+      '<p class="eyebrow">What next?</p>' +
+      '<h3>Apply what you found.</h3>' +
+      '<ul class="next-list">' +
+        '<li><span class="next-num">1</span><span class="next-text">Every piece of content you create should express your feeling. If it doesn\'t produce the emotion you defined here, it is not your content — it is noise.</span></li>' +
+        '<li><span class="next-num">2</span><span class="next-text">Every decision should pass the filter — does this reinforce my associations and serve my community? If not, it dilutes the brand.</span></li>' +
+        '<li><span class="next-num">3</span><span class="next-text">Return to this document whenever your brand feels unclear. The answers here are your north star. When in doubt, come back to what you wrote.</span></li>' +
+      '</ul>' +
+    '</div>';
 
   document.getElementById('builder').style.display = 'none';
-
-  const outputEl = document.getElementById('output');
+  var outputEl = document.getElementById('output');
   outputEl.classList.add('visible');
-
-  const navLi = document.getElementById('nav-output-li');
+  var navLi = document.getElementById('nav-output-li');
   if (navLi) navLi.style.display = '';
-
   outputEl.scrollIntoView({ behavior: 'smooth' });
 }
 
 /* ═══════════════════════════════════════════
    EXPORT
 ═══════════════════════════════════════════ */
-
 function buildPlainText() {
-  const name = document.getElementById('your-name').value.trim() || 'Your Brand';
-  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  let out = name + ' — Brand Profile\n';
-  out += '═'.repeat(50) + '\n';
-  out += 'Generated ' + date + '\n\n';
-
-  SECTIONS.forEach(function (section, si) {
-    out += (si + 1) + '. ' + section.title.toUpperCase() + '\n';
-    out += '─'.repeat(30) + '\n\n';
-    section.questions.forEach(function (q, qi) {
-      out += q + '\n';
-      out += (answers[si][qi].trim() || '[Not answered]') + '\n\n';
+  var name = document.getElementById('your-name').value.trim() || 'Your Brand';
+  var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  var out = name + ' — Brand Profile\n' + '═'.repeat(50) + '\nGenerated ' + date + '\n\n';
+  SECTIONS.forEach(function(section, si) {
+    out += (si+1) + '. ' + section.title.toUpperCase() + '\n' + '─'.repeat(30) + '\n\n';
+    section.questions.forEach(function(q, qi) {
+      out += q + '\n' + (answers[si][qi].trim() || '[Not answered]') + '\n\n';
     });
   });
-
   return out;
 }
 
 function downloadProfile() {
-  const name = document.getElementById('your-name').value.trim() || 'brand';
-  const text = buildPlainText();
-  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  var name = document.getElementById('your-name').value.trim() || 'brand';
+  var blob = new Blob([buildPlainText()], { type: 'text/plain;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
   a.href = url;
   a.download = name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-brand-profile.txt';
   document.body.appendChild(a);
@@ -1494,74 +1582,66 @@ function downloadProfile() {
 }
 
 function copyProfile() {
-  const text = buildPlainText();
-  const btn = document.querySelector('button[onclick="copyProfile()"]');
-  const orig = btn.textContent;
-
-  const done = function () {
+  var text = buildPlainText();
+  var btn = document.querySelector('button[onclick="copyProfile()"]');
+  var orig = btn.textContent;
+  var done = function() {
     btn.textContent = 'Copied';
-    setTimeout(function () { btn.textContent = orig; }, 2200);
+    setTimeout(function() { btn.textContent = orig; }, 2200);
   };
-
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+    navigator.clipboard.writeText(text).then(done).catch(function() { fallbackCopy(text, done); });
   } else {
     fallbackCopy(text, done);
   }
 }
 
 function fallbackCopy(text, cb) {
-  const ta = document.createElement('textarea');
+  var ta = document.createElement('textarea');
   ta.value = text;
   ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
   document.body.appendChild(ta);
   ta.focus();
   ta.select();
-  try { document.execCommand('copy'); cb(); } catch (e) {}
+  try { document.execCommand('copy'); cb(); } catch(e) {}
   document.body.removeChild(ta);
 }
 
 function restartBuilder() {
   currentStep = 0;
-  answers = SECTIONS.map(function (s) { return s.questions.map(function () { return ''; }); });
-  exampleOpen = SECTIONS.map(function () { return false; });
-
+  answers = SECTIONS.map(function(s) { return s.questions.map(function() { return ''; }); });
+  exampleOpen = SECTIONS.map(function() { return false; });
   document.getElementById('output').classList.remove('visible');
   document.getElementById('builder').style.display = '';
-
   renderBuilderSteps();
+  renderStepDots();
   updateProgress();
   updateNavButtons();
-
   document.getElementById('builder').scrollIntoView({ behavior: 'smooth' });
 }
 
 /* ═══════════════════════════════════════════
    SCROLL REVEAL
 ═══════════════════════════════════════════ */
-
 function initReveal() {
   if (!window.IntersectionObserver) {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
     return;
   }
-
-  const obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
         obs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
 }
 
 /* ═══════════════════════════════════════════
    UTILITY
 ═══════════════════════════════════════════ */
-
 function esc(str) {
   return String(str)
     .replace(/&/g, '&amp;')
@@ -1573,14 +1653,13 @@ function esc(str) {
 /* ═══════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════ */
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   renderProfiles();
   renderBuilderSteps();
+  renderStepDots();
   updateProgress();
   updateNavButtons();
-
-  requestAnimationFrame(function () {
+  requestAnimationFrame(function() {
     requestAnimationFrame(initReveal);
   });
 });
