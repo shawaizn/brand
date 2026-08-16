@@ -184,29 +184,35 @@ textarea, input { font-family: inherit; }
 
 .hero-headline {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(3.25rem, 8.5vw, 7.5rem);
   font-weight: 900;
   color: var(--white);
-  line-height: 0.98;
-  margin-bottom: 2.5rem;
+  line-height: 1.04;
+  margin-bottom: 2.25rem;
   letter-spacing: -0.02em;
 }
 
-.hero-feeling {
+/* The whole statement holds one line at every width */
+.hero-line {
   display: block;
+  font-size: clamp(1.55rem, 6.9vw, 5.5rem);
+  white-space: nowrap;
+}
+
+.hero-feeling {
   font-style: italic;
   color: var(--gold);
-  line-height: 1.05;
 }
 
 .hero-headline-close {
   display: block;
-  font-size: clamp(1.5rem, 3.2vw, 3rem);
+  font-size: clamp(1.05rem, 2.5vw, 2.1rem);
   font-weight: 400;
   color: var(--text-2);
-  margin-top: 0.28em;
+  margin-top: 0.6em;
   font-style: italic;
   letter-spacing: 0;
+  line-height: 1.35;
+  max-width: 22ch;
 }
 
 .hero-rule {
@@ -333,15 +339,25 @@ textarea, input { font-family: inherit; }
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION SHARED
+   THRESHOLD — shared section-opening treatment.
+   Every numbered section crosses one of these.
 ══════════════════════════════════════════════════ */
-.section-base {
-  padding: 5.5rem 0;
+.threshold {
+  padding: 5rem 0 3rem;
+  margin-bottom: 3.25rem;
   border-bottom: 1px solid var(--border-1);
-  scroll-margin-top: var(--nav-h);
+  position: relative;
+  background: linear-gradient(to bottom, rgba(201,168,76,0.055) 0%, transparent 62%);
 }
 
-.section-intro { margin-bottom: 2.75rem; }
+/* Gold hairline seals the top edge of every section */
+.threshold::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold-muted) 24%, transparent 62%);
+}
 
 /* Large faint chapter number — signals a new section at a glance */
 .section-chapter-num {
@@ -363,18 +379,26 @@ textarea, input { font-family: inherit; }
   margin: 1.375rem 0 1.375rem;
 }
 
-.section-intro h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+.threshold-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
   color: var(--white);
   font-weight: 700;
-  margin: 0.65rem 0 0.9rem;
+  margin: 0.65rem 0 1.125rem;
 }
 
-.section-intro p {
-  font-size: 0.95rem;
+.threshold-sub {
+  font-size: 1rem;
   color: var(--text-2);
-  max-width: 520px;
-  line-height: 1.88;
+  max-width: 580px;
+  line-height: 1.95;
+}
+
+/* ── Section 1 ── */
+#profiles {
+  padding: 0 0 5.5rem;
+  border-bottom: 1px solid var(--border-1);
+  scroll-margin-top: var(--nav-h);
 }
 
 /* ══════════════════════════════════════════════════
@@ -636,39 +660,11 @@ textarea, input { font-family: inherit; }
   --panel-pad: 2.75rem;
 }
 
-/* ── THRESHOLD — the crossing into the work ── */
+/* Section 2's threshold sits on the lighter ground, against the deep section */
 .builder-threshold {
-  padding: 5rem 0 3rem;
-  margin-bottom: 3.25rem;
-  border-bottom: 1px solid var(--border-1);
   background:
     linear-gradient(to bottom, rgba(201,168,76,0.055) 0%, transparent 62%),
     var(--bg);
-  position: relative;
-}
-
-/* Gold hairline seals the top edge of the section */
-.builder-threshold::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(to right, var(--gold) 0%, var(--gold-muted) 24%, transparent 62%);
-}
-
-.threshold-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
-  color: var(--white);
-  font-weight: 700;
-  margin: 0.65rem 0 1.125rem;
-}
-
-.threshold-sub {
-  font-size: 1rem;
-  color: var(--text-2);
-  max-width: 580px;
-  line-height: 1.95;
 }
 
 /* Six-up map — orients you before you step in */
@@ -1218,9 +1214,9 @@ textarea, input { font-family: inherit; }
   .hero-meta li { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
   .hero-ctas .btn { width: 100%; }
 
-  .section-base, #output { padding: 3.5rem 0; }
-  #builder { padding: 0 0 3.5rem; }
-  .builder-threshold { padding: 3.5rem 0 2.5rem; margin-bottom: 2.25rem; }
+  #output { padding: 3.5rem 0; }
+  #profiles, #builder { padding: 0 0 3.5rem; }
+  .threshold { padding: 3.5rem 0 2.5rem; margin-bottom: 2.25rem; }
   .threshold-map { grid-template-columns: repeat(2, 1fr); margin-top: 2.25rem; }
 
   .panel-head { align-items: flex-start; }
@@ -1258,8 +1254,8 @@ textarea, input { font-family: inherit; }
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <a href="#hero" class="nav-logo">Brand<span>Builder</span></a>
   <ul class="nav-links">
-    <li><a href="#profiles">Profiles</a></li>
-    <li><a href="#builder">The Builder</a></li>
+    <li><a href="#profiles">In Practice</a></li>
+    <li><a href="#builder">The Work</a></li>
     <li id="nav-output-li" style="display:none"><a href="#output">Your Brand</a></li>
   </ul>
 </nav>
@@ -1272,15 +1268,14 @@ textarea, input { font-family: inherit; }
     <div class="hero-inner">
       <p class="eyebrow hero-tag">Personal Brand Methodology</p>
       <h1 class="hero-headline">
-        Your brand is a
-        <span class="hero-feeling">feeling.</span>
-        <span class="hero-headline-close">Build it deliberately.</span>
+        <span class="hero-line">Your brand is a <span class="hero-feeling">feeling.</span></span>
+        <span class="hero-headline-close">You already have one. This is where you put it into words.</span>
       </h1>
       <div class="hero-rule" aria-hidden="true"></div>
-      <p class="hero-sub">Building a following is not a content problem. It is a clarity problem. Before strategy, before platform, before a single post — you need to know what feeling you are selling. This is how you find it.</p>
+      <p class="hero-sub">You are not inventing a persona here, and you are not building something that isn't already there. Six elements, used as a lens on yourself — so the thing you already are stops being a feeling you can't explain and becomes something you can say out loud.</p>
       <div class="hero-ctas">
-        <a href="#builder" class="btn btn-primary">Build Your Brand</a>
-        <a href="#profiles" class="btn btn-ghost">See it in practice</a>
+        <a href="#builder" class="btn btn-primary">Articulate Your Brand</a>
+        <a href="#profiles" class="btn btn-ghost">See the elements first</a>
       </div>
     </div>
   </div>
@@ -1296,15 +1291,21 @@ textarea, input { font-family: inherit; }
 </section>
 
 <!-- BRAND PROFILES -->
-<section id="profiles" class="section-base" aria-label="Brand profiles">
-  <div class="container">
-    <div class="section-intro reveal">
-      <p class="section-chapter-num" aria-hidden="true">01</p>
-      <p class="eyebrow">Reference — For Inspiration</p>
-      <div class="section-rule" aria-hidden="true"></div>
-      <h2>The six elements, out in the wild.</h2>
-      <p>These are not formulas, and nobody here handed us their playbook. They are reference points — eight unmistakable brands, read through the same six elements you are about to work through, so you can see what each one looks like when it's working. Read them for inspiration, not imitation.</p>
+<section id="profiles" aria-label="Brand profiles">
+
+  <!-- THRESHOLD -->
+  <div class="threshold">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-chapter-num" aria-hidden="true">01</p>
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="threshold-title">First, see it in people you already know.</h2>
+        <p class="threshold-sub">Nobody here handed us a playbook and none of this is a formula. These are eight people whose brands are unmistakable, read through the same six elements you are about to turn on yourself — so you can see what each element looks like once someone has actually articulated it. Take them as inspiration, not instruction.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="container">
     <div class="profiles-grid" id="profiles-grid" role="list">
       <!-- Rendered by JS -->
     </div>
@@ -1323,14 +1324,13 @@ textarea, input { font-family: inherit; }
 <section id="builder" aria-label="Brand Builder">
 
   <!-- THRESHOLD — full-bleed band marking the crossing into the work -->
-  <div class="builder-threshold">
+  <div class="threshold builder-threshold">
     <div class="container">
       <div class="reveal">
         <p class="section-chapter-num" aria-hidden="true">02</p>
-        <p class="eyebrow">The Methodology</p>
         <div class="section-rule" aria-hidden="true"></div>
         <h2 class="threshold-title">Now it's your turn.</h2>
-        <p class="threshold-sub">Reading about other people's brands changes nothing. This part is the work. Six elements, eighteen questions, one honest session — answer them properly and you leave with a document you can actually build against.</p>
+        <p class="threshold-sub">None of this is invented. The six elements are already true about you — the work is getting them out of your head and into language you can actually use. Eighteen questions, one honest session. Answer them properly and you leave with your own words, written down.</p>
       </div>
       <!-- Orientation map: what you are about to walk through -->
       <div class="threshold-map" id="threshold-map" aria-hidden="true"></div>
@@ -1902,18 +1902,18 @@ function showOutput() {
 
   document.getElementById('output-doc').innerHTML =
     '<div class="output-doc-head">' +
-      '<p class="eyebrow">Brand Profile</p>' +
+      '<p class="eyebrow">In Your Own Words</p>' +
       '<h2 class="output-title">' + esc(name) + '</h2>' +
       '<p class="output-generated">Generated ' + date + '</p>' +
     '</div>' +
     sectionsHTML +
     '<div class="what-next">' +
       '<p class="eyebrow">What next?</p>' +
-      '<h3>Apply what you found.</h3>' +
+      '<h3>Use your own words.</h3>' +
       '<ul class="next-list">' +
-        '<li><span class="next-num">1</span><span class="next-text">Every piece of content you create should express your feeling. If it doesn\'t produce the emotion you defined here, it is not your content — it is noise.</span></li>' +
-        '<li><span class="next-num">2</span><span class="next-text">Every decision should pass the filter — does this reinforce my associations and serve my community? If not, it dilutes the brand.</span></li>' +
-        '<li><span class="next-num">3</span><span class="next-text">Return to this document whenever your brand feels unclear. The answers here are your north star. When in doubt, come back to what you wrote.</span></li>' +
+        '<li><span class="next-num">1</span><span class="next-text">Every piece of content you make should express the feeling you named above. If it doesn\'t produce that emotion, it is not your content — it is noise.</span></li>' +
+        '<li><span class="next-num">2</span><span class="next-text">Every decision passes the same filter — does this reinforce my associations and serve my community? If not, it blurs what you just made clear.</span></li>' +
+        '<li><span class="next-num">3</span><span class="next-text">Come back whenever it stops feeling clear. Nothing here was invented for you — it is your own articulation, so it holds up. Read what you wrote and you will recognise it.</span></li>' +
       '</ul>' +
     '</div>';
 
