@@ -14,6 +14,7 @@
 ══════════════════════════════════════════════════ */
 :root {
   --bg:           #0a0a0a;
+  --bg-deep:      #060606;
   --bg-raised:    #101010;
   --bg-elevated:  #161616;
   --border-1:     #1c1c1c;
@@ -126,41 +127,69 @@ textarea, input { font-family: inherit; }
 .nav-links a:hover { color: var(--gold); }
 
 /* ══════════════════════════════════════════════════
-   HERO
+   HERO — owns the full viewport
 ══════════════════════════════════════════════════ */
 #hero {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: calc(var(--nav-h) + 3.5rem) 0 4.5rem;
+  padding-top: var(--nav-h);
   border-bottom: 1px solid var(--border-1);
   position: relative;
+  overflow: hidden;
 }
 
+/* Ambient gold bloom, upper left — gives the void depth */
+.hero-glow {
+  position: absolute;
+  top: -18%;
+  left: -12%;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(circle at center, rgba(201,168,76,0.11) 0%, rgba(201,168,76,0.04) 38%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Vertical hairline anchored to the container edge */
 #hero::before {
   content: '';
   position: absolute;
   left: calc(2rem - 1px);
-  top: 20%;
-  bottom: 20%;
+  top: 0;
+  bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, transparent 0%, var(--gold-muted) 30%, var(--gold-muted) 70%, transparent 100%);
-  opacity: 0.35;
+  background: linear-gradient(to bottom, transparent 0%, var(--gold-muted) 22%, var(--gold-muted) 72%, transparent 100%);
+  opacity: 0.4;
   pointer-events: none;
+  z-index: 1;
 }
 
-.hero-inner { max-width: 860px; }
-.hero-tag { margin-bottom: 2.75rem; }
+/* Main block takes all remaining height and centres within it */
+.hero-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-inner { max-width: 900px; }
+.hero-tag { margin-bottom: 2.5rem; }
 
 .hero-headline {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.8rem, 6.5vw, 6rem);
+  font-size: clamp(3.25rem, 8.5vw, 7.5rem);
   font-weight: 900;
   color: var(--white);
-  line-height: 1.02;
-  margin-bottom: 2.75rem;
-  letter-spacing: -0.01em;
+  line-height: 0.98;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
 }
 
 .hero-feeling {
@@ -172,10 +201,10 @@ textarea, input { font-family: inherit; }
 
 .hero-headline-close {
   display: block;
-  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
+  font-size: clamp(1.5rem, 3.2vw, 3rem);
   font-weight: 400;
   color: var(--text-2);
-  margin-top: 0.25em;
+  margin-top: 0.28em;
   font-style: italic;
   letter-spacing: 0;
 }
@@ -188,11 +217,80 @@ textarea, input { font-family: inherit; }
 }
 
 .hero-sub {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--text-2);
-  max-width: 500px;
-  line-height: 1.9;
+  max-width: 540px;
+  line-height: 1.95;
   margin-bottom: 2.75rem;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+
+/* ── Bottom bar: pinned to the base of the viewport ── */
+.hero-bottom {
+  position: relative;
+  z-index: 2;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-top: 1px solid var(--border-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-meta {
+  display: flex;
+  list-style: none;
+  gap: 3.25rem;
+}
+
+.hero-meta li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.meta-n {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.meta-l {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: color 0.2s;
+}
+.scroll-cue:hover { color: var(--gold); }
+.scroll-cue span {
+  display: inline-block;
+  animation: cueDrift 2.4s ease-in-out infinite;
+}
+@keyframes cueDrift {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%      { transform: translateY(4px); opacity: 1; }
 }
 
 /* ══════════════════════════════════════════════════
@@ -226,15 +324,6 @@ textarea, input { font-family: inherit; }
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 .btn-ghost:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-
-.hero-foot {
-  margin-top: 6rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border-1);
-  font-size: 0.78rem;
-  color: var(--text-3);
-  letter-spacing: 0.03em;
-}
 
 /* ══════════════════════════════════════════════════
    NAV SCROLL-SPY
@@ -503,6 +592,16 @@ textarea, input { font-family: inherit; }
   color: var(--text-2);
 }
 
+.modal-note {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  line-height: 1.7;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-1);
+  max-width: 460px;
+}
+
 .modal-body { padding: 0 2.75rem 2.75rem; }
 
 .modal-section {
@@ -529,13 +628,111 @@ textarea, input { font-family: inherit; }
    BUILDER
 ══════════════════════════════════════════════════ */
 #builder {
-  padding: 5.5rem 0;
+  padding: 0 0 5.5rem;
+  background: var(--bg-deep);
   border-bottom: 1px solid var(--border-1);
   scroll-margin-top: var(--nav-h);
+  position: relative;
+  --panel-pad: 2.75rem;
+}
+
+/* ── THRESHOLD — the crossing into the work ── */
+.builder-threshold {
+  padding: 5rem 0 3rem;
+  margin-bottom: 3.25rem;
+  border-bottom: 1px solid var(--border-1);
+  background:
+    linear-gradient(to bottom, rgba(201,168,76,0.055) 0%, transparent 62%),
+    var(--bg);
+  position: relative;
+}
+
+/* Gold hairline seals the top edge of the section */
+.builder-threshold::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold-muted) 24%, transparent 62%);
+}
+
+.threshold-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  color: var(--white);
+  font-weight: 700;
+  margin: 0.65rem 0 1.125rem;
+}
+
+.threshold-sub {
+  font-size: 1rem;
+  color: var(--text-2);
+  max-width: 580px;
+  line-height: 1.95;
+}
+
+/* Six-up map — orients you before you step in */
+.threshold-map {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--border-1);
+  border: 1px solid var(--border-1);
+  margin-top: 3.25rem;
+}
+
+.threshold-map-item {
+  background: var(--bg-deep);
+  padding: 1.125rem 1.125rem 1.375rem;
+}
+
+.tm-num {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 0.55rem;
+}
+
+.tm-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.25;
+}
+
+/* ── PANEL — the work is contained in its own frame ── */
+.builder-panel {
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  padding: 0 var(--panel-pad) 2.75rem;
+  position: relative;
+}
+
+.panel-head {
+  margin: 0 calc(var(--panel-pad) * -1);
+  padding: 1.5rem var(--panel-pad);
+  background: var(--bg-raised);
+  border-bottom: 1px solid var(--border-1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.panel-tag {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding-bottom: 0.8rem;
 }
 
 /* Name input */
-.name-row { margin-bottom: 2.75rem; }
+.name-row { margin-bottom: 0; flex: 1; min-width: 240px; }
 
 .name-row label {
   display: block;
@@ -576,14 +773,10 @@ textarea, input { font-family: inherit; }
   top: var(--nav-h);
   z-index: 50;
   background: var(--bg);
-  padding: 0.9rem 0 1.1rem;
   border-bottom: 1px solid var(--border-1);
-  margin-bottom: 2.75rem;
-  /* negative horizontal bleed to span container edges */
-  margin-left: -2rem;
-  margin-right: -2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  /* bleeds to the panel edges, so it reads as a toolbar */
+  margin: 0 calc(var(--panel-pad) * -1) 2.75rem;
+  padding: 1rem var(--panel-pad) 1.1rem;
 }
 
 .progress-info {
@@ -998,11 +1191,8 @@ textarea, input { font-family: inherit; }
 ══════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .profiles-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 540px) {
-  .profiles-grid { grid-template-columns: repeat(2, 1fr); }
-  .card-photo { aspect-ratio: 2 / 3; }
+  .threshold-map { grid-template-columns: repeat(3, 1fr); }
+  #builder { --panel-pad: 2rem; }
 }
 
 @media (max-width: 640px) {
@@ -1011,20 +1201,30 @@ textarea, input { font-family: inherit; }
 
   .container { padding: 0 1.25rem; }
 
-  /* Reset the sticky progress bleed on mobile */
-  .progress-wrap {
-    margin-left: -1.25rem;
-    margin-right: -1.25rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
+  #builder { --panel-pad: 1.25rem; }
 
-  #hero { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 4rem; }
   #hero::before { display: none; }
+  .hero-glow { width: 130vw; height: 130vw; }
+  .hero-main { padding-top: 2rem; padding-bottom: 2rem; }
 
-  .section-base, #builder, #output { padding: 3.5rem 0; }
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-top: 1.375rem;
+    padding-bottom: 1.375rem;
+  }
+  .hero-meta { gap: 1.75rem; flex-wrap: wrap; }
+  .hero-meta li { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
+  .hero-ctas .btn { width: 100%; }
 
-  .profiles-grid { grid-template-columns: 1fr; }
+  .section-base, #output { padding: 3.5rem 0; }
+  #builder { padding: 0 0 3.5rem; }
+  .builder-threshold { padding: 3.5rem 0 2.5rem; margin-bottom: 2.25rem; }
+  .threshold-map { grid-template-columns: repeat(2, 1fr); margin-top: 2.25rem; }
+
+  .panel-head { align-items: flex-start; }
+  .panel-tag { display: none; }
 
   .modal-overlay { padding: 1rem 0.75rem; }
   .modal-head { padding: 1.75rem 1.5rem 1.5rem; }
@@ -1035,6 +1235,12 @@ textarea, input { font-family: inherit; }
 
   .output-top-actions { flex-direction: column; align-items: stretch; }
   .output-top-actions .btn { width: 100%; }
+}
+
+@media (max-width: 540px) {
+  .card-info { padding: 1.125rem 1rem 1.25rem; }
+  .card-name { font-size: 0.95rem; }
+  .card-photo-feeling { bottom: 0.875rem; left: 0.875rem; right: 0.875rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1060,7 +1266,9 @@ textarea, input { font-family: inherit; }
 
 <!-- HERO -->
 <section id="hero" aria-label="Introduction">
-  <div class="container">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container hero-main">
     <div class="hero-inner">
       <p class="eyebrow hero-tag">Personal Brand Methodology</p>
       <h1 class="hero-headline">
@@ -1069,10 +1277,21 @@ textarea, input { font-family: inherit; }
         <span class="hero-headline-close">Build it deliberately.</span>
       </h1>
       <div class="hero-rule" aria-hidden="true"></div>
-      <p class="hero-sub">Building a following is not a content problem. It is a clarity problem. Before strategy, before platform, before a single post — you need to know what feeling you are selling. This tool helps you find it.</p>
-      <a href="#builder" class="btn btn-primary">Build Your Brand</a>
+      <p class="hero-sub">Building a following is not a content problem. It is a clarity problem. Before strategy, before platform, before a single post — you need to know what feeling you are selling. This is how you find it.</p>
+      <div class="hero-ctas">
+        <a href="#builder" class="btn btn-primary">Build Your Brand</a>
+        <a href="#profiles" class="btn btn-ghost">See it in practice</a>
+      </div>
     </div>
-    <p class="hero-foot">Built for founders, athletes, creators, and executives who are serious about the long game.</p>
+  </div>
+
+  <div class="container hero-bottom">
+    <ul class="hero-meta">
+      <li><span class="meta-n">06</span><span class="meta-l">Elements</span></li>
+      <li><span class="meta-n">18</span><span class="meta-l">Questions</span></li>
+      <li><span class="meta-n">01</span><span class="meta-l">Honest session</span></li>
+    </ul>
+    <a href="#profiles" class="scroll-cue">Scroll <span aria-hidden="true">↓</span></a>
   </div>
 </section>
 
@@ -1081,10 +1300,10 @@ textarea, input { font-family: inherit; }
   <div class="container">
     <div class="section-intro reveal">
       <p class="section-chapter-num" aria-hidden="true">01</p>
-      <p class="eyebrow">The Influence Index</p>
+      <p class="eyebrow">Reference — For Inspiration</p>
       <div class="section-rule" aria-hidden="true"></div>
-      <h2>Eight brands. Fully decoded.</h2>
-      <p>The most effective personal brands in the world didn't get there by accident. We broke down exactly what each one is built on — so you can build yours the same way.</p>
+      <h2>The six elements, out in the wild.</h2>
+      <p>These are not formulas, and nobody here handed us their playbook. They are reference points — eight unmistakable brands, read through the same six elements you are about to work through, so you can see what each one looks like when it's working. Read them for inspiration, not imitation.</p>
     </div>
     <div class="profiles-grid" id="profiles-grid" role="list">
       <!-- Rendered by JS -->
@@ -1102,41 +1321,57 @@ textarea, input { font-family: inherit; }
 
 <!-- BUILDER -->
 <section id="builder" aria-label="Brand Builder">
+
+  <!-- THRESHOLD — full-bleed band marking the crossing into the work -->
+  <div class="builder-threshold">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-chapter-num" aria-hidden="true">02</p>
+        <p class="eyebrow">The Methodology</p>
+        <div class="section-rule" aria-hidden="true"></div>
+        <h2 class="threshold-title">Now it's your turn.</h2>
+        <p class="threshold-sub">Reading about other people's brands changes nothing. This part is the work. Six elements, eighteen questions, one honest session — answer them properly and you leave with a document you can actually build against.</p>
+      </div>
+      <!-- Orientation map: what you are about to walk through -->
+      <div class="threshold-map" id="threshold-map" aria-hidden="true"></div>
+    </div>
+  </div>
+
   <div class="container">
-    <div class="section-intro reveal" style="margin-bottom:2.5rem">
-      <p class="section-chapter-num" aria-hidden="true">02</p>
-      <p class="eyebrow">The Methodology</p>
-      <div class="section-rule" aria-hidden="true"></div>
-      <h2>Build Your Brand</h2>
-      <p>Answer honestly. Surface level answers produce surface level brands.</p>
-    </div>
+    <!-- PANEL — the work sits inside its own frame -->
+    <div class="builder-panel">
 
-    <div class="name-row">
-      <label for="your-name">
-        Your name or brand name
-        <span class="name-opt">&ensp;optional</span>
-      </label>
-      <input type="text" id="your-name" placeholder="e.g. Alex Morgan" autocomplete="name">
-    </div>
-
-    <!-- Sticky progress: always visible while scrolling through a section -->
-    <div class="progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Builder progress">
-      <div class="progress-info">
-        <span class="progress-section-name" id="progress-label">Section 1 of 6 — The Feeling</span>
-        <span class="progress-pct" id="progress-pct">0%</span>
+      <div class="panel-head">
+        <div class="name-row">
+          <label for="your-name">
+            Your name or brand name
+            <span class="name-opt">&ensp;optional</span>
+          </label>
+          <input type="text" id="your-name" placeholder="e.g. Alex Morgan" autocomplete="name">
+        </div>
+        <p class="panel-tag">Working document</p>
       </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progress-fill"></div>
+
+      <!-- Sticky progress: always visible while scrolling through a section -->
+      <div class="progress-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Builder progress">
+        <div class="progress-info">
+          <span class="progress-section-name" id="progress-label">Section 1 of 6 — The Feeling</span>
+          <span class="progress-pct" id="progress-pct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <!-- Six pills: gold=current, muted=has answers, grey=untouched -->
+        <div class="step-dots" id="step-dots" aria-hidden="true"></div>
       </div>
-      <!-- Six pills: gold=current, muted=has answers, grey=untouched -->
-      <div class="step-dots" id="step-dots" aria-hidden="true"></div>
-    </div>
 
-    <div id="builder-steps"></div>
+      <div id="builder-steps"></div>
 
-    <div class="step-actions">
-      <button class="btn btn-ghost" id="btn-back" onclick="navigateStep(-1)" style="display:none">← Back</button>
-      <button class="btn btn-primary" id="btn-next" onclick="navigateStep(1)">Next Section</button>
+      <div class="step-actions">
+        <button class="btn btn-ghost" id="btn-back" onclick="navigateStep(-1)" style="display:none">← Back</button>
+        <button class="btn btn-primary" id="btn-next" onclick="navigateStep(1)">Next Section</button>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1421,6 +1656,18 @@ function renderProfiles() {
   }).join('');
 }
 
+/* Six-up orientation map shown at the threshold */
+function renderThresholdMap() {
+  var el = document.getElementById('threshold-map');
+  if (!el) return;
+  el.innerHTML = SECTIONS.map(function(s, i) {
+    return '<div class="threshold-map-item">' +
+      '<div class="tm-num">' + String(i + 1).padStart(2, '0') + '</div>' +
+      '<div class="tm-title">' + s.title + '</div>' +
+      '</div>';
+  }).join('');
+}
+
 function openModal(idx) {
   var p = PROFILES[idx];
   var ORDER = ['The Feeling','Association','The Enemy','Transcendence','Community','Entertainment'];
@@ -1435,9 +1682,10 @@ function openModal(idx) {
 
   document.getElementById('modal-content').innerHTML =
     '<div class="modal-head">' +
-      '<p class="eyebrow">Brand Profile</p>' +
+      '<p class="eyebrow">Reference Profile</p>' +
       '<h2 class="modal-person" id="modal-person-name">' + p.name + '</h2>' +
       '<p class="modal-person-sub">' + p.descriptor + '</p>' +
+      '<p class="modal-note">An outside reading of a public brand — our interpretation, not their playbook. Use it to see what each element looks like in practice.</p>' +
     '</div>' +
     '<div class="modal-body">' + sectionsHTML + '</div>';
 
@@ -1808,6 +2056,7 @@ function esc(str) {
 ═══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function() {
   renderProfiles();
+  renderThresholdMap();
   renderBuilderSteps();
   renderStepDots();
   updateProgress();
