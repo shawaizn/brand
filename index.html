@@ -237,6 +237,13 @@ textarea, input { font-family: inherit; }
 }
 
 /* ══════════════════════════════════════════════════
+   NAV SCROLL-SPY
+══════════════════════════════════════════════════ */
+.nav-links a.is-active {
+  color: var(--gold);
+}
+
+/* ══════════════════════════════════════════════════
    SECTION SHARED
 ══════════════════════════════════════════════════ */
 .section-base {
@@ -246,6 +253,26 @@ textarea, input { font-family: inherit; }
 }
 
 .section-intro { margin-bottom: 4rem; }
+
+/* Large faint chapter number — signals a new section at a glance */
+.section-chapter-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  font-weight: 900;
+  color: #232323;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+/* Gold accent rule — same as hero-rule, marks the section open */
+.section-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.375rem 0 1.375rem;
+}
 
 .section-intro h2 {
   font-size: clamp(1.75rem, 3.5vw, 2.6rem);
@@ -980,7 +1007,9 @@ textarea, input { font-family: inherit; }
 <section id="profiles" class="section-base" aria-label="Brand profiles">
   <div class="container">
     <div class="section-intro reveal">
+      <p class="section-chapter-num" aria-hidden="true">01</p>
       <p class="eyebrow">Case Studies</p>
+      <div class="section-rule" aria-hidden="true"></div>
       <h2>Learn from the best</h2>
       <p>Every great brand has already answered these questions. Study them before you answer your own.</p>
     </div>
@@ -1002,7 +1031,9 @@ textarea, input { font-family: inherit; }
 <section id="builder" aria-label="Brand Builder">
   <div class="container">
     <div class="section-intro reveal" style="margin-bottom:2.5rem">
+      <p class="section-chapter-num" aria-hidden="true">02</p>
       <p class="eyebrow">The Methodology</p>
+      <div class="section-rule" aria-hidden="true"></div>
       <h2>Build Your Brand</h2>
       <p>Answer honestly. Surface level answers produce surface level brands.</p>
     </div>
@@ -1621,6 +1652,34 @@ function restartBuilder() {
 }
 
 /* ═══════════════════════════════════════════
+   SCROLL SPY — highlights active nav link
+═══════════════════════════════════════════ */
+function initScrollSpy() {
+  if (!window.IntersectionObserver) return;
+  var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 60;
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var id = entry.target.id;
+      document.querySelectorAll('.nav-links a').forEach(function(a) {
+        var href = a.getAttribute('href');
+        a.classList.toggle('is-active', href === '#' + id);
+      });
+    });
+  }, {
+    /* Fires when the section top crosses 20% below the nav */
+    rootMargin: '-' + navH + 'px 0px -70% 0px',
+    threshold: 0
+  });
+
+  ['profiles', 'builder', 'output'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+}
+
+/* ═══════════════════════════════════════════
    SCROLL REVEAL
 ═══════════════════════════════════════════ */
 function initReveal() {
@@ -1662,6 +1721,7 @@ document.addEventListener('DOMContentLoaded', function() {
   requestAnimationFrame(function() {
     requestAnimationFrame(initReveal);
   });
+  initScrollSpy();
 });
 </script>
 </body>
