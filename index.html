@@ -127,11 +127,15 @@ textarea, input { font-family: inherit; }
   white-space: nowrap;
   padding-left: 0.75rem;
   border-left: 1px solid var(--border-2);
+  transition: color 0.2s;
 }
 .nav-by strong {
   font-weight: 600;
   color: var(--text-2);
+  transition: color 0.2s;
 }
+.nav-by:hover, .nav-by:hover strong { color: var(--gold); }
+.nav-by:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 .nav-links {
   display: flex;
@@ -1379,6 +1383,26 @@ textarea, input { font-family: inherit; }
   letter-spacing: 0.04em;
 }
 
+.footer-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.125rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-muted);
+  padding-bottom: 0.2rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.footer-url:hover { color: #d9b95e; border-bottom-color: var(--gold); }
+.footer-url:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.footer-url span {
+  transition: transform 0.22s ease;
+}
+.footer-url:hover span { transform: translate(2px, -2px); }
+
 .footer-note {
   font-size: 0.82rem;
   color: var(--text-3);
@@ -1511,7 +1535,7 @@ textarea, input { font-family: inherit; }
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-brand">
     <a href="#hero" class="nav-logo">Brand<span class="nav-logo-accent">Builder</span></a>
-    <span class="nav-by">By <strong>Energise AI</strong></span>
+    <a class="nav-by" href="https://energiseai.co.uk" target="_blank" rel="noopener">By <strong>Energise AI</strong></a>
   </div>
   <ul class="nav-links">
     <li><a href="#profiles">In Practice</a></li>
@@ -1656,6 +1680,9 @@ textarea, input { font-family: inherit; }
     <div>
       <p class="footer-mark">Brand<span>Builder</span></p>
       <p class="footer-by">By <strong>Energise AI</strong></p>
+      <a class="footer-url" href="https://energiseai.co.uk" target="_blank" rel="noopener">
+        energiseai.co.uk <span aria-hidden="true">↗</span>
+      </a>
     </div>
     <p class="footer-note">A clarity tool, not a content strategy. What you write here is yours.</p>
   </div>
