@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Brand Builder</title>
-<meta name="description" content="The methodology behind building a following. Six questions. One honest session. A brand with a centre.">
+<title>Funnel Builder</title>
+<meta name="description" content="From who you are to how you get paid. Six brand elements, six funnel stages, one honest session, one document.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -695,14 +695,7 @@ textarea, input { font-family: inherit; }
 }
 
 /* Six-up map — orients you before you step in */
-.threshold-map {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1px;
-  background: var(--border-1);
-  border: 1px solid var(--border-1);
-  margin-top: 3.25rem;
-}
+.threshold-map { margin-top: 3.25rem; }
 
 .threshold-map-item {
   background: var(--bg-deep);
@@ -995,6 +988,169 @@ textarea, input { font-family: inherit; }
   border-left-color: var(--gold-muted);
 }
 
+/* ══════════════════════════════════════════════════
+   CASE STUDY — how someone actually did it
+══════════════════════════════════════════════════ */
+.case-study {
+  border: 1px solid var(--border-2);
+  background: var(--bg-raised);
+  padding: 2rem 2.25rem 2.25rem;
+  margin-bottom: 2rem;
+}
+
+.case-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1.125rem;
+  line-height: 1.3;
+}
+
+.case-what {
+  font-size: 1.0625rem;
+  color: var(--text-1);
+  line-height: 1.95;
+  max-width: 68ch;
+}
+
+.case-why {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-1);
+}
+
+.case-why-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.75rem;
+}
+
+.case-why p {
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.95;
+  max-width: 68ch;
+}
+
+/* ══════════════════════════════════════════════════
+   OPTIONS — the field, before they choose
+══════════════════════════════════════════════════ */
+.options-block { margin-bottom: 2.5rem; }
+
+.options-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-1);
+}
+
+.options-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border-1);
+  border: 1px solid var(--border-1);
+}
+
+.option {
+  background: var(--bg);
+  padding: 1.375rem 1.5rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.option-n {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold-muted);
+  flex-shrink: 0;
+  padding-top: 0.28rem;
+}
+
+.option-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.075rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+.option-detail {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+
+.options-foot {
+  font-size: 0.9rem;
+  color: var(--text-3);
+  line-height: 1.8;
+  margin-top: 1.125rem;
+  max-width: 62ch;
+}
+
+/* Chapter break in the step dots */
+.step-dot.chapter-start { margin-left: 1.125rem; position: relative; }
+.step-dot.chapter-start::after {
+  content: '';
+  position: absolute;
+  left: -0.65rem;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  background: var(--border-2);
+}
+
+/* Threshold map — grouped by chapter */
+.tm-chapter + .tm-chapter { margin-top: 2rem; }
+
+.tm-chapter-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.875rem;
+}
+
+.tm-chapter-n {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.tm-chapter-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.tm-chapter-blurb {
+  font-size: 0.88rem;
+  color: var(--text-3);
+}
+
+.tm-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--border-1);
+  border: 1px solid var(--border-1);
+}
+
 /* ── DISTIL — the line that lands on the brand document ── */
 .distil {
   background: var(--bg-elevated);
@@ -1204,6 +1360,15 @@ textarea, input { font-family: inherit; }
   margin-bottom: 1.75rem;
   padding-bottom: 1.125rem;
   border-bottom: 1px solid var(--border-2);
+}
+
+.brand-doc + .brand-doc { margin-top: -2.5rem; }
+
+.brand-doc-note {
+  font-size: 0.92rem;
+  color: var(--text-3);
+  line-height: 1.75;
+  margin: -1.125rem 0 1.5rem;
 }
 
 .bd-row {
@@ -1438,6 +1603,7 @@ textarea, input { font-family: inherit; }
   .bd-row dt { color: #777; }
   .bd-row dd { color: #000; }
   .bd-row dd.empty { color: #aaa; }
+  .brand-doc-note { color: #777; }
   .working-head { border-bottom: 1px solid #bbb; }
   .working-head h3 { color: #000; }
   .working-head p { color: #777; }
@@ -1448,7 +1614,7 @@ textarea, input { font-family: inherit; }
 ══════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
   .profiles-grid { grid-template-columns: repeat(2, 1fr); }
-  .threshold-map { grid-template-columns: repeat(3, 1fr); }
+  .tm-grid { grid-template-columns: repeat(3, 1fr); }
   #builder { --panel-pad: 2rem; }
 }
 
@@ -1498,7 +1664,14 @@ textarea, input { font-family: inherit; }
   #output { padding: 3.5rem 0; }
   #profiles, #builder { padding: 0 0 3.5rem; }
   .threshold { padding: 3.5rem 0 2.5rem; margin-bottom: 2.25rem; }
-  .threshold-map { grid-template-columns: repeat(2, 1fr); margin-top: 2.25rem; }
+  .threshold-map { margin-top: 2.25rem; }
+  .tm-grid { grid-template-columns: repeat(2, 1fr); }
+  .tm-chapter-blurb { display: none; }
+
+  .options-list { grid-template-columns: 1fr; }
+  .case-study { padding: 1.5rem 1.375rem 1.625rem; }
+  .case-label { font-size: 1.15rem; }
+  .brand-doc + .brand-doc { margin-top: -3rem; }
 
   .panel-head { align-items: flex-start; }
   .panel-tag { display: none; }
@@ -1534,13 +1707,13 @@ textarea, input { font-family: inherit; }
 <!-- NAV -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-brand">
-    <a href="#hero" class="nav-logo">Brand<span class="nav-logo-accent">Builder</span></a>
+    <a href="#hero" class="nav-logo">Funnel<span class="nav-logo-accent">Builder</span></a>
     <a class="nav-by" href="https://energiseai.co.uk" target="_blank" rel="noopener">By <strong>Energise AI</strong></a>
   </div>
   <ul class="nav-links">
     <li><a href="#profiles">In Practice</a></li>
     <li><a href="#builder">The Work</a></li>
-    <li id="nav-output-li" style="display:none"><a href="#output">Your Brand</a></li>
+    <li id="nav-output-li" style="display:none"><a href="#output">Your Document</a></li>
   </ul>
 </nav>
 
@@ -1550,25 +1723,26 @@ textarea, input { font-family: inherit; }
 
   <div class="container hero-main">
     <div class="hero-inner">
-      <p class="eyebrow hero-tag">Personal Brand Methodology</p>
+      <p class="eyebrow hero-tag">Brand &amp; Funnel Methodology</p>
       <h1 class="hero-headline">
         <span class="hero-line">Your brand is a <span class="hero-feeling">feeling.</span></span>
-        <span class="hero-headline-close">You already have one. This is where you put it into words.</span>
+        <span class="hero-line">Your funnel is how it <span class="hero-feeling">pays.</span></span>
+        <span class="hero-headline-close">Six elements to name it. Six stages to sell it.</span>
       </h1>
       <div class="hero-rule" aria-hidden="true"></div>
-      <p class="hero-sub">You are not inventing a persona here, and you are not building something that isn't already there. Six elements, used as a lens on yourself — so the thing you already are stops being a feeling you can't explain and becomes something you can say out loud.</p>
+      <p class="hero-sub">Start with who you actually are, then walk the whole funnel — awareness, interest, consideration, intent, evaluation, purchase. At every stage you see how someone already did it, what the other options are, and then you decide what you are going to do.</p>
       <div class="hero-ctas">
-        <a href="#builder" class="btn btn-primary">Articulate Your Brand</a>
-        <a href="#profiles" class="btn btn-ghost">See the elements first</a>
+        <a href="#builder" class="btn btn-primary">Build Your Funnel</a>
+        <a href="#profiles" class="btn btn-ghost">See who we study first</a>
       </div>
     </div>
   </div>
 
   <div class="container hero-bottom">
     <ul class="hero-meta">
-      <li><span class="meta-n">06</span><span class="meta-l">Elements</span></li>
-      <li><span class="meta-n">18</span><span class="meta-l">Questions</span></li>
-      <li><span class="meta-n">01</span><span class="meta-l">Honest session</span></li>
+      <li><span class="meta-n">02</span><span class="meta-l">Chapters</span></li>
+      <li><span class="meta-n">12</span><span class="meta-l">Stages</span></li>
+      <li><span class="meta-n">01</span><span class="meta-l">Document</span></li>
     </ul>
     <a href="#profiles" class="scroll-cue">Scroll <span aria-hidden="true">↓</span></a>
   </div>
@@ -1583,8 +1757,8 @@ textarea, input { font-family: inherit; }
       <div class="reveal">
         <p class="section-chapter-num" aria-hidden="true">01</p>
         <div class="section-rule" aria-hidden="true"></div>
-        <h2 class="threshold-title">First, see it in people you already know.</h2>
-        <p class="threshold-sub">Nobody here handed us a playbook and none of this is a formula. These are eight people whose brands are unmistakable, read through the same six elements you are about to turn on yourself — so you can see what each element looks like once someone has actually articulated it. Take them as inspiration, not instruction.</p>
+        <h2 class="threshold-title">First, the people we are going to study.</h2>
+        <p class="threshold-sub">Nobody here handed us a playbook and none of this is a formula. These are eight people whose brands are unmistakable, read through the same six elements you are about to turn on yourself. They come back later as case studies — how Tate built awareness, how Goggins built belief, how KSI closed the sale. Take them as inspiration, not instruction.</p>
       </div>
     </div>
   </div>
@@ -1614,7 +1788,7 @@ textarea, input { font-family: inherit; }
         <p class="section-chapter-num" aria-hidden="true">02</p>
         <div class="section-rule" aria-hidden="true"></div>
         <h2 class="threshold-title">Now it's your turn.</h2>
-        <p class="threshold-sub">None of this is invented. The six elements are already true about you — the work is getting them out of your head and into language you can actually use. Eighteen questions, one honest session. Answer them properly and you leave with your own words, written down.</p>
+        <p class="threshold-sub">Two chapters. First you articulate the brand — none of that is invented, it is already true about you and the work is getting it into language you can use. Then you walk the funnel, one stage at a time, and decide how a stranger becomes someone who pays you. Every line you write lands on one document at the end.</p>
       </div>
       <!-- Orientation map: what you are about to walk through -->
       <div class="threshold-map" id="threshold-map" aria-hidden="true"></div>
@@ -1678,13 +1852,13 @@ textarea, input { font-family: inherit; }
 <footer id="footer">
   <div class="container footer-inner">
     <div>
-      <p class="footer-mark">Brand<span>Builder</span></p>
+      <p class="footer-mark">Funnel<span>Builder</span></p>
       <p class="footer-by">By <strong>Energise AI</strong></p>
       <a class="footer-url" href="https://energiseai.co.uk" target="_blank" rel="noopener">
         energiseai.co.uk <span aria-hidden="true">↗</span>
       </a>
     </div>
-    <p class="footer-note">A clarity tool, not a content strategy. What you write here is yours.</p>
+    <p class="footer-note">A clarity tool, not a growth guarantee. What you write here is yours.</p>
   </div>
 </footer>
 
@@ -1928,13 +2102,211 @@ const PROFILES = [
 ];
 
 /* ═══════════════════════════════════════════
+   CHAPTER 2 — THE SALES FUNNEL
+   Each stage: how someone did it, what the other
+   options are, then what you are going to do.
+═══════════════════════════════════════════ */
+const FUNNEL = [
+  {
+    id: 'awareness',
+    title: 'Awareness',
+    subtitle: 'They do not know you exist.',
+    explanation: [
+      'Awareness is not going viral. It is being placed in front of people who do not know you yet, repeatedly, for longer than feels reasonable. Every brand that looks sudden was built on a volume of attempts nobody ever saw.',
+      'The mistake at this stage is choosing a platform before choosing a mechanism. The platform is where it happens. The mechanism is why it keeps happening without you doing more work each time.',
+    ],
+    caseStudy: {
+      person: 'Andrew Tate',
+      what: 'He did not run a channel, he ran a distribution network. The same interviews were cut into thousands of clips and re-posted by fans and affiliates who were rewarded for spreading them, engineered so the most polarising forty seconds travelled furthest.',
+      why: 'He made himself free to steal, and then paid people for stealing him. His reach stopped depending on how much he personally posted — which is the only way awareness compounds instead of resetting every day.',
+    },
+    options: [
+      { name: 'Volume on short-form', detail: 'Post daily and let the algorithm find the people. Slow, reliable, and entirely dependent on you turning up.' },
+      { name: 'Borrowed audiences', detail: 'Podcasts, collaborations, guest spots. You skip the building phase by standing in a room someone else already filled.' },
+      { name: 'One deep public artefact', detail: 'A single thing so good it circulates for years — a talk, an essay, a film. Low frequency, long tail.' },
+      { name: 'A distribution army', detail: 'Clippers, affiliates, fans with an incentive. Highest ceiling, and it only works if the material is worth spreading.' },
+    ],
+    questions: [
+      'How is someone who has never heard of you going to come across you? Be specific about the mechanism, not just the platform — what makes it keep happening?',
+    ],
+    distilLabel: 'how people will find you',
+    distilPlaceholder: 'Daily short-form clips cut from one long podcast a week.',
+  },
+  {
+    id: 'interest',
+    title: 'Interest',
+    subtitle: 'They have seen you. Do they want more?',
+    explanation: [
+      'Awareness buys you about one second. Interest is what happens in the next ten. This is where most brands quietly die — seen, scrolled past, forgotten by lunch.',
+      'Interest comes from a gap between what someone expected and what they got. If you look and sound like everything else in your category, there is no gap, and there is no reason to stop.',
+    ],
+    caseStudy: {
+      person: 'Joe Rogan',
+      what: 'He took the least commercial format available — two people talking for three hours with no edit — at the exact moment everything else was being cut shorter and tighter.',
+      why: 'The contrast was the hook. Anyone tired of clipped, sanitised, media-trained conversation had nowhere else to go. And because the format was long, one episode you liked meant two thousand more waiting.',
+    },
+    options: [
+      { name: 'Contrast', detail: 'Do the opposite of your category default. Long where they go short, plain where they go polished.' },
+      { name: 'A specific promise', detail: 'A hook that says exactly what someone will get, rather than gesturing at value.' },
+      { name: 'Depth that rewards staying', detail: 'A back catalogue deep enough that liking one thing means a week of watching.' },
+      { name: 'A recognisable format', detail: 'A recurring shape people can identify in half a second and know what they are getting.' },
+    ],
+    questions: [
+      'Someone has just found you and is deciding whether to keep watching. What makes them stay — and what would they have expected instead?',
+    ],
+    distilLabel: 'what makes them stay past the first ten seconds',
+    distilPlaceholder: 'No music, no edit, no hype — just the actual numbers.',
+  },
+  {
+    id: 'consideration',
+    title: 'Consideration',
+    subtitle: 'They like you. Do they believe you?',
+    explanation: [
+      'Consideration is where liking turns into believing. Quietly, people are asking two things: does this person actually know what they are talking about, and has it worked for anyone like me.',
+      'You cannot claim your way through this stage. Every brand at this level says they are the real one. The only thing that moves someone is evidence they can see for themselves.',
+    ],
+    caseStudy: {
+      person: 'David Goggins',
+      what: 'He never argued that his method works. He documented himself doing it — the hundred-mile races, the pull-up record, the injuries, the splits, the failures on the way to the record.',
+      why: 'The proof was the content. There was nothing to take on faith, which meant there was nothing to argue with. He removed the need to trust him by showing the work instead.',
+    },
+    options: [
+      { name: 'Proof by doing', detail: 'Document the result in public. The evidence and the content are the same object.' },
+      { name: 'Other people\'s words', detail: 'Testimonials, results, receipts, screenshots. Weaker than doing it yourself, far stronger than claiming.' },
+      { name: 'Free work that is genuinely useful', detail: 'Let them experience your actual thinking before any money is involved.' },
+      { name: 'Consistency over time', detail: 'A four-year archive is a credential. Nobody fakes showing up for four years.' },
+    ],
+    questions: [
+      'Why should someone believe you specifically rather than anyone else saying similar things? What can you show them instead of telling them?',
+    ],
+    distilLabel: 'the proof you can show',
+    distilPlaceholder: 'Eighteen months of my own training logged in public, good weeks and bad.',
+  },
+  {
+    id: 'intent',
+    title: 'Intent',
+    subtitle: 'They believe you. Now they want something.',
+    explanation: [
+      'Intent is the moment an audience member becomes a prospect. They raise a hand. They want to be closer, or they want the thing you have.',
+      'This is where most personal brands leak everything. Enormous audience, no mechanism. If there is nothing to raise a hand to, the interest you spent years building dissipates — and you are back to posting into a void and calling it a business.',
+    ],
+    caseStudy: {
+      person: 'Gary Vaynerchuk',
+      what: 'Nothing he makes dead-ends. Every piece points somewhere — a book, a newsletter, a talk, the agency, the next thing. The ask is small, constant, and low-stakes rather than rare and enormous.',
+      why: 'Because the ask is small, saying yes costs almost nothing, so far more people do it. He captures intent at the exact moment it exists rather than hoping people remember him later.',
+    },
+    options: [
+      { name: 'A free thing worth an email', detail: 'Something genuinely useful in exchange for a way to reach them directly. You stop renting the relationship.' },
+      { name: 'An open door', detail: 'DMs, an application form, a waitlist. Low friction, and it tells you exactly who is warm.' },
+      { name: 'A cheap entry offer', detail: 'Something small and paid. Buyers behave completely differently to followers.' },
+      { name: 'A community to join', detail: 'They belong before they buy, and the group does the convincing for you.' },
+    ],
+    questions: [
+      'What is the smallest step someone can take to signal they want more from you — and exactly where do they land when they take it?',
+    ],
+    distilLabel: 'the hand-raise, and where it leads',
+    distilPlaceholder: 'Free week-one plan for an email, then a weekly letter.',
+  },
+  {
+    id: 'evaluation',
+    title: 'Evaluation',
+    subtitle: 'They want it. Is it worth it?',
+    explanation: [
+      'Evaluation is the comparison. They are weighing you against the alternatives, against doing nothing at all, and against the price. Doing nothing is almost always the competitor you are actually losing to.',
+      'This stage is won with specificity. What exactly they get, what it costs, what is different afterwards, and what happens if it does not work. Vagueness reads as risk, and risk loses to doing nothing every time.',
+    ],
+    caseStudy: {
+      person: 'Conor McGregor',
+      what: 'Before a fight he told you precisely what would happen and in which round. Not that it would be a great night — the specific outcome, named in advance, with his own record on the line.',
+      why: 'It removed the evaluation entirely. You were no longer deciding whether an event was worth the money, you were deciding whether you believed him — and either answer made you want to watch.',
+    },
+    options: [
+      { name: 'Name the outcome, not the features', detail: 'Not what is included. What is different about their life on the other side of it.' },
+      { name: 'Remove the risk', detail: 'A guarantee, a trial, a visible exit. You absorb the doubt instead of asking them to.' },
+      { name: 'Compare honestly', detail: 'Say who it is not for and what the alternatives are. Nothing builds trust faster at this stage.' },
+      { name: 'Anchor the price', detail: 'Price against what it replaces or what the problem currently costs them, not against thin air.' },
+    ],
+    questions: [
+      'Someone is choosing between you, someone else, and doing nothing. What exactly are they getting, what does it cost, and why are you the obvious answer?',
+    ],
+    distilLabel: 'what they get, and why you over the alternatives',
+    distilPlaceholder: '12 weeks, GBP 400, weekly calls. Cheaper than three months of a bad gym.',
+  },
+  {
+    id: 'purchase',
+    title: 'Purchase',
+    subtitle: 'They have decided. Take the money.',
+    explanation: [
+      'The last stage is mechanical, and it is where money is most often lost. Not to doubt — to friction.',
+      'A decided buyer who cannot work out how to pay, who has to wait for a reply, or who lands on a form that asks for eleven things, becomes an undecided buyer again within minutes. Every extra step between yes and paid costs you people who had already said yes.',
+    ],
+    caseStudy: {
+      person: 'KSI',
+      what: 'With Prime, the purchase happened in the same place the attention already lived — one tap online, and stocked in the shops his audience already walked past every day.',
+      why: 'The decision and the transaction occupied the same moment. Nobody had to remember to buy it later, which is where almost all intent quietly goes to die.',
+    },
+    options: [
+      { name: 'Buy where the attention is', detail: 'One tap, in the same place they found you. Every platform switch loses people.' },
+      { name: 'A real deadline', detail: 'Cohorts, closing dates, limited spots. A genuine reason to act now rather than later.' },
+      { name: 'Talk to a human', detail: 'For anything expensive, a conversation converts far better than a checkout page.' },
+      { name: 'Strip the path bare', detail: 'Delete every field, step and decision that is not strictly required to take payment.' },
+    ],
+    questions: [
+      'Walk the exact path from "yes, I want this" to money in your account. How many steps is it, and what could go wrong at each one?',
+    ],
+    distilLabel: 'how the money actually moves',
+    distilPlaceholder: 'Link in bio to Stripe checkout. Two fields, no call needed.',
+  },
+];
+
+/* ═══════════════════════════════════════════
+   UNIFIED STEPS — chapter 1 then chapter 2
+═══════════════════════════════════════════ */
+const CHAPTERS = [
+  { n: 1, label: 'Your Brand',  blurb: 'Who you are, and what it feels like to be near you.' },
+  { n: 2, label: 'Your Funnel', blurb: 'How a stranger becomes someone who pays you.' },
+];
+
+const STEPS = SECTIONS.map(function(s, i) {
+  return {
+    kind: 'brand',
+    chapter: 1,
+    idxInChapter: i,
+    chapterLen: SECTIONS.length,
+    title: s.title,
+    subtitle: s.subtitle,
+    explanation: s.explanation,
+    questions: s.questions,
+    distilLabel: s.distilLabel,
+    distilPlaceholder: s.distilPlaceholder,
+    examplePerson: s.examplePerson,
+    exampleAnswer: s.exampleAnswer,
+  };
+}).concat(FUNNEL.map(function(f, i) {
+  return {
+    kind: 'funnel',
+    chapter: 2,
+    idxInChapter: i,
+    chapterLen: FUNNEL.length,
+    title: f.title,
+    subtitle: f.subtitle,
+    explanation: f.explanation,
+    questions: f.questions,
+    distilLabel: f.distilLabel,
+    distilPlaceholder: f.distilPlaceholder,
+    caseStudy: f.caseStudy,
+    options: f.options,
+  };
+}));
+
+/* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
 let currentStep = 0;
-let answers = SECTIONS.map(function(s) { return s.questions.map(function() { return ''; }); });
-/* One distilled line per section — this is what the brand document is made of */
-let distils = SECTIONS.map(function() { return ''; });
-let exampleOpen = SECTIONS.map(function() { return false; });
+let answers = STEPS.map(function(s) { return s.questions.map(function() { return ''; }); });
+/* One distilled line per step — this is what the document is made of */
+let distils = STEPS.map(function() { return ''; });
+let exampleOpen = STEPS.map(function() { return false; });
 
 var DISTIL_MAX = 90;
 
@@ -1970,14 +2342,26 @@ function renderProfiles() {
   }).join('');
 }
 
-/* Six-up orientation map shown at the threshold */
+/* Orientation map — both chapters, before you step in */
 function renderThresholdMap() {
   var el = document.getElementById('threshold-map');
   if (!el) return;
-  el.innerHTML = SECTIONS.map(function(s, i) {
-    return '<div class="threshold-map-item">' +
-      '<div class="tm-num">' + String(i + 1).padStart(2, '0') + '</div>' +
-      '<div class="tm-title">' + s.title + '</div>' +
+  el.innerHTML = CHAPTERS.map(function(ch) {
+    var items = STEPS.filter(function(st) { return st.chapter === ch.n; });
+    return '<div class="tm-chapter">' +
+      '<div class="tm-chapter-head">' +
+        '<span class="tm-chapter-n">Chapter ' + ch.n + '</span>' +
+        '<span class="tm-chapter-label">' + ch.label + '</span>' +
+        '<span class="tm-chapter-blurb">' + ch.blurb + '</span>' +
+      '</div>' +
+      '<div class="tm-grid">' +
+        items.map(function(st, i) {
+          return '<div class="threshold-map-item">' +
+            '<div class="tm-num">' + String(i + 1).padStart(2, '0') + '</div>' +
+            '<div class="tm-title">' + st.title + '</div>' +
+            '</div>';
+        }).join('') +
+      '</div>' +
       '</div>';
   }).join('');
 }
@@ -2028,11 +2412,12 @@ document.addEventListener('keydown', function(e) {
 ═══════════════════════════════════════════ */
 function renderStepDots() {
   var container = document.getElementById('step-dots');
-  container.innerHTML = SECTIONS.map(function(s, i) {
-    return '<button class="step-dot" data-step="' + i + '"' +
-      ' title="Section ' + (i+1) + ': ' + s.title + '"' +
+  container.innerHTML = STEPS.map(function(st, i) {
+    var cls = 'step-dot' + (st.kind === 'funnel' && st.idxInChapter === 0 ? ' chapter-start' : '');
+    return '<button class="' + cls + '" data-step="' + i + '"' +
+      ' title="Chapter ' + st.chapter + ' · ' + st.title + '"' +
       ' onclick="jumpToStep(' + i + ')"' +
-      ' aria-label="Go to section ' + (i+1) + ': ' + s.title + '"></button>';
+      ' aria-label="Go to chapter ' + st.chapter + ', ' + st.title + '"></button>';
   }).join('');
   updateStepDots();
 }
@@ -2066,13 +2451,12 @@ function jumpToStep(si) {
 ═══════════════════════════════════════════ */
 function renderBuilderSteps() {
   var container = document.getElementById('builder-steps');
-  container.innerHTML = SECTIONS.map(function(section, si) {
-    var explanationHTML = section.explanation.map(function(p) { return '<p>' + p + '</p>'; }).join('');
+  container.innerHTML = STEPS.map(function(step, si) {
+    var explanationHTML = step.explanation.map(function(p) { return '<p>' + p + '</p>'; }).join('');
 
-    var questionsHTML = section.questions.map(function(q, qi) {
-      var qLabel = 'Q' + (qi + 1);
+    var questionsHTML = step.questions.map(function(q, qi) {
       return '<div class="question-block" id="qblock-' + si + '-' + qi + '">' +
-        '<div class="q-num">' + qLabel + '</div>' +
+        '<div class="q-num">Q' + (qi + 1) + '</div>' +
         '<label for="ans-' + si + '-' + qi + '">' + q + '</label>' +
         '<textarea' +
           ' id="ans-' + si + '-' + qi + '"' +
@@ -2083,48 +2467,91 @@ function renderBuilderSteps() {
         '</div>';
     }).join('');
 
+    /* Funnel steps carry a worked case study and the field of options */
+    var caseHTML = '';
+    var optionsHTML = '';
+    if (step.kind === 'funnel') {
+      caseHTML =
+        '<div class="case-study">' +
+          '<p class="case-label">How ' + step.caseStudy.person + ' did it</p>' +
+          '<p class="case-what">' + step.caseStudy.what + '</p>' +
+          '<div class="case-why">' +
+            '<p class="case-why-label">Why it worked</p>' +
+            '<p>' + step.caseStudy.why + '</p>' +
+          '</div>' +
+        '</div>';
+
+      optionsHTML =
+        '<div class="options-block">' +
+          '<p class="options-label">Other ways people do this</p>' +
+          '<div class="options-list">' +
+            step.options.map(function(o, oi) {
+              return '<div class="option">' +
+                '<div class="option-n">' + String(oi + 1).padStart(2, '0') + '</div>' +
+                '<div class="option-body">' +
+                  '<p class="option-name">' + o.name + '</p>' +
+                  '<p class="option-detail">' + o.detail + '</p>' +
+                '</div>' +
+                '</div>';
+            }).join('') +
+          '</div>' +
+          '<p class="options-foot">None of these is the right answer. They are the field — pick, combine, or do something none of them cover.</p>' +
+        '</div>';
+    }
+
+    /* Brand steps keep the worked example drawer */
+    var exampleHTML = '';
+    if (step.kind === 'brand') {
+      exampleHTML =
+        '<button class="example-toggle" id="ex-btn-' + si + '"' +
+          ' onclick="toggleExample(' + si + ')"' +
+          ' aria-expanded="false"' +
+          ' aria-controls="ex-drawer-' + si + '">' +
+          '<span class="toggle-icon" aria-hidden="true">+</span>' +
+          ' See example — ' + step.examplePerson +
+        '</button>' +
+        '<div class="example-drawer" id="ex-drawer-' + si + '" aria-hidden="true">' +
+          '<div class="example-card">' +
+            '<p class="example-card-label">Example answer</p>' +
+            '<p class="example-card-person">' + step.examplePerson + '</p>' +
+            '<p class="example-card-text">"' + esc(step.exampleAnswer) + '"</p>' +
+          '</div>' +
+        '</div>';
+    }
+
     return '<div class="builder-step' + (si === 0 ? ' active' : '') + '" id="step-' + si + '">' +
-      '<p class="eyebrow step-label">Section ' + (si+1) + ' of ' + SECTIONS.length + '</p>' +
-      '<h3 class="step-title">' + section.title + '</h3>' +
-      '<p class="step-subtitle">' + section.subtitle + '</p>' +
+      '<p class="eyebrow step-label">Chapter ' + step.chapter + ' · ' +
+        (step.chapter === 1 ? 'Your Brand' : 'Your Funnel') + ' — ' +
+        (step.idxInChapter + 1) + ' of ' + step.chapterLen + '</p>' +
+      '<h3 class="step-title">' + step.title + '</h3>' +
+      '<p class="step-subtitle">' + step.subtitle + '</p>' +
       '<div class="context-block">' +
         '<p class="context-block-label">Context</p>' +
         explanationHTML +
       '</div>' +
-      '<p class="questions-zone-label">Your answers</p>' +
+      caseHTML +
+      optionsHTML +
+      '<p class="questions-zone-label">' +
+        (step.kind === 'funnel' ? 'So what are you going to do?' : 'Your answers') +
+      '</p>' +
       '<div class="questions-list">' + questionsHTML + '</div>' +
-      /* The distil — the payoff of the step */
       '<div class="distil' + (distils[si].trim() ? ' filled' : '') + '" id="distil-' + si + '">' +
         '<p class="distil-label">In one line</p>' +
-        '<p class="distil-ask">Now say it in a single line — ' + section.distilLabel + '.</p>' +
+        '<p class="distil-ask">Now say it in a single line — ' + step.distilLabel + '.</p>' +
         '<input type="text" id="distil-input-' + si + '"' +
           ' maxlength="' + DISTIL_MAX + '"' +
           ' value="' + esc(distils[si]) + '"' +
-          ' placeholder="' + esc(section.distilPlaceholder) + '"' +
+          ' placeholder="' + esc(step.distilPlaceholder) + '"' +
           ' oninput="onDistilInput(' + si + ',this)">' +
         '<div class="distil-foot">' +
-          '<p class="distil-hint">This is the line that goes on your brand document. Everything above is how you got to it.</p>' +
+          '<p class="distil-hint">This is the line that goes on your document. Everything above is how you got to it.</p>' +
           '<span class="distil-count" id="distil-count-' + si + '">' + distils[si].length + '/' + DISTIL_MAX + '</span>' +
         '</div>' +
       '</div>' +
-      '<button class="example-toggle" id="ex-btn-' + si + '"' +
-        ' onclick="toggleExample(' + si + ')"' +
-        ' aria-expanded="false"' +
-        ' aria-controls="ex-drawer-' + si + '">' +
-        '<span class="toggle-icon" aria-hidden="true">+</span>' +
-        ' See example — ' + section.examplePerson +
-      '</button>' +
-      '<div class="example-drawer" id="ex-drawer-' + si + '" aria-hidden="true">' +
-        '<div class="example-card">' +
-          '<p class="example-card-label">Example answer</p>' +
-          '<p class="example-card-person">' + section.examplePerson + '</p>' +
-          '<p class="example-card-text">"' + esc(section.exampleAnswer) + '"</p>' +
-        '</div>' +
-      '</div>' +
+      exampleHTML +
       '</div>';
   }).join('');
 
-  // Restore answered states on re-render
   updateAllAnswerIndicators();
 }
 
@@ -2149,8 +2576,8 @@ function onDistilInput(si, input) {
 }
 
 function updateAllAnswerIndicators() {
-  SECTIONS.forEach(function(section, si) {
-    section.questions.forEach(function(q, qi) {
+  STEPS.forEach(function(step, si) {
+    step.questions.forEach(function(q, qi) {
       var block = document.getElementById('qblock-' + si + '-' + qi);
       var ta = document.getElementById('ans-' + si + '-' + qi);
       if (block && ta) {
@@ -2165,8 +2592,8 @@ function saveAnswer(si, qi, value) {
 }
 
 function syncAnswers() {
-  SECTIONS.forEach(function(section, si) {
-    section.questions.forEach(function(q, qi) {
+  STEPS.forEach(function(step, si) {
+    step.questions.forEach(function(q, qi) {
       var el = document.getElementById('ans-' + si + '-' + qi);
       if (el) answers[si][qi] = el.value;
     });
@@ -2189,7 +2616,7 @@ function toggleExample(si) {
 function navigateStep(dir) {
   syncAnswers();
   var next = currentStep + dir;
-  if (next >= SECTIONS.length) { showOutput(); return; }
+  if (next >= STEPS.length) { showOutput(); return; }
   if (next < 0) return;
   document.getElementById('step-' + currentStep).classList.remove('active');
   currentStep = next;
@@ -2200,11 +2627,13 @@ function navigateStep(dir) {
 }
 
 function updateProgress() {
-  var pct = Math.round((currentStep / SECTIONS.length) * 100);
+  var pct = Math.round((currentStep / STEPS.length) * 100);
+  var st = STEPS[currentStep];
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-pct').textContent = pct + '%';
   document.getElementById('progress-label').textContent =
-    'Section ' + (currentStep + 1) + ' of ' + SECTIONS.length + ' — ' + SECTIONS[currentStep].title;
+    'Chapter ' + st.chapter + ' · ' + (st.chapter === 1 ? 'Your Brand' : 'Your Funnel') +
+    ' — ' + st.title + ' (' + (st.idxInChapter + 1) + ' of ' + st.chapterLen + ')';
   var wrap = document.querySelector('.progress-wrap');
   if (wrap) wrap.setAttribute('aria-valuenow', String(pct));
   updateStepDots();
@@ -2214,7 +2643,13 @@ function updateNavButtons() {
   var back = document.getElementById('btn-back');
   var next = document.getElementById('btn-next');
   back.style.display = currentStep > 0 ? '' : 'none';
-  next.textContent = currentStep === SECTIONS.length - 1 ? 'Generate Brand Profile' : 'Next Section';
+  if (currentStep === STEPS.length - 1) {
+    next.textContent = 'Generate My Document';
+  } else if (STEPS[currentStep + 1] && STEPS[currentStep + 1].chapter !== STEPS[currentStep].chapter) {
+    next.textContent = 'Start Chapter 2 — Your Funnel';
+  } else {
+    next.textContent = 'Next';
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -2225,20 +2660,28 @@ function showOutput() {
   var name = document.getElementById('your-name').value.trim() || 'Your Brand';
   var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-  /* The document itself — one line per element */
-  var docHTML = SECTIONS.map(function(section, si) {
-    var line = distils[si].trim();
-    return '<div class="bd-row">' +
-      '<dt>' + section.title + '</dt>' +
-      '<dd' + (line ? '' : ' class="empty"') + '>' +
-        (line ? esc(line) : 'Not yet written — go back and put this one in a line.') +
-      '</dd>' +
+  /* A document block per chapter — one line per step */
+  function docBlock(chapterN, label, note) {
+    var rows = STEPS.map(function(step, si) {
+      if (step.chapter !== chapterN) return '';
+      var line = distils[si].trim();
+      return '<div class="bd-row">' +
+        '<dt>' + step.title + '</dt>' +
+        '<dd' + (line ? '' : ' class="empty"') + '>' +
+          (line ? esc(line) : 'Not yet written — go back and put this one in a line.') +
+        '</dd>' +
+        '</div>';
+    }).join('');
+    return '<div class="brand-doc">' +
+      '<p class="brand-doc-label">' + label + '</p>' +
+      '<p class="brand-doc-note">' + note + '</p>' +
+      '<dl>' + rows + '</dl>' +
       '</div>';
-  }).join('');
+  }
 
-  /* The working — the thinking that produced it */
-  var sectionsHTML = SECTIONS.map(function(section, si) {
-    var answersHTML = section.questions.map(function(q, qi) {
+  /* The working — everything written on the way there */
+  var workingHTML = STEPS.map(function(step, si) {
+    var answersHTML = step.questions.map(function(q, qi) {
       var a = answers[si][qi].trim();
       return '<div class="output-qa">' +
         '<div class="output-q">' + q + '</div>' +
@@ -2247,34 +2690,33 @@ function showOutput() {
     }).join('');
 
     return '<div class="output-section">' +
-      '<p class="eyebrow" style="margin-bottom:0.35rem">Section ' + (si+1) + ' of 6</p>' +
-      '<h3 class="output-sec-title">' + section.title + '</h3>' +
+      '<p class="eyebrow" style="margin-bottom:0.35rem">Chapter ' + step.chapter + ' · ' +
+        (step.idxInChapter + 1) + ' of ' + step.chapterLen + '</p>' +
+      '<h3 class="output-sec-title">' + step.title + '</h3>' +
       '<div class="output-answers">' + answersHTML + '</div>' +
       '</div>';
   }).join('');
 
   document.getElementById('output-doc').innerHTML =
     '<div class="output-doc-head">' +
-      '<p class="eyebrow">Brand Document</p>' +
+      '<p class="eyebrow">Brand &amp; Funnel Document</p>' +
       '<h2 class="output-title">' + esc(name) + '</h2>' +
       '<p class="output-generated">Generated ' + date + '</p>' +
     '</div>' +
-    '<div class="brand-doc">' +
-      '<p class="brand-doc-label">In one line each</p>' +
-      '<dl>' + docHTML + '</dl>' +
-    '</div>' +
+    docBlock(1, 'Chapter 1 · Your Brand', 'Who you are, and what it feels like to be near you.') +
+    docBlock(2, 'Chapter 2 · Your Funnel', 'How a stranger becomes someone who pays you.') +
     '<div class="working-head">' +
       '<p class="eyebrow">The Working</p>' +
       '<h3>How you got there.</h3>' +
-      '<p>Everything you wrote on the way to those six lines. Nobody else needs to read this part — you do, whenever a line above stops feeling true.</p>' +
+      '<p>Everything you wrote on the way to those twelve lines. Nobody else needs to read this part — you do, whenever a line above stops feeling true.</p>' +
     '</div>' +
-    sectionsHTML +
+    workingHTML +
     '<div class="what-next">' +
       '<p class="eyebrow">What next?</p>' +
-      '<h3>Use your own words.</h3>' +
+      '<h3>Run it, then fix the leak.</h3>' +
       '<ul class="next-list">' +
-        '<li><span class="next-num">1</span><span class="next-text">Every piece of content you make should express the feeling you named above. If it doesn\'t produce that emotion, it is not your content — it is noise.</span></li>' +
-        '<li><span class="next-num">2</span><span class="next-text">Every decision passes the same filter — does this reinforce my associations and serve my community? If not, it blurs what you just made clear.</span></li>' +
+        '<li><span class="next-num">1</span><span class="next-text">Everything you make should express the feeling you named in Chapter 1. If it does not produce that emotion, it is not your content — it is noise.</span></li>' +
+        '<li><span class="next-num">2</span><span class="next-text">A funnel fails at one stage at a time, not all at once. When the money is not moving, find the stage where people stop and work only on that one.</span></li>' +
         '<li><span class="next-num">3</span><span class="next-text">Come back whenever it stops feeling clear. Nothing here was invented for you — it is your own articulation, so it holds up. Read what you wrote and you will recognise it.</span></li>' +
       '</ul>' +
     '</div>';
@@ -2293,20 +2735,22 @@ function showOutput() {
 function buildPlainText() {
   var name = document.getElementById('your-name').value.trim() || 'Your Brand';
   var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  var out = name.toUpperCase() + '\n' + 'BRAND DOCUMENT · ' + date + '\n' + '═'.repeat(52) + '\n\n';
+  var out = name.toUpperCase() + '\n' + 'BRAND & FUNNEL DOCUMENT · ' + date + '\n' + '═'.repeat(52) + '\n\n';
 
-  /* The document */
-  SECTIONS.forEach(function(section, si) {
-    out += section.title.toUpperCase() + '\n';
-    out += (distils[si].trim() || '[Not yet written]') + '\n\n';
+  CHAPTERS.forEach(function(ch) {
+    out += '\nCHAPTER ' + ch.n + ' · ' + ch.label.toUpperCase() + '\n' + '─'.repeat(40) + '\n\n';
+    STEPS.forEach(function(step, si) {
+      if (step.chapter !== ch.n) return;
+      out += step.title.toUpperCase() + '\n';
+      out += (distils[si].trim() || '[Not yet written]') + '\n\n';
+    });
   });
 
-  /* The working */
   out += '\n' + '═'.repeat(52) + '\nTHE WORKING\n' + '═'.repeat(52) + '\n';
-  out += 'Everything written on the way to those six lines.\n\n';
-  SECTIONS.forEach(function(section, si) {
-    out += (si+1) + '. ' + section.title.toUpperCase() + '\n' + '─'.repeat(30) + '\n\n';
-    section.questions.forEach(function(q, qi) {
+  out += 'Everything written on the way to those twelve lines.\n\n';
+  STEPS.forEach(function(step, si) {
+    out += 'CH' + step.chapter + '.' + (step.idxInChapter + 1) + ' ' + step.title.toUpperCase() + '\n' + '─'.repeat(30) + '\n\n';
+    step.questions.forEach(function(q, qi) {
       out += q + '\n' + (answers[si][qi].trim() || '[Not answered]') + '\n\n';
     });
   });
@@ -2319,7 +2763,7 @@ function downloadProfile() {
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
   a.href = url;
-  a.download = name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-brand-document.txt';
+  a.download = name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-brand-funnel-document.txt';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -2354,9 +2798,9 @@ function fallbackCopy(text, cb) {
 
 function restartBuilder() {
   currentStep = 0;
-  answers = SECTIONS.map(function(s) { return s.questions.map(function() { return ''; }); });
-  distils = SECTIONS.map(function() { return ''; });
-  exampleOpen = SECTIONS.map(function() { return false; });
+  answers = STEPS.map(function(s) { return s.questions.map(function() { return ''; }); });
+  distils = STEPS.map(function() { return ''; });
+  exampleOpen = STEPS.map(function() { return false; });
   document.getElementById('output').classList.remove('visible');
   document.getElementById('builder').style.display = '';
   renderBuilderSteps();
