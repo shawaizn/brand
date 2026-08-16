@@ -289,77 +289,145 @@ textarea, input { font-family: inherit; }
 }
 
 /* ══════════════════════════════════════════════════
-   PROFILES GRID
+   PROFILES GRID — portrait photo cards
 ══════════════════════════════════════════════════ */
 .profiles-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border-1);
-  border-left: 1px solid var(--border-1);
+  background: var(--border-1);
+  gap: 1px;
 }
 
 .profile-card {
   background: var(--bg-raised);
-  padding: 2.25rem 2rem 2rem;
-  border-right: 1px solid var(--border-1);
-  border-bottom: 1px solid var(--border-1);
   cursor: pointer;
-  position: relative;
   overflow: hidden;
-  transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
+.profile-card:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 
-.profile-card::after {
+/* Gold sweep bar at the very top */
+.profile-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
   height: 2px;
   width: 0;
   background: var(--gold);
-  transition: width 0.32s ease;
+  transition: width 0.38s ease;
+  z-index: 10;
 }
-.profile-card:hover { background: var(--bg-elevated); }
-.profile-card:hover::after { width: 100%; }
-.profile-card:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.profile-card:hover::before { width: 100%; }
+
+/* ── Photo zone ── */
+.card-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-elevated);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Photo image div (background-image) */
+.card-photo-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  transition: transform 0.55s ease;
+  z-index: 0;
+}
+.profile-card:hover .card-photo-bg { transform: scale(1.06); }
+
+/* Gradient over photo — always on, deepens at bottom */
+.card-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.08) 0%,
+    rgba(0,0,0,0.45) 55%,
+    rgba(0,0,0,0.92) 100%
+  );
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+.profile-card:hover .card-photo::after { opacity: 1.15; }
+
+/* Placeholder number — shown when no photo URL set */
+.card-photo-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(5rem, 9vw, 10rem);
+  font-weight: 900;
+  color: #242424;
+  user-select: none;
+  z-index: 0;
+}
+/* When photo is loaded, placeholder hides */
+.card-photo.has-photo .card-photo-num { display: none; }
+
+/* Feeling label overlaid on the photo */
+.card-photo-feeling {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+/* ── Info below photo ── */
+.card-info {
+  padding: 1.375rem 1.5rem 1.625rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border-1);
+}
 
 .card-num {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--text-3);
-  margin-bottom: 1.625rem;
+  margin-bottom: 0.4rem;
 }
 
 .card-name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.2rem;
   line-height: 1.2;
-}
-
-.card-feeling {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--gold);
-  margin-bottom: 1.125rem;
-  line-height: 1.4;
+  margin-bottom: 0.3rem;
 }
 
 .card-desc {
-  font-size: 0.8rem;
-  color: var(--text-2);
-  line-height: 1.75;
+  font-size: 0.78rem;
+  color: var(--text-3);
+  line-height: 1.6;
 }
 
 .card-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-top: 2rem;
-  font-size: 0.625rem;
+  margin-top: auto;
+  padding-top: 1.125rem;
+  font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -928,8 +996,13 @@ textarea, input { font-family: inherit; }
 /* ══════════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════════ */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .profiles-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .profiles-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-photo { aspect-ratio: 2 / 3; }
 }
 
 @media (max-width: 640px) {
@@ -953,7 +1026,7 @@ textarea, input { font-family: inherit; }
 
   .profiles-grid { grid-template-columns: 1fr; }
 
-  .modal-overlay { padding: 1.25rem 0.875rem; }
+  .modal-overlay { padding: 1rem 0.75rem; }
   .modal-head { padding: 1.75rem 1.5rem 1.5rem; }
   .modal-body { padding: 0 1.5rem 2rem; }
 
@@ -1008,10 +1081,10 @@ textarea, input { font-family: inherit; }
   <div class="container">
     <div class="section-intro reveal">
       <p class="section-chapter-num" aria-hidden="true">01</p>
-      <p class="eyebrow">Case Studies</p>
+      <p class="eyebrow">The Influence Index</p>
       <div class="section-rule" aria-hidden="true"></div>
-      <h2>Learn from the best</h2>
-      <p>Every great brand has already answered these questions. Study them before you answer your own.</p>
+      <h2>Eight brands. Fully decoded.</h2>
+      <p>The most effective personal brands in the world didn't get there by accident. We broke down exactly what each one is built on — so you can build yours the same way.</p>
     </div>
     <div class="profiles-grid" id="profiles-grid" role="list">
       <!-- Rendered by JS -->
@@ -1199,6 +1272,7 @@ const PROFILES = [
     name: 'Conor McGregor',
     descriptor: 'UFC world champion. Two-division title holder.',
     feeling: 'Permission and inevitability',
+    photo: '',
     data: {
       'The Feeling': 'Permission and inevitability — being in his world makes you feel like the impossible is just a decision away.',
       'Association': 'Precision, belief, audacity, style, hunger. Two division champion. The suit. The strut. The absolute unshakeable belief reinforced thousands of times until the world had no choice but to believe it too.',
@@ -1212,6 +1286,7 @@ const PROFILES = [
     name: 'David Goggins',
     descriptor: 'Navy SEAL. Ultra-endurance athlete. Author.',
     feeling: 'Capability',
+    photo: '',
     data: {
       'The Feeling': 'Capability — your excuses feel smaller, your potential feels bigger. Being in his world makes you feel like you have been operating below what you are actually capable of.',
       'Association': 'Can\'t Hurt Me. 4am. Suffering. No excuses. Navy SEAL. Ultra marathons. The 40% rule — when your mind says stop your body is only 40% done.',
@@ -1225,6 +1300,7 @@ const PROFILES = [
     name: 'Tyson Fury',
     descriptor: 'The Gypsy King. Two-time heavyweight champion.',
     feeling: 'Hope',
+    photo: '',
     data: {
       'The Feeling': 'Hope — if he can come back from where he was, anyone can come back from anywhere.',
       'Association': 'The Gypsy King. Comeback. Mental health. Unpredictability. Showmanship. The man who got up when everyone thought he was done.',
@@ -1238,6 +1314,7 @@ const PROFILES = [
     name: 'Anthony Joshua',
     descriptor: 'Olympic gold medallist. Multiple world heavyweight champion.',
     feeling: 'Inspiration through discipline',
+    photo: '',
     data: {
       'The Feeling': 'Inspiration — that discipline and hard work can take you from nothing to everything.',
       'Association': 'Discipline. Humble champion. From the streets. Olympic gold. The people\'s champion. The combination of physical power and quiet articulacy that nobody expected.',
@@ -1251,6 +1328,7 @@ const PROFILES = [
     name: 'Joe Rogan',
     descriptor: 'Comedian. UFC commentator. Host of the world\'s most-listened podcast.',
     feeling: 'Freedom',
+    photo: '',
     data: {
       'The Feeling': 'Freedom — like you are in a conversation where anything can actually be said and nobody is performing the right opinion.',
       'Association': 'Long form. Curiosity. Elk meat. DMT. Comedian. UFC commentator. No filter. Three hours of actual thinking.',
@@ -1264,6 +1342,7 @@ const PROFILES = [
     name: 'Gary Vaynerchuk',
     descriptor: 'Entrepreneur. Investor. Content creator.',
     feeling: 'Permission and urgency',
+    photo: '',
     data: {
       'The Feeling': 'Permission and urgency — that it is not too late and the excuses are not real and the time is now.',
       'Association': 'Hustle. Wine Library. Document don\'t create. Self awareness. No excuses. The immigrant work ethic. Doing the unglamorous thing for years before anyone watches.',
@@ -1277,6 +1356,7 @@ const PROFILES = [
     name: 'KSI',
     descriptor: 'YouTuber. Boxer. Recording artist. Entrepreneur.',
     feeling: 'Excitement',
+    photo: '',
     data: {
       'The Feeling': 'Excitement — that you can be more than one thing and reinvent yourself whenever you decide to.',
       'Association': 'YouTube. Boxing. Music. JJ. Sidemen. Drama. Transformation. The person who kept doing new things and kept being better than people expected.',
@@ -1290,6 +1370,7 @@ const PROFILES = [
     name: 'Andrew Tate',
     descriptor: 'Kickboxing champion. Entrepreneur.',
     feeling: 'Permission to be unfiltered',
+    photo: '',
     data: {
       'The Feeling': 'Permission to be completely unfiltered — that you do not have to perform softness or agreement you do not feel.',
       'Association': 'Bugatti. Top G. War Room. Romania. Cigar. Polarising. The person everyone has an opinion on.',
@@ -1314,16 +1395,29 @@ let exampleOpen = SECTIONS.map(function() { return false; });
 function renderProfiles() {
   var grid = document.getElementById('profiles-grid');
   grid.innerHTML = PROFILES.map(function(p, i) {
+    var num = String(i + 1).padStart(2, '0');
+    var hasPhoto = p.photo && p.photo.length > 0;
+    var photoClass = 'card-photo' + (hasPhoto ? ' has-photo' : '');
+    var bgDiv = hasPhoto
+      ? '<div class="card-photo-bg" style="background-image:url(\'' + p.photo + '\')"></div>'
+      : '';
+
     return '<div class="profile-card reveal" role="listitem button" tabindex="0"' +
       ' onclick="openModal(' + i + ')"' +
       ' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openModal(' + i + ');}"' +
       ' aria-label="Open ' + p.name + ' brand profile">' +
-      '<div class="card-num">' + String(i + 1).padStart(2, '0') + '</div>' +
-      '<div class="card-name">' + p.name + '</div>' +
-      '<div class="card-feeling">' + p.feeling + '</div>' +
-      '<div class="card-desc">' + p.descriptor + '</div>' +
-      '<div class="card-cta">View profile <span aria-hidden="true">→</span></div>' +
-      '</div>';
+      '<div class="' + photoClass + '">' +
+        bgDiv +
+        '<div class="card-photo-num" aria-hidden="true">' + num + '</div>' +
+        '<div class="card-photo-feeling">' + esc(p.feeling) + '</div>' +
+      '</div>' +
+      '<div class="card-info">' +
+        '<div class="card-num">' + num + '</div>' +
+        '<div class="card-name">' + p.name + '</div>' +
+        '<div class="card-desc">' + p.descriptor + '</div>' +
+        '<div class="card-cta">View profile <span aria-hidden="true">→</span></div>' +
+      '</div>' +
+    '</div>';
   }).join('');
 }
 
