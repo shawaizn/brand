@@ -259,44 +259,159 @@ section {
    1 — HERO
 ══════════════════════════════════════════════════════════ */
 #hero {
-  min-height: calc(100vh - var(--nav-h));
-  min-height: calc(100svh - var(--nav-h));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3.5rem 0;
+  padding: 2rem 0 4rem;
   border-bottom: 1px solid var(--border);
 }
 
-.hero-h1 {
-  font-size: clamp(2.4rem, 5.6vw, 4.5rem);
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 2rem;
-  max-width: 20ch;
+.hero-wrap { max-width: 1180px; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.88fr);
+  gap: 3.5rem;
+  align-items: center;
 }
-.hero-h1 em {
-  font-style: italic;
-  color: var(--gold);
+
+.hero-eyebrow { margin-bottom: 1.375rem; }
+
+.hero-h1 {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.25rem;
+  max-width: 15ch;
 }
 
 .hero-sub {
-  font-size: 1.15rem;
+  font-size: 1.075rem;
   color: var(--text-2);
   line-height: 1.85;
-  max-width: 52ch;
-  margin-bottom: 2.75rem;
+  max-width: 42ch;
+  margin: 0 0 2.25rem;
 }
 
-.hero-note {
-  margin-top: 4rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.85rem;
-  color: var(--text-3);
-  letter-spacing: 0.02em;
+.hero-ctas {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.hero-ctas .btn { padding: 1rem 1.5rem; }
+
+/* ══════════════════════════════════════════════════════════
+   THE FUNNEL VISUAL — real cone, labels outside the shape
+══════════════════════════════════════════════════════════ */
+.viz { --shape: 232px; }
+
+.vrow {
+  display: grid;
+  grid-template-columns: var(--shape) 1fr;
+  gap: 1.75rem;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.vshape {
+  min-height: 86px;
+  align-self: stretch;   /* a band never crops its own label */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.25s ease;
+}
+.vrow:hover .vshape { filter: brightness(1.3); }
+
+.vshape span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+}
+
+/* Brand — the mouth of the funnel, straight sided */
+.v-plate {
+  background: var(--card);
+  border: 1px solid var(--border-2);
+  min-height: 72px;
+}
+.v-plate span { color: var(--text-3); }
+
+.v-stem {
+  width: 1px;
+  height: 13px;
+  margin-left: calc(var(--shape) / 2);
+  background: var(--border-2);
+}
+
+/* The cone: 7% inset per side per band → tip is 30% of the mouth */
+.fb-1 { clip-path: polygon(0 0, 100% 0, 93% 100%, 7% 100%);      background: #16130a; }
+.fb-2 { clip-path: polygon(7% 0, 93% 0, 86% 100%, 14% 100%);     background: #1e1a0c; }
+.fb-3 { clip-path: polygon(14% 0, 86% 0, 79% 100%, 21% 100%);    background: #29220e; }
+.fb-4 { clip-path: polygon(21% 0, 79% 0, 72% 100%, 28% 100%);    background: #372d11; }
+.fb-5 { clip-path: polygon(28% 0, 72% 0, 65% 100%, 35% 100%);    background: #4a3c15; }
+
+.vlabel { min-width: 0; }
+
+.vz-n {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.28rem;
+}
+.v-plate-row .vz-n { color: var(--text-3); }
+
+.vz-name {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.22rem;
+}
+
+.vz-dest {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* The end result — sits under the tip, terminating the cone */
+.viz-end {
+  position: relative;
+  margin-top: 13px;
+  border: 1px solid var(--gold);
+  background: #17130a;
+  padding: 1.15rem 1.5rem 1.3rem;
+}
+.viz-end::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--shape) / 2);
+  top: -13px;
+  width: 1px;
+  height: 13px;
+  background: var(--gold-dim);
+}
+.viz-end-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.45rem;
+}
+.viz-end-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.4;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1576,6 +1691,13 @@ body.working .nav-links { display: none; }
 @media (max-width: 1080px) {
   :root { --spine-w: 0px; }
 
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-copy { text-align: center; }
+  .hero-h1, .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-h1 { max-width: 22ch; }
+  .hero-sub { max-width: 52ch; }
+  .hero-ctas { justify-content: center; }
+
   .shell { margin-left: 0; padding-top: 0; }
 
   #spine {
@@ -1654,7 +1776,19 @@ body.working .nav-links { display: none; }
   .wrap { padding: 0 1.25rem; }
 
   .sec { padding: 4rem 0; }
-  #hero { min-height: 0; padding: 2.5rem 0 3.25rem; }
+  #hero { padding: 2rem 0 3.25rem; }
+  .hero-eyebrow { margin-bottom: 1.5rem; }
+  .hero-h1 { margin-top: 2.25rem; }
+
+  .viz { --shape: 104px; }
+  .vrow { grid-template-columns: var(--shape) 1fr; gap: 1rem; }
+  .vshape { min-height: 62px; }
+  .v-plate { min-height: 58px; }
+  .vz-name { font-size: 1.1rem; }
+  .vz-dest { font-size: 0.86rem; }
+  .vshape span { font-size: 0.56rem; letter-spacing: 0.12em; }
+  .viz-end { padding: 1rem 1.125rem 1.15rem; }
+  .viz-end-text { font-size: 1.05rem; }
 
   .step { padding: 2rem 1.25rem 2rem; }
   .builder-bar { padding: 1rem 1.25rem; }
@@ -1725,12 +1859,21 @@ body.working .nav-links { display: none; }
 
 <!-- ══ 1 · HERO ══ -->
 <section id="hero">
-  <div class="wrap">
-    <p class="eyebrow">Energise AI — Brand &amp; Funnel Methodology</p>
-    <h1 class="hero-h1">Be your best self. <em>Build your following around that.</em></h1>
-    <p class="hero-sub">Building a following is a business. Your product is a feeling. This tool helps you find it, build it and convert it.</p>
-    <a href="#brand-1" class="btn btn-gold" id="start-cta">Start Building</a>
-    <p class="hero-note">The methodology behind the brands you already follow.</p>
+  <div class="wrap hero-wrap">
+    <div class="hero-grid">
+      <!-- The whole funnel, start to money -->
+      <div class="viz" id="viz" role="img" aria-labelledby="viz-cap"><!-- JS --></div>
+
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow">Energise AI — Brand &amp; Funnel Methodology</p>
+        <h1 class="hero-h1" id="viz-cap">Build a following for your business.</h1>
+        <p class="hero-sub">Six brand elements to find out who you are. Five funnel stages to turn that into people who pay. One document at the end.</p>
+        <div class="hero-ctas">
+          <a href="#brand-1" class="btn btn-gold" id="start-cta">Start Building</a>
+          <a href="#principle" class="btn">How it works</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2489,6 +2632,37 @@ function toast(msg) {
 /* ══════════════════════════════════════════════════════════
    STATIC RENDERS
 ══════════════════════════════════════════════════════════ */
+/* The hero funnel — brand mouth, five narrowing stages, the end result */
+function renderViz() {
+  var v = $('viz');
+  if (!v) return;
+  v.innerHTML =
+    '<div class="vrow v-plate-row">' +
+      '<div class="vshape v-plate"></div>' +
+      '<div class="vlabel">' +
+        '<span class="vz-n">Foundation</span>' +
+        '<span class="vz-name">Your Brand</span>' +
+        '<span class="vz-dest">Who you are, who you are for, and what you stand for.</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="v-stem" aria-hidden="true"></div>' +
+    FUNNEL.map(function(f, i) {
+      var n = String(i + 1).padStart(2, '0');
+      return '<div class="vrow">' +
+        '<div class="vshape fb-' + (i + 1) + '"><span>' + n + '</span></div>' +
+        '<div class="vlabel">' +
+          '<span class="vz-n">Stage ' + n + '</span>' +
+          '<span class="vz-name">' + f.name + '</span>' +
+          '<span class="vz-dest">' + f.dest + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('') +
+    '<div class="viz-end">' +
+      '<p class="viz-end-label">The end result</p>' +
+      '<p class="viz-end-text">A stranger becomes someone who pays you.</p>' +
+    '</div>';
+}
+
 function renderMap() {
   var m = $('map');
   if (!m) return;
@@ -3086,6 +3260,7 @@ function initReveal() {
 ══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function() {
   renderSpine();
+  renderViz();
   renderMap();
 
   var saved = loadSaved();
