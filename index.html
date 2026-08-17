@@ -462,6 +462,84 @@ section {
 }
 
 /* ══════════════════════════════════════════════════════════
+   FACES SECTION
+══════════════════════════════════════════════════════════ */
+#faces {
+  padding: 0 0 5rem;
+  text-align: center;
+}
+
+.faces-row {
+  display: flex;
+  gap: 3.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.face-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.face-ring {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--border-2);
+}
+
+.face-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  transition: opacity 0.35s ease;
+}
+.face-normal { opacity: 1; z-index: 2; }
+.face-fun    { opacity: 0; z-index: 1; }
+.face-ring:hover .face-normal { opacity: 0; }
+.face-ring:hover .face-fun    { opacity: 1; }
+
+.face-name {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.faces-caption {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+}
+
+/* Inline avatar — next to person name in builder */
+.face-av {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.45rem;
+  flex-shrink: 0;
+}
+
+.ex-card-person,
+.case-name {
+  display: flex;
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════════════════════
    BUTTONS
 ══════════════════════════════════════════════════════════ */
 .btn {
@@ -1343,6 +1421,7 @@ section {
    FOCUS MODE — the page becomes an app
 ══════════════════════════════════════════════════════════ */
 body.working #hero,
+body.working #faces,
 body.working #principle,
 body.working #foot { display: none; }
 
@@ -1691,7 +1770,7 @@ body.working .nav-links { display: none; }
    PRINT
 ══════════════════════════════════════════════════════════ */
 @media print {
-  #nav, #spine, .spine-tab, #hero, #principle, #foot, .resume, .toast,
+  #nav, #spine, .spine-tab, #hero, #faces, #principle, #foot, .resume, .toast,
   .bar, .stage-head, .out-actions, .handoff { display: none !important; }
   .shell { margin-left: 0 !important; }
   #stage { display: block !important; padding: 0 !important; }
@@ -1811,6 +1890,10 @@ body.working .nav-links { display: none; }
   .hero-eyebrow { margin-bottom: 0.875rem; }
   .hero-h1 { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 2rem; }
 
+  .faces-row { gap: 1.75rem; }
+  .face-ring { width: 96px; height: 96px; }
+  #faces { padding: 0 0 3.5rem; }
+
   .vband { min-height: 76px; }
   .vb-name { font-size: 1.05rem; }
   .vb-dest { display: none; } /* hide destination text on small screens — too narrow */
@@ -1904,6 +1987,35 @@ body.working .nav-links { display: none; }
   </div>
 </section>
 
+<!-- ══ 1b · FACES ══ -->
+<section id="faces">
+  <div class="wrap">
+    <div class="faces-row">
+      <div class="face-card">
+        <div class="face-ring">
+          <img class="face-img face-normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc4AehikguyKT9eEid_ej-Do1RTH2WDOrr_rCudzPXA&s=10" alt="Andrew Tate" loading="lazy">
+          <img class="face-img face-fun"    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-DkmyTb5AH9Nt7cu37Uu7Cgh4y283ah6bv8r0M_BWwg&s=10" alt="" loading="lazy" aria-hidden="true">
+        </div>
+        <p class="face-name">Andrew Tate</p>
+      </div>
+      <div class="face-card">
+        <div class="face-ring">
+          <img class="face-img face-normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlzSfssy8tbLmE7nBM-ZmTMBynCIPPXuSQzBtCGSoDg&s=10" alt="Tyson Fury" loading="lazy">
+          <img class="face-img face-fun"    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNJbHjuTlt2hJwaFxPCtjZhh2Y3pGJfsTnVr-inpqNQ&s=10" alt="" loading="lazy" aria-hidden="true">
+        </div>
+        <p class="face-name">Tyson Fury</p>
+      </div>
+      <div class="face-card">
+        <div class="face-ring">
+          <img class="face-img face-normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHAgM7oVpv59ba8hQQ2ctr5HKwXD8w0-PyEGrNkr6IGw&s=10" alt="MrBeast" loading="lazy">
+        </div>
+        <p class="face-name">MrBeast</p>
+      </div>
+    </div>
+    <p class="faces-caption">The same path. Different brands.</p>
+  </div>
+</section>
+
 <!-- ══ 2 · THE PRINCIPLE ══ -->
 <section id="principle" class="sec">
   <div class="wrap">
@@ -1950,6 +2062,31 @@ body.working .nav-links { display: none; }
 
 <script>
 'use strict';
+
+/* ══════════════════════════════════════════════════════════
+   FACE PHOTOS — normal + hover-swap for the three examples
+══════════════════════════════════════════════════════════ */
+var FACES = {
+  'Andrew Tate': {
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc4AehikguyKT9eEid_ej-Do1RTH2WDOrr_rCudzPXA&s=10',
+    fun: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-DkmyTb5AH9Nt7cu37Uu7Cgh4y283ah6bv8r0M_BWwg&s=10'
+  },
+  'Tyson Fury': {
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlzSfssy8tbLmE7nBM-ZmTMBynCIPPXuSQzBtCGSoDg&s=10',
+    fun: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNJbHjuTlt2hJwaFxPCtjZhh2Y3pGJfsTnVr-inpqNQ&s=10'
+  },
+  'MrBeast': {
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHAgM7oVpv59ba8hQQ2ctr5HKwXD8w0-PyEGrNkr6IGw&s=10',
+    fun: null
+  }
+};
+
+function faceAv(name, sz) {
+  var f = FACES[name];
+  if (!f) return '';
+  sz = sz || 28;
+  return '<img src="' + f.img + '" alt="" class="face-av" width="' + sz + '" height="' + sz + '" aria-hidden="true" loading="lazy">';
+}
 
 /* ══════════════════════════════════════════════════════════
    THE SEVEN STOPS
@@ -2766,12 +2903,12 @@ function viewBrand() {
       '<div class="read">' + s.explain + emo + '</div>' +
       '<div class="qs" id="qs">' + qs + '</div>' +
       '<button class="ex-btn" id="exb" aria-expanded="false" aria-controls="exd">' +
-        '<span class="ex-icon" aria-hidden="true">+</span> See example — ' + s.example.person +
+        '<span class="ex-icon" aria-hidden="true">+</span> See example — ' + faceAv(s.example.person, 22) + s.example.person +
       '</button>' +
       '<div class="drawer" id="exd">' +
         '<div class="ex-card">' +
           '<p class="ex-card-label">Example</p>' +
-          '<p class="ex-card-person">' + s.example.person + '</p>' +
+          '<p class="ex-card-person">' + faceAv(s.example.person, 38) + s.example.person + '</p>' +
           '<p class="body">' + s.example.text + '</p>' +
         '</div>' +
       '</div>' +
@@ -2852,7 +2989,7 @@ function viewFunnel() {
         return '<div class="case" id="c-' + ci + '">' +
           '<button class="case-btn" data-case="' + ci + '" aria-expanded="false" aria-controls="cb-' + ci + '">' +
             '<span class="case-main">' +
-              '<span class="case-name">' + c.person + '</span>' +
+              '<span class="case-name">' + faceAv(c.person, 30) + c.person + '</span>' +
               '<span class="case-desc">' + c.desc + '</span>' +
             '</span><span class="case-icon" aria-hidden="true">+</span>' +
           '</button>' +
