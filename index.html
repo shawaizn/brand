@@ -306,150 +306,156 @@ section {
 
 .hero-wrap { max-width: 1180px; }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.88fr);
-  gap: 3.5rem;
-  align-items: center;
-}
+/* Hero — single centred column */
+#hero { padding: 5rem 0 4.5rem; }
 
-.hero-eyebrow { margin-bottom: 1.375rem; }
+.hero-wrap { text-align: center; }
+
+.hero-eyebrow { margin-bottom: 1.1rem; }
 
 .hero-h1 {
-  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-size: clamp(2.3rem, 4vw, 3.6rem);
   font-weight: 700;
   color: var(--white);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  margin: 0 0 1.25rem;
-  max-width: 15ch;
-}
-
-.hero-sub {
-  font-size: 1.075rem;
-  color: var(--text-2);
-  line-height: 1.85;
-  max-width: 42ch;
-  margin: 0 0 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 auto 3rem;
+  max-width: 20ch;
 }
 
 .hero-ctas {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5rem;
 }
-.hero-ctas .btn { padding: 1rem 1.5rem; }
+.hero-ctas .btn { padding: 1rem 1.75rem; }
 
 /* ══════════════════════════════════════════════════════════
-   THE FUNNEL VISUAL — real cone, labels outside the shape
+   THE FUNNEL VISUAL — text lives inside the bands
 ══════════════════════════════════════════════════════════ */
-.viz { --shape: 232px; }
-
-.vrow {
-  display: grid;
-  grid-template-columns: var(--shape) 1fr;
-  gap: 1.75rem;
-  align-items: center;
-  margin-bottom: 3px;
+.viz {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
 }
 
-.vshape {
-  min-height: 86px;
-  align-self: stretch;   /* a band never crops its own label */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: filter 0.25s ease;
-}
-.vrow:hover .vshape { filter: brightness(1.3); }
-
-.vshape span {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-}
-
-/* Brand — the mouth of the funnel, straight sided */
+/* Brand foundation plate — full width rectangle */
 .v-plate {
   background: var(--card);
   border: 1px solid var(--border-2);
-  min-height: 72px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem 2rem;
 }
-.v-plate span { color: var(--text-3); }
 
 .v-stem {
   width: 1px;
-  height: 13px;
-  margin-left: calc(var(--shape) / 2);
+  height: 12px;
+  margin: 0 auto;
   background: var(--border-2);
 }
 
-/* The cone: 7% inset per side per band → tip is 30% of the mouth */
-.fb-1 { clip-path: polygon(0 0, 100% 0, 93% 100%, 7% 100%);      background: #16130a; }
-.fb-2 { clip-path: polygon(7% 0, 93% 0, 86% 100%, 14% 100%);     background: #1e1a0c; }
-.fb-3 { clip-path: polygon(14% 0, 86% 0, 79% 100%, 21% 100%);    background: #29220e; }
-.fb-4 { clip-path: polygon(21% 0, 79% 0, 72% 100%, 28% 100%);    background: #372d11; }
-.fb-5 { clip-path: polygon(28% 0, 72% 0, 65% 100%, 35% 100%);    background: #4a3c15; }
+/* Each funnel band — full width, clip-path makes the trapezoid */
+.vband {
+  width: 100%;
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2px;
+  transition: filter 0.2s;
+}
+.vband:hover { filter: brightness(1.3); }
 
-.vlabel { min-width: 0; }
+/* Horizontal padding keeps text inside the visible cone area */
+.vband-inner { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.fb-1 .vband-inner { padding: 1.1rem 8%  1.1rem; }
+.fb-2 .vband-inner { padding: 1.1rem 13% 1.1rem; }
+.fb-3 .vband-inner { padding: 1.1rem 18% 1.1rem; }
+.fb-4 .vband-inner { padding: 1.1rem 23% 1.1rem; }
+.fb-5 .vband-inner { padding: 1.1rem 28% 1.1rem; }
 
-.vz-n {
-  display: block;
-  font-size: 0.6rem;
+/* 4% per side taper — tip is 60% of the mouth */
+.fb-1 { clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);   background: #16130a; }
+.fb-2 { clip-path: polygon(4% 0, 96% 0, 92% 100%, 8% 100%);   background: #1e1a0c; }
+.fb-3 { clip-path: polygon(8% 0, 92% 0, 88% 100%, 12% 100%);  background: #29220e; }
+.fb-4 { clip-path: polygon(12% 0, 88% 0, 84% 100%, 16% 100%); background: #372d11; }
+.fb-5 { clip-path: polygon(16% 0, 84% 0, 80% 100%, 20% 100%); background: #4a3c15; }
+
+/* Text inside each band */
+.vb-n {
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.28rem;
+  margin-bottom: 0.2rem;
 }
-.v-plate-row .vz-n { color: var(--text-3); }
-
-.vz-name {
-  display: block;
+.vb-name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.3rem;
+  font-size: 1.22rem;
   font-weight: 700;
   color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 0.22rem;
+  line-height: 1.15;
+  margin-bottom: 0.18rem;
 }
-
-.vz-dest {
-  display: block;
-  font-size: 0.92rem;
+.vb-dest {
+  font-size: 0.82rem;
   color: var(--text-2);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
-/* The end result — sits under the tip, terminating the cone */
+/* Text inside the brand plate */
+.vb-plate-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.2rem;
+}
+.vb-plate-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* End result — centred under the tip */
 .viz-end {
   position: relative;
-  margin-top: 13px;
+  margin-top: 12px;
   border: 1px solid var(--gold);
   background: #17130a;
-  padding: 1.15rem 1.5rem 1.3rem;
+  padding: 1.1rem 1.5rem 1.25rem;
+  text-align: center;
 }
 .viz-end::before {
   content: '';
   position: absolute;
-  left: calc(var(--shape) / 2);
-  top: -13px;
+  left: 50%;
+  top: -12px;
   width: 1px;
-  height: 13px;
+  height: 12px;
   background: var(--gold-dim);
 }
 .viz-end-label {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.4rem;
 }
 .viz-end-text {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--white);
   line-height: 1.4;
@@ -1721,12 +1727,7 @@ body.working .nav-links { display: none; }
 @media (max-width: 1080px) {
   :root { --spine-w: 0px; }
 
-  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hero-copy { text-align: center; }
-  .hero-h1, .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-h1 { max-width: 22ch; }
-  .hero-sub { max-width: 52ch; }
-  .hero-ctas { justify-content: center; }
 
   .shell { margin-left: 0; padding-top: 0; }
 
@@ -1806,19 +1807,16 @@ body.working .nav-links { display: none; }
   .wrap { padding: 0 1.25rem; }
 
   .sec { padding: 4rem 0; }
-  #hero { padding: 2rem 0 3.25rem; }
-  .hero-eyebrow { margin-bottom: 1.5rem; }
-  .hero-h1 { margin-top: 2.25rem; }
+  #hero { padding: 2.5rem 0 3rem; }
+  .hero-eyebrow { margin-bottom: 0.875rem; }
+  .hero-h1 { font-size: clamp(2rem, 8vw, 2.8rem); margin-bottom: 2rem; }
 
-  .viz { --shape: 104px; }
-  .vrow { grid-template-columns: var(--shape) 1fr; gap: 1rem; }
-  .vshape { min-height: 62px; }
-  .v-plate { min-height: 58px; }
-  .vz-name { font-size: 1.1rem; }
-  .vz-dest { font-size: 0.86rem; }
-  .vshape span { font-size: 0.56rem; letter-spacing: 0.12em; }
-  .viz-end { padding: 1rem 1.125rem 1.15rem; }
-  .viz-end-text { font-size: 1.05rem; }
+  .vband { min-height: 76px; }
+  .vb-name { font-size: 1.05rem; }
+  .vb-dest { display: none; } /* hide destination text on small screens — too narrow */
+  .v-plate { min-height: 64px; }
+  .viz-end { padding: 0.9rem 1.125rem 1rem; }
+  .viz-end-text { font-size: 1rem; }
 
   .step { padding: 2rem 1.25rem 2rem; }
   .builder-bar { padding: 1rem 1.25rem; }
@@ -1896,19 +1894,12 @@ body.working .nav-links { display: none; }
 <!-- ══ 1 · HERO ══ -->
 <section id="hero">
   <div class="wrap hero-wrap">
-    <div class="hero-grid">
-      <!-- The whole funnel, start to money -->
-      <div class="viz" id="viz" role="img" aria-labelledby="viz-cap"><!-- JS --></div>
-
-      <div class="hero-copy">
-        <p class="eyebrow hero-eyebrow">Energise AI — Brand &amp; Funnel Methodology</p>
-        <h1 class="hero-h1" id="viz-cap">Build a following for your business.</h1>
-        <p class="hero-sub">Six brand elements to find out who you are. Five funnel stages to turn that into people who pay. One document at the end.</p>
-        <div class="hero-ctas">
-          <a href="#brand-1" class="btn btn-gold" id="start-cta">Start Building</a>
-          <a href="#principle" class="btn">How it works</a>
-        </div>
-      </div>
+    <p class="eyebrow hero-eyebrow">Energise AI — Brand &amp; Funnel Methodology</p>
+    <h1 class="hero-h1" id="viz-cap">Build a brand plan for your business.</h1>
+    <div class="viz" id="viz" role="img" aria-labelledby="viz-cap"><!-- JS --></div>
+    <div class="hero-ctas">
+      <a href="#brand-1" class="btn btn-gold" id="start-cta">Start Building</a>
+      <a href="#principle" class="btn">How it works</a>
     </div>
   </div>
 </section>
@@ -2666,23 +2657,21 @@ function renderViz() {
   var v = $('viz');
   if (!v) return;
   v.innerHTML =
-    '<div class="vrow v-plate-row">' +
-      '<div class="vshape v-plate"></div>' +
-      '<div class="vlabel">' +
-        '<span class="vz-n">Foundation</span>' +
-        '<span class="vz-name">Your Brand</span>' +
-        '<span class="vz-dest">Who you are, who you are for, and what you stand for.</span>' +
+    '<div class="v-plate">' +
+      '<div>' +
+        '<p class="vb-plate-label">Foundation</p>' +
+        '<p class="vb-plate-name">Your Brand</p>' +
       '</div>' +
     '</div>' +
     '<div class="v-stem" aria-hidden="true"></div>' +
     FUNNEL.map(function(f, i) {
       var n = String(i + 1).padStart(2, '0');
-      return '<div class="vrow">' +
-        '<div class="vshape fb-' + (i + 1) + '"><span>' + n + '</span></div>' +
-        '<div class="vlabel">' +
-          '<span class="vz-n">Stage ' + n + '</span>' +
-          '<span class="vz-name">' + f.name + '</span>' +
-          '<span class="vz-dest">' + f.dest + '</span>' +
+      var shortDest = f.dest.split('.')[0] + '.';
+      return '<div class="vband fb-' + (i + 1) + '">' +
+        '<div class="vband-inner">' +
+          '<span class="vb-n">Stage ' + n + '</span>' +
+          '<span class="vb-name">' + f.name + '</span>' +
+          '<span class="vb-dest">' + shortDest + '</span>' +
         '</div>' +
       '</div>';
     }).join('') +
