@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Energise AI — Brand &amp; Funnel Builder</title>
 <meta name="description" content="Be your best self. Build your following around that. The methodology behind the brands you already follow — and the funnel that converts it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,6 +132,7 @@ textarea, input { font-family: inherit; }
    THE SPINE — always visible
 ══════════════════════════════════════════════════════════ */
 #spine {
+  -webkit-overflow-scrolling: touch;
   position: fixed;
   top: var(--nav-h);
   left: 0;
@@ -220,8 +221,11 @@ textarea, input { font-family: inherit; }
 }
 .stop.now .stop-dest { color: var(--text-2); }
 
-/* Content offset for the spine */
-.shell { margin-left: var(--spine-w); }
+/* Content offset for the fixed nav and the spine */
+.shell {
+  margin-left: var(--spine-w);
+  padding-top: var(--nav-h);
+}
 
 /* ══════════════════════════════════════════════════════════
    SECTIONS
@@ -260,7 +264,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1442,10 +1446,13 @@ body.working .nav-links { display: none; }
   gap: 1.25rem;
   flex-wrap: wrap;
   margin-top: 3.5rem;
-  padding: 1.25rem 0;
-  background: linear-gradient(to top, var(--bg) 72%, rgba(10,10,10,0));
+  padding: 1.25rem 0 calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
   border-top: 1px solid var(--border);
+  box-shadow: 0 -18px 24px -12px rgba(10,10,10,0.95);
 }
+
+.bar-back-label { margin-left: 0.4rem; }
 .bar-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 .bar-note { font-size: 0.85rem; color: var(--text-3); }
 .bar-note.warn { color: var(--gold); }
@@ -1501,11 +1508,34 @@ body.working .nav-links { display: none; }
   .resume-btns { width: 100%; }
   .resume-btns .btn { flex: 1; }
   .crumb-meta { margin-left: 0; width: 100%; }
-  .bar { flex-direction: column; align-items: stretch; }
-  .bar-right { flex-direction: column-reverse; align-items: stretch; }
-  .bar .btn { width: 100%; }
-  .bar-note { text-align: center; }
-  .toast { bottom: 10.5rem; }
+  /* Compact bar — was a quarter of the screen, now ~90px */
+  .bar {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.45rem 0.625rem;
+    align-items: center;
+    margin-top: 2.5rem;
+    padding: 0.7rem 0 calc(0.7rem + env(safe-area-inset-bottom, 0px));
+  }
+  .bar-right { display: contents; }
+  .bar-note {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: left;
+    font-size: 0.78rem;
+  }
+  .bar .btn {
+    width: auto;
+    padding: 0.95rem 1rem;
+    min-height: 48px;
+    font-size: 0.68rem;
+  }
+  #go-back { grid-column: 1; grid-row: 2; min-width: 56px; }
+  .bar-back-label { display: none; }
+  .bar-right .btn-gold { grid-column: 2; grid-row: 2; width: 100%; }
+
+  .toast { bottom: 7rem; left: 1rem; right: 1rem; transform: none; max-width: none; }
+  .toast.on { transform: none; }
   .read { padding-left: 1.125rem; font-size: 1.05rem; }
   #stage { padding: 1.5rem 0 3rem; }
 }
@@ -1546,11 +1576,12 @@ body.working .nav-links { display: none; }
 @media (max-width: 1080px) {
   :root { --spine-w: 0px; }
 
-  .shell { margin-left: 0; }
+  .shell { margin-left: 0; padding-top: 0; }
 
   #spine {
     position: sticky;
     top: var(--nav-h);
+    margin-top: var(--nav-h);
     left: auto;
     bottom: auto;
     width: 100%;
@@ -1564,6 +1595,12 @@ body.working .nav-links { display: none; }
   }
   .spine-title { display: none; }
 
+  #spine {
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  #spine::-webkit-scrollbar { display: none; }
+
   #spine .stops {
     display: flex;
     gap: 0;
@@ -1571,15 +1608,19 @@ body.working .nav-links { display: none; }
     min-width: max-content;
   }
 
+  /* 44px tap targets inside a slim bar */
   .stop {
     width: auto;
-    padding: 0 1.125rem 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0.95rem 1.125rem 0.95rem 0;
     margin-bottom: 0;
     margin-right: 1.125rem;
     border-right: 1px solid var(--border);
     white-space: nowrap;
+    scroll-margin-inline: 1.25rem;
   }
-  .stop:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .stop:last-child { border-right: none; margin-right: 0; padding-right: 1.25rem; }
   .stop::before, .stop::after { display: none; }
 
   .stop-name { font-size: 0.7rem; margin-bottom: 0; }
@@ -1587,7 +1628,25 @@ body.working .nav-links { display: none; }
 }
 
 @media (max-width: 760px) {
-  #nav { padding: 0 1.25rem; }
+  :root { --nav-h: 56px; }
+
+  #nav {
+    padding: 0 max(1.25rem, env(safe-area-inset-left)) 0 max(1.25rem, env(safe-area-inset-right));
+  }
+  .nav-logo { font-size: 0.95rem; }
+
+  #spine { padding: 0; }
+
+  /* 44px minimum on everything tappable */
+  .exit { padding: 1rem 0.9rem; font-size: 0.6rem; }
+  .ex-btn { padding: 0.9rem 0; margin-top: 1.75rem; }
+  .ctx-head { padding: 1.05rem 1.25rem; }
+  .case-btn { padding: 1.125rem 1.25rem; min-height: 56px; }
+  .opt { padding: 1.125rem 1.25rem; }
+
+  .read { line-height: 1.75; }
+  .q textarea { min-height: 104px; }
+  .stage-head { margin-bottom: 2rem; }
   .nav-links { gap: 1.25rem; }
   .nav-links a { font-size: 0.62rem; letter-spacing: 0.1em; }
   .nav-links li.hide-sm { display: none; }
@@ -1595,7 +1654,7 @@ body.working .nav-links { display: none; }
   .wrap { padding: 0 1.25rem; }
 
   .sec { padding: 4rem 0; }
-  #hero { padding: 3rem 0; }
+  #hero { min-height: 0; padding: 2.5rem 0 3.25rem; }
 
   .step { padding: 2rem 1.25rem 2rem; }
   .builder-bar { padding: 1rem 1.25rem; }
@@ -2288,19 +2347,31 @@ function goto(screen, opts) {
   /* Always land at the top of the new thing, never mid-scroll */
   if (!opts.quiet) {
     var anchor = (screen === 'intro') ? 'principle' : 'stage-top';
-    var el = $(anchor) || $('stage-top');
-    if (el) {
-      var y = el.getBoundingClientRect().top + window.pageYOffset - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64) - 12;
-      window.scrollTo({ top: y, behavior: prev === screen ? 'smooth' : 'auto' });
-    }
+    scrollToEl($(anchor) || $('stage-top'), 12, prev === screen);
   }
   if (opts.focus !== false) focusFirstField();
 }
 
+/* Sticky chrome above the content: nav, plus the spine when it is a top bar */
+function chromeH() {
+  var nav = document.getElementById('nav');
+  var h = nav ? nav.getBoundingClientRect().height : 64;
+  var sp = document.getElementById('spine');
+  if (sp && getComputedStyle(sp).position === 'sticky') h += sp.getBoundingClientRect().height;
+  return h;
+}
+
+function scrollToEl(el, extra, smooth) {
+  if (!el) return;
+  var y = el.getBoundingClientRect().top + window.pageYOffset - chromeH() - (extra || 12);
+  window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'auto' });
+}
+
 function focusFirstField() {
   setTimeout(function() {
+    if (window.innerWidth <= 760) return;   /* never auto-open the mobile keyboard */
     var live = document.querySelector('.panel.on textarea, .panel.on input[type=text]');
-    if (live && window.innerWidth > 760) { try { live.focus({ preventScroll: true }); } catch (e) { } }
+    if (live) { try { live.focus({ preventScroll: true }); } catch (e) { } }
   }, 60);
 }
 
@@ -2363,6 +2434,7 @@ function stopComplete(i) {
 
 function updateSpine() {
   var now = currentStop();
+  keepStopInView(now);
   document.querySelectorAll('.stop').forEach(function(el, i) {
     var open = stopUnlocked(i);
     el.classList.toggle('now', i === now && S.screen !== 'output');
@@ -2372,6 +2444,18 @@ function updateSpine() {
     var lk = el.querySelector('.stop-lock');
     if (lk) lk.textContent = open ? ' ' : ' •';
   });
+}
+
+/* On mobile the spine is a horizontal strip — pull the active stop into view */
+function keepStopInView(i) {
+  var sp = $('spine');
+  if (!sp || getComputedStyle(sp).position !== 'sticky') return;
+  var el = document.querySelectorAll('.stop')[i];
+  if (!el) return;
+  var r = el.getBoundingClientRect(), b = sp.getBoundingClientRect();
+  if (r.left < b.left + 8 || r.right > b.right - 8) {
+    sp.scrollTo({ left: sp.scrollLeft + (r.left - b.left) - (b.width - r.width) / 2, behavior: 'smooth' });
+  }
 }
 
 function jumpStop(i) {
@@ -2655,7 +2739,10 @@ function footer(back, next, left) {
   if (left === -1) { note = 'Pick one option to continue'; blocked = true; }
   else if (left > 0) { note = left + (left === 1 ? ' question' : ' questions') + ' left'; }
   return '<div class="bar">' +
-    '<button class="btn" id="go-back">← ' + back + '</button>' +
+    '<button class="btn" id="go-back" aria-label="' + esc(back) + '">' +
+      '<span aria-hidden="true">←</span>' +
+      '<span class="bar-back-label">' + back + '</span>' +
+    '</button>' +
     '<div class="bar-right">' +
       (note ? '<span class="bar-note' + (blocked ? ' warn' : '') + '">' + note + '</span>' : '<span class="bar-note ok">All done</span>') +
       '<button class="btn btn-gold" id="go-next">' + next + ' →</button>' +
@@ -2785,8 +2872,7 @@ function nudgeBlank() {
   var q = $('q-' + i);
   if (q) {
     q.classList.remove('flash'); void q.offsetWidth; q.classList.add('flash');
-    var y = q.getBoundingClientRect().top + window.pageYOffset - 140;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    scrollToEl(q, 24, true);
     var ta = q.querySelector('textarea');
     if (ta) setTimeout(function() { try { ta.focus({ preventScroll: true }); } catch (e) {} }, 420);
   }
