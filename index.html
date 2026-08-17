@@ -433,7 +433,7 @@ textarea, input { font-family: inherit; }
 ══════════════════════════════════════════════════ */
 .profiles-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   background: var(--border-1);
   gap: 1px;
 }
@@ -1886,8 +1886,8 @@ const SECTIONS = [
     ],
     distilLabel: 'the feeling you are selling',
     distilPlaceholder: 'Capability. That their excuses are smaller than they thought.',
-    examplePerson: 'David Goggins',
-    exampleAnswer: 'When someone spends 10 minutes in Goggins\' world they feel like their excuses are smaller than they thought and their potential is bigger than they believed. His brand is like a boxing gym at 5am — brutal, uncomfortable, but you walk out feeling capable of things you didn\'t think you could do. People come back because that feeling of capability is addictive.',
+    examplePerson: 'Tyson Fury',
+    exampleAnswer: 'When someone spends ten minutes in Fury\'s world they feel like their lowest point is not the end of the story. His brand is like the changing room after a fight nobody thought you would survive — battered, honest, and somehow lighter than when you went in. People come back because hope is the rarest thing on the internet and he hands it out for free.',
   },
   {
     id: 'association',
@@ -1905,8 +1905,8 @@ const SECTIONS = [
     ],
     distilLabel: 'the words you want attached to your name',
     distilPlaceholder: 'Discipline / 5am / No shortcuts / Earned',
-    examplePerson: 'Conor McGregor',
-    exampleAnswer: 'Five words — precision, belief, audacity, style, hunger. Known above everything else for making the impossible seem inevitable through sheer self belief. Story arc — grew up in a council estate in Dublin, trained while on welfare payments, told everyone he would be world champion before he had a single professional win, became the first to hold two UFC titles simultaneously. The story makes every association feel earned not performed.',
+    examplePerson: 'Andrew Tate',
+    exampleAnswer: 'Five words — Bugatti, Top G, discipline, defiance, escape. Known above everything else for telling men the world wants them small and that they do not have to accept it. Story arc — kickboxing world champion nobody outside the sport had heard of, then webcam businesses, then Romania, then the most argued-about man on the internet. Every association is reinforced in every single clip until the name loads instantly.',
   },
   {
     id: 'enemy',
@@ -1924,8 +1924,8 @@ const SECTIONS = [
     ],
     distilLabel: 'what you are fighting against',
     distilPlaceholder: 'Coasting. Mistaking comfort for a life.',
-    examplePerson: 'Gary Vaynerchuk',
-    exampleAnswer: 'What makes him genuinely angry is people who complain about their circumstances without taking responsibility for changing them. The belief that holds people back is that conditions need to be perfect before you start. His enemy is the excuse. Every piece of content is a direct assault on it.',
+    examplePerson: 'Andrew Tate',
+    exampleAnswer: 'What genuinely angers him is a culture he believes is engineered to make men comfortable, compliant and small. The belief that holds people back is that safety is the same thing as a life. His enemy is weakness — in the system and in the mirror. Every piece of content is an assault on it, and the people who share that anger arrived instantly.',
   },
   {
     id: 'transcendence',
@@ -1943,8 +1943,8 @@ const SECTIONS = [
     ],
     distilLabel: 'the universal feeling underneath your story',
     distilPlaceholder: 'The moment before everything changed.',
-    examplePerson: 'Anthony Joshua',
-    exampleAnswer: 'The hardest moment was not a fight. It was the period before boxing when he was directionless, getting into trouble, watching his peers move forward while he stood still. The feeling was not failure — it was invisibility. Like he existed but didn\'t matter yet. That feeling is felt by millions of people in completely different lives. They recognise the moment before everything changed because they are living their own version of it.',
+    examplePerson: 'Tyson Fury',
+    exampleAnswer: 'The hardest moment was not a fight. It was sitting in a car at speed, world champion, with everything he had chased already won, deciding whether to keep going. The feeling was not failure — it was emptiness after arriving. Millions of people who will never box know that exact feeling from a job, a degree, a marriage. They recognise the moment the prize turned out not to fix it.',
   },
   {
     id: 'community',
@@ -1962,8 +1962,8 @@ const SECTIONS = [
     ],
     distilLabel: 'who this is for',
     distilPlaceholder: 'People who know they are drifting and hate it.',
-    examplePerson: 'Joe Rogan',
-    exampleAnswer: 'The person who gets Rogan completely is deeply curious, slightly suspicious of mainstream narratives, values long form thinking over hot takes, and feels like most public conversation is too sanitised to be real. Being a Rogan listener says you are willing to sit with uncomfortable ideas and think for yourself. What separates his community is the specific combination of curiosity and contrarianism at that intensity — it exists almost nowhere else.',
+    examplePerson: 'MrBeast',
+    exampleAnswer: 'The person who gets MrBeast completely believes effort is the whole game — that almost anything is achievable if you are willing to be unreasonable about it for long enough. They would rather watch someone attempt something absurd than watch someone explain it. What separates the community is that it is built on doing rather than opinion, which is why it crosses every age, country and language without translation.',
   },
   {
     id: 'entertainment',
@@ -1981,16 +1981,18 @@ const SECTIONS = [
     ],
     distilLabel: 'what makes you worth watching',
     distilPlaceholder: 'Blunt, and funny about things that should not be funny.',
-    examplePerson: 'Tyson Fury',
-    exampleAnswer: 'When Fury is just being himself people find his complete unpredictability compelling. He is either being brutally honest about something everyone else is being careful about, or finding humour in situations that have no right to be funny. The higher self gets the comeback, the mental health honesty, the resilience. The lower self gets the chaos, the singing, the dancing, the refusal to be serious when seriousness is expected. He is the most alive person in every room he enters.',
+    examplePerson: 'MrBeast',
+    exampleAnswer: 'What people find compelling is the scale — the honest, unhidden size of what he is willing to attempt. The higher self gets the generosity and a work ethic that is genuinely hard to look away from. The lower self gets the money, the countdown, the destruction, the spectacle. He has never fed only one of them, which is why the videos work on a nine-year-old and a thirty-five-year-old at the same time.',
   },
 ];
 
 const PROFILES = [
   {
     name: 'Andrew Tate',
-    descriptor: 'Kickboxing champion. Entrepreneur.',
+    descriptor: 'Kickboxing champion turned the most argued-about man online.',
     feeling: 'Permission to be unfiltered',
+    scale: 'His paid community was reported to be earning millions a month at its peak.',
+    model: 'Polarisation into subscription — the most divisive attention on the internet, converted into recurring monthly revenue.',
     photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz52SNUj1Jc7J7mGHi1j_s5ENI9zfC3DajpU4SUd-UCA&s=10',
     data: {
       'The Feeling': 'Permission to be completely unfiltered — that you do not have to perform softness or agreement you do not feel.',
@@ -2002,37 +2004,27 @@ const PROFILES = [
     },
   },
   {
-    name: 'Conor McGregor',
-    descriptor: 'UFC world champion. Two-division title holder.',
-    feeling: 'Permission and inevitability',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/Conor_McGregor_2018.jpg',
+    name: 'MrBeast',
+    descriptor: 'The most-watched creator on earth. Founder of Feastables.',
+    feeling: 'Astonishment',
+    scale: 'Hundreds of millions of subscribers, a chocolate brand in supermarkets, and a reported Amazon series.',
+    model: 'Reach into product — years of putting every penny back into bigger videos, then attaching something to buy to the audience that built.',
+    photo: '',
     data: {
-      'The Feeling': 'Permission and inevitability — being in his world makes you feel like the impossible is just a decision away.',
-      'Association': 'Precision, belief, audacity, style, hunger. Two division champion. The suit. The strut. The absolute unshakeable belief reinforced thousands of times until the world had no choice but to believe it too.',
-      'The Enemy': 'Mediocrity. People who accept their limits. The voice that says you can\'t.',
-      'Transcendence': 'Anyone who has ever been told no and refused to accept it. The sport was irrelevant. The feeling was everything.',
-      'Community': 'People who back themselves completely when nobody else does. People who see self belief not as arrogance but as the only rational response to a world that won\'t hand you anything.',
-      'Entertainment': 'Theatrical confidence, trash talk that always backed itself up, style that demanded attention before he threw a single punch. The show was as compelling as the fight.',
-    },
-  },
-  {
-    name: 'David Goggins',
-    descriptor: 'Navy SEAL. Ultra-endurance athlete. Author.',
-    feeling: 'Capability',
-    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTId_iQ4KvudP2tfceLLZXfapRl8oOgS5pBCBgQpMxkdQ&s=10',
-    data: {
-      'The Feeling': 'Capability — your excuses feel smaller, your potential feels bigger. Being in his world makes you feel like you have been operating below what you are actually capable of.',
-      'Association': 'Can\'t Hurt Me. 4am. Suffering. No excuses. Navy SEAL. Ultra marathons. The 40% rule — when your mind says stop your body is only 40% done.',
-      'The Enemy': 'Comfort. The voice that tells you to stop. The easy path. Everything soft inside a person that lets them settle.',
-      'Transcendence': 'Anyone who has ever wanted to quit something and kept going. The sport or discipline is irrelevant — the feeling of refusing to stop is universal.',
-      'Community': 'People who believe most humans are operating at 40% of their potential and who want to live in the other 60%.',
-      'Entertainment': 'Brutal honesty, extreme physical challenge, the shock of watching someone do what seems physically impossible. The content is compelling because the discomfort is real.',
+      'The Feeling': 'Astonishment, and a kind of restored faith. Being in his world makes the world feel more generous and more possible than it did ten minutes ago.',
+      'Association': 'Giving money away. Impossible challenges. Reinvestment. Thumbnails. The person who spends everything he has to make the next one bigger.',
+      'The Enemy': 'Half-effort. Content made cheaply to hit a schedule. The idea that good enough is good enough.',
+      'Transcendence': 'Anyone who has ever wanted to be the person who could help and could not afford to be. He is the fantasy of having enough to change somebody else\'s day.',
+      'Community': 'People who believe extreme effort is its own reward, and who would rather watch someone attempt something absurd than watch someone talk about attempting it.',
+      'Entertainment': 'The scale itself. The higher self gets the generosity and the work ethic. The lower self gets the spectacle, the money, the countdown, the sheer size of it.',
     },
   },
   {
     name: 'Tyson Fury',
-    descriptor: 'The Gypsy King. Two-time heavyweight champion.',
+    descriptor: 'The Gypsy King. Two-time heavyweight champion. Netflix subject.',
     feeling: 'Hope',
+    scale: 'Stadium gates, two world title reigns, and a Netflix series that made him a household name outside boxing.',
+    model: 'Fighter into media property — the personality outgrew the sport, so the brand now earns when he is not fighting.',
     photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBYcoA7CsWuZFlyJQZr7Ut445SnCTO0s1x34tc5Zy0ew&s=10',
     data: {
       'The Feeling': 'Hope — if he can come back from where he was, anyone can come back from anywhere.',
@@ -2041,62 +2033,6 @@ const PROFILES = [
       'Transcendence': 'Anyone who has ever been at rock bottom and wondered if they had the strength to get back. The boxing is the arena. The comeback is the universal story.',
       'Community': 'People who believe in second chances and refuse to be defined by their lowest point.',
       'Entertainment': 'Complete unpredictability — you genuinely never know what he will say or do next. The singing, the dancing, the chaos, the humour in situations that have no right to be funny. Higher self gets the resilience. Lower self gets the spectacle.',
-    },
-  },
-  {
-    name: 'Anthony Joshua',
-    descriptor: 'Olympic gold medallist. Multiple world heavyweight champion.',
-    feeling: 'Inspiration through discipline',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Anthony_Joshua_in_2019.jpg',
-    data: {
-      'The Feeling': 'Inspiration — that discipline and hard work can take you from nothing to everything.',
-      'Association': 'Discipline. Humble champion. From the streets. Olympic gold. The people\'s champion. The combination of physical power and quiet articulacy that nobody expected.',
-      'The Enemy': 'Wasted potential. The circumstances that tell you who you are allowed to become.',
-      'Transcendence': 'Anyone who has ever felt invisible before finding their purpose. That feeling of existing without mattering yet is felt by millions of people in completely different lives.',
-      'Community': 'People who believe in the power of self discipline and that your starting point does not have to be your ending point.',
-      'Entertainment': 'The physique that demands attention, the performance that delivers, the combination of power and articulacy that surprised everyone and kept them watching.',
-    },
-  },
-  {
-    name: 'Joe Rogan',
-    descriptor: 'Comedian. UFC commentator. Host of the world\'s most-listened podcast.',
-    feeling: 'Freedom',
-    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz89kPeiqk2y9wp70PA91n3strBn7ZJVOTxGYSwhASVQ&s=10',
-    data: {
-      'The Feeling': 'Freedom — like you are in a conversation where anything can actually be said and nobody is performing the right opinion.',
-      'Association': 'Long form. Curiosity. Elk meat. DMT. Comedian. UFC commentator. No filter. Three hours of actual thinking.',
-      'The Enemy': 'Sanitised public conversation. Hot takes. The performance of having the correct opinion. The shortening of everything real into something safe.',
-      'Transcendence': 'Anyone who has ever felt like real conversations have disappeared from public life. Anyone tired of everyone performing their views rather than actually having them.',
-      'Community': 'Deeply curious, slightly contrarian, values long form thinking over consensus, suspicious of official narratives. Being a Rogan listener says something specific about who you are.',
-      'Entertainment': 'Genuine unpredictability, the willingness to go anywhere a conversation leads, the three hour format that rewards actual attention in a world optimised for the opposite.',
-    },
-  },
-  {
-    name: 'Gary Vaynerchuk',
-    descriptor: 'Entrepreneur. Investor. Content creator.',
-    feeling: 'Permission and urgency',
-    photo: 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Gary_Vaynerchuk_(2015).jpg',
-    data: {
-      'The Feeling': 'Permission and urgency — that it is not too late and the excuses are not real and the time is now.',
-      'Association': 'Hustle. Wine Library. Document don\'t create. Self awareness. No excuses. The immigrant work ethic. Doing the unglamorous thing for years before anyone watches.',
-      'The Enemy': 'Excuses. Waiting for the right moment. Complaining about circumstances without changing them. The obsession with overnight success.',
-      'Transcendence': 'Anyone who has ever felt stuck and needed someone to tell them to just start. The industry is irrelevant. The paralysis is universal.',
-      'Community': 'Entrepreneurs, builders, people who back themselves before anyone else does, people willing to look stupid for long enough to get good.',
-      'Entertainment': 'The volume, the energy, the relentless consistency, the complete absence of filter, the genuine anger at wasted potential that comes through every video.',
-    },
-  },
-  {
-    name: 'KSI',
-    descriptor: 'YouTuber. Boxer. Recording artist. Entrepreneur.',
-    feeling: 'Excitement',
-    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirxv77H8FKIBDF3qkE5PtI6n8uNFlDweNjYaOcWODlg&s',
-    data: {
-      'The Feeling': 'Excitement — that you can be more than one thing and reinvent yourself whenever you decide to.',
-      'Association': 'YouTube. Boxing. Music. JJ. Sidemen. Drama. Transformation. The person who kept doing new things and kept being better than people expected.',
-      'The Enemy': 'Labels. Being put in a box. People who say stick to what you know and stop trying new things.',
-      'Transcendence': 'Anyone who has ever wanted to be more than one thing. Anyone who has been told their lane and refused to stay in it.',
-      'Community': 'People who grew up on YouTube and believe entertainment has no rules and no ceiling anymore.',
-      'Entertainment': 'The drama, the feuds, the unexpected competence in entirely new arenas, the chaos that always resolves into something real and earned.',
     },
   },
 ];
