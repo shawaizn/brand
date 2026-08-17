@@ -21,9 +21,10 @@
   --gold:        #C9A84C;
   --gold-dim:    #7a6222;
   --gold-hover:  #d9b95e;
-  --text:        #e8e8e8;
-  --text-2:      #888888;
-  --text-3:      #5a5a5a;
+  --text:        #ededed;
+  --read:        #c8c8c8;   /* long-form reading copy */
+  --text-2:      #999999;   /* secondary */
+  --text-3:      #6b6b6b;   /* metadata only */
   --white:       #ffffff;
   --nav-h:       64px;
   --spine-w:     272px;
@@ -1185,14 +1186,338 @@ section {
   text-align: right;
 }
 
+
+/* ══════════════════════════════════════════════════════════
+   FOCUS MODE — the page becomes an app
+══════════════════════════════════════════════════════════ */
+body.working #hero,
+body.working #principle,
+body.working #cta,
+body.working #foot { display: none; }
+
+.exit {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-2);
+  color: var(--text-2);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.6rem 1rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.exit:hover { border-color: var(--gold); color: var(--gold); }
+body.working .exit { display: inline-block; }
+body.working .nav-links { display: none; }
+
+.nav-right { display: flex; align-items: center; gap: 1.75rem; }
+
+.sec-h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.start-note {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-3);
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESUME
+══════════════════════════════════════════════════════════ */
+.resume { display: none; border-bottom: 1px solid var(--border); background: #0f0d08; }
+.resume.on { display: block; }
+.resume-in {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.resume-text { font-size: 0.98rem; color: var(--text); }
+.resume-text span { color: var(--text-3); }
+.resume-btns { display: flex; gap: 0.625rem; flex-wrap: wrap; }
+.resume-btns .btn { padding: 0.7rem 1.25rem; font-size: 0.66rem; }
+
+/* ══════════════════════════════════════════════════════════
+   THE STAGE
+══════════════════════════════════════════════════════════ */
+#stage { padding: 2.5rem 0 5rem; }
+
+.stage-head {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.75rem;
+}
+
+.crumb {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.crumb-part {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.crumb-sep { color: var(--text-3); }
+.crumb-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.crumb-meta {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--text-3);
+}
+
+.ticks { display: flex; gap: 5px; }
+.tick {
+  height: 3px;
+  flex: 1;
+  background: var(--border-2);
+  transition: background 0.25s;
+}
+.tick.done { background: var(--gold-dim); }
+.tick.now  { background: var(--gold); }
+
+.panel { display: block; animation: rise 0.28s ease; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.stage-title {
+  font-size: clamp(1.85rem, 3.6vw, 2.6rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.stage-ask {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-2);
+  margin-bottom: 2rem;
+}
+
+/* Long-form reading block — measure capped, contrast lifted */
+.read {
+  font-size: 1.1rem;
+  color: var(--read);
+  line-height: 1.9;
+  max-width: 62ch;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--gold-dim);
+  margin-bottom: 2.75rem;
+}
+
+.panel-hint {
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.8;
+  max-width: 60ch;
+  margin-bottom: 1.5rem;
+}
+.panel-note {
+  font-size: 0.98rem;
+  color: var(--text-2);
+  line-height: 1.85;
+  max-width: 62ch;
+  margin-top: 1.75rem;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--border-2);
+}
+
+.chosen {
+  display: inline-block;
+  font-size: 0.92rem;
+  color: var(--text-2);
+  border: 1px solid var(--gold-dim);
+  padding: 0.55rem 1rem;
+  margin-bottom: 1.75rem;
+}
+.chosen b { color: var(--gold); font-weight: 600; }
+
+/* ══════════════════════════════════════════════════════════
+   SPOTLIGHT — the question you are on is lit
+══════════════════════════════════════════════════════════ */
+.qs .q { transition: opacity 0.28s ease; }
+.qs.dim .q { opacity: 0.3; }
+.qs.dim .q.lit { opacity: 1; }
+
+.q.flash textarea {
+  animation: flash 1.1s ease;
+  border-color: var(--gold);
+}
+@keyframes flash {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  30%      { box-shadow: 0 0 0 3px rgba(201,168,76,0.35); }
+}
+
+.q-n {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.q.answered .q-n::after { content: ' ✓'; color: var(--gold-dim); }
+
+.q label { max-width: 62ch; }
+
+/* ══════════════════════════════════════════════════════════
+   CONTEXT CARD — recognition, not recall
+══════════════════════════════════════════════════════════ */
+.ctx {
+  border: 1px solid var(--border-2);
+  background: #0e0e0e;
+  margin-bottom: 2.5rem;
+}
+.ctx-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  padding: 0.95rem 1.375rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.ctx-head:hover { color: var(--gold); }
+.ctx-icon { color: var(--text-3); font-size: 1rem; line-height: 1; }
+.ctx-body {
+  padding: 0 1.375rem 1.25rem;
+  overflow: hidden;
+}
+.ctx.shut .ctx-body { display: none; }
+
+.ctx-row { padding: 0.75rem 0; border-top: 1px solid var(--border); }
+.ctx-key {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.3rem;
+}
+.ctx-val {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1.5;
+}
+.ctx-val.none { font-family: inherit; font-size: 0.92rem; font-style: italic; color: var(--text-3); }
+
+/* ══════════════════════════════════════════════════════════
+   THE BAR — one primary action, always
+══════════════════════════════════════════════════════════ */
+.bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+  padding: 1.25rem 0;
+  background: linear-gradient(to top, var(--bg) 72%, rgba(10,10,10,0));
+  border-top: 1px solid var(--border);
+}
+.bar-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.bar-note { font-size: 0.85rem; color: var(--text-3); }
+.bar-note.warn { color: var(--gold); }
+.bar-note.ok::before { content: '✓ '; color: var(--gold); }
+
+/* ══════════════════════════════════════════════════════════
+   LOCKED STOPS
+══════════════════════════════════════════════════════════ */
+.stop.locked { opacity: 0.28; cursor: not-allowed; }
+.stop.locked .stop-name { color: var(--text-3); }
+.stop.locked::before { background: transparent; border-style: dashed; }
+.stop.shake { animation: shake 0.4s ease; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25%     { transform: translateX(-4px); }
+  75%     { transform: translateX(4px); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════════════════ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 6.5rem;
+  transform: translate(-50%, 1rem);
+  z-index: 500;
+  max-width: min(90vw, 460px);
+  background: #16130a;
+  border: 1px solid var(--gold-dim);
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  padding: 0.875rem 1.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+.four-head {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  font-weight: 700;
+  margin: 2.75rem 0 0.75rem;
+}
+
+.out-pick.none { color: var(--text-3); border-color: var(--border); }
+
+@media (max-width: 760px) {
+  .resume-in { padding: 1rem 1.25rem; }
+  .resume-btns { width: 100%; }
+  .resume-btns .btn { flex: 1; }
+  .crumb-meta { margin-left: 0; width: 100%; }
+  .bar { flex-direction: column; align-items: stretch; }
+  .bar-right { flex-direction: column-reverse; align-items: stretch; }
+  .bar .btn { width: 100%; }
+  .bar-note { text-align: center; }
+  .toast { bottom: 10.5rem; }
+  .read { padding-left: 1.125rem; font-size: 1.05rem; }
+  #stage { padding: 1.5rem 0 3rem; }
+}
+
 /* ══════════════════════════════════════════════════════════
    PRINT
 ══════════════════════════════════════════════════════════ */
 @media print {
-  #nav, #spine, #hero, #principle, #brand, #funnel, #cta, #foot,
-  .out-actions, .handoff { display: none !important; }
+  #nav, #spine, #hero, #principle, #cta, #foot, .resume, .toast,
+  .bar, .stage-head, .out-actions, .handoff { display: none !important; }
   .shell { margin-left: 0 !important; }
-  #output { display: block !important; padding: 0 !important; }
+  #stage { display: block !important; padding: 0 !important; }
   .wrap { max-width: none; padding: 0; }
   body { background: #fff; color: #000; line-height: 1.6; }
   html { font-size: 11pt; }
@@ -1310,13 +1635,14 @@ section {
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
-  <a href="#hero" class="nav-logo">Energise<span>AI</span></a>
-  <ul class="nav-links">
-    <li class="hide-sm"><a href="#principle" data-nav="principle">Principle</a></li>
-    <li><a href="#brand" data-nav="brand">Brand</a></li>
-    <li><a href="#funnel" data-nav="funnel">Funnel</a></li>
-    <li id="nav-out" style="display:none"><a href="#output" data-nav="output">Your Plan</a></li>
-  </ul>
+  <a href="#" class="nav-logo">Energise<span>AI</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#principle">Principle</a></li>
+      <li><a href="#cta">Energise AI</a></li>
+    </ul>
+    <button class="exit" id="exit" aria-label="Leave the builder and return to the overview">Exit builder</button>
+  </div>
 </nav>
 
 <!-- ══ THE SPINE ══ -->
@@ -1327,13 +1653,24 @@ section {
 
 <div class="shell">
 
+<!-- ══ RESUME ══ -->
+<div class="resume" id="resume" role="status">
+  <div class="resume-in">
+    <p class="resume-text">You have a plan in progress. <span id="resume-when"></span></p>
+    <div class="resume-btns">
+      <button class="btn btn-gold" id="resume-go">Pick up where I left off</button>
+      <button class="btn" id="resume-new">Start fresh</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ 1 · HERO ══ -->
 <section id="hero">
   <div class="wrap">
     <p class="eyebrow">Energise AI — Brand &amp; Funnel Methodology</p>
     <h1 class="hero-h1">Be your best self. <em>Build your following around that.</em></h1>
     <p class="hero-sub">Building a following is a business. Your product is a feeling. This tool helps you find it, build it and convert it.</p>
-    <a href="#brand" class="btn btn-gold" id="hero-cta">Start Building</a>
+    <a href="#brand-1" class="btn btn-gold" id="start-cta">Start Building</a>
     <p class="hero-note">The methodology behind the brands you already follow.</p>
   </div>
 </section>
@@ -1344,115 +1681,28 @@ section {
     <div class="reveal">
       <p class="eyebrow">The Principle</p>
       <div class="rule" aria-hidden="true"></div>
-      <h2 style="font-size:clamp(1.9rem,3.6vw,2.7rem);color:var(--white);font-weight:700;margin-bottom:2rem">One principle. Everything else follows.</h2>
+      <h2 class="sec-h2">One principle. Everything else follows.</h2>
       <p class="principle-line">Be your best self.</p>
       <div class="principle-body">
         <p>Not a performance of someone else. Not a strategy. The fullest, most intentional expression of what is genuinely inside you. This is not a content guide or a social media strategy — it is a system for building something real around who you genuinely are, and converting that into money.</p>
-        <p>It starts with one question, before brand, before funnel, before anything. <strong style="color:var(--text)">Who are you at your best?</strong> Not who you want to be. Not who you think you should be. Who you actually are when you are fully yourself with nothing to prove and nothing to perform.</p>
+        <p>It starts with one question, before brand, before funnel, before anything. <strong>Who are you at your best?</strong> Not who you want to be. Not who you think you should be. Who you actually are when you are fully yourself with nothing to prove and nothing to perform.</p>
         <p>And it ends with the conversion. Someone who was once a complete stranger pays for what you offer, because it is the natural next step in a relationship they chose. That is the destination. Everything below is the map.</p>
       </div>
     </div>
 
     <div class="map reveal" id="map">
       <div class="map-head"><p>The Journey — Seven Stops</p></div>
-      <!-- JS -->
+    </div>
+
+    <div class="reveal" style="margin-top:3rem">
+      <a href="#brand-1" class="btn btn-gold" onclick="event.preventDefault();goto('brand',{bStep:0})">Begin Part One — Brand →</a>
+      <p class="start-note">Twelve steps. Around 25 minutes. Your answers save as you go.</p>
     </div>
   </div>
 </section>
 
-<!-- ══ 3 · BRAND BUILDER ══ -->
-<section id="brand" class="sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Part One</p>
-      <h2>Part One — Brand</h2>
-      <p class="sub">Know yourself well enough to build something real around it.</p>
-    </div>
-
-    <div class="builder" id="brand-builder">
-      <div class="builder-bar">
-        <p class="builder-bar-label">Brand — Section <b id="b-now">1</b> of 6 · <span id="b-name">The Feeling</span></p>
-        <div class="pips" id="b-pips"><!-- JS --></div>
-      </div>
-      <div id="brand-steps"><!-- JS --></div>
-      <div class="step-nav" style="margin:0;padding:2rem 2.25rem;border-top:1px solid var(--border)">
-        <button class="btn" id="b-back" style="display:none">&larr; Back</button>
-        <button class="btn btn-gold" id="b-next">Next Section</button>
-      </div>
-    </div>
-
-    <!-- Brand profile summary -->
-    <div id="brand-summary" style="display:none;margin-top:3.5rem">
-      <div class="profile">
-        <p class="profile-label">Your Brand Profile</p>
-        <h3 id="pf-title">Your Brand</h3>
-        <div class="name-field">
-          <label for="uname">Your name or brand name</label>
-          <input type="text" id="uname" placeholder="e.g. Alex Morgan" autocomplete="name">
-        </div>
-        <div id="pf-body" style="margin-top:1.5rem"><!-- JS --></div>
-      </div>
-      <div class="step-nav">
-        <button class="btn" id="pf-back">&larr; Edit Brand</button>
-        <button class="btn btn-gold" id="pf-next">Continue to Funnel &rarr;</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 4 · FUNNEL BUILDER ══ -->
-<section id="funnel" class="sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="eyebrow">Part Two</p>
-      <h2>Part Two — The Funnel</h2>
-      <p class="sub">Move people from strangers to paying customers. Five stages. Each one building on the last.</p>
-    </div>
-
-    <!-- The bridge -->
-    <div class="bridge reveal">
-      <h3>The Psychology of Attention</h3>
-      <p>Attention is the most saturated marketplace in human history. But money does not follow attention directly. It follows a journey — attention that became interest, interest that became trust, trust that became community, community that converted.</p>
-      <p class="bridge-stat">The human brain processes 11 million bits of information per second. It consciously processes 40.</p>
-      <p>The brain is not passively receiving content. It is actively rejecting almost everything. Its filter asks one question — is this relevant to me right now. It does not care about volume, production quality or posting frequency. So the most powerful way to become relevant is to stop trying to reach an audience and start being the person you needed when you were looking for someone like you.</p>
-      <p>Be who you wanted to see. Because if you felt something, others feel it. Human feelings are not unique — they are shared. The person who feels completely alone in their experience is almost always surrounded by millions of people feeling exactly the same thing, who have also never found anyone speaking to it.</p>
-
-      <div class="bridge-split">
-        <h3 style="font-size:1.25rem;margin-bottom:0.5rem">The Four Stages</h3>
-        <div class="four" id="four"><!-- JS --></div>
-      </div>
-    </div>
-
-    <div class="builder" id="funnel-builder">
-      <div class="builder-bar">
-        <p class="builder-bar-label">Funnel — Stage <b id="f-now">1</b> of 5 · <span id="f-name">Awareness</span></p>
-        <div class="pips" id="f-pips"><!-- JS --></div>
-      </div>
-      <div id="funnel-steps"><!-- JS --></div>
-      <div class="step-nav" style="margin:0;padding:2rem 2.25rem;border-top:1px solid var(--border)">
-        <button class="btn" id="f-back" style="display:none">&larr; Back</button>
-        <button class="btn btn-gold" id="f-next">Next Stage</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 5 · OUTPUT ══ -->
-<section id="output" class="sec">
-  <div class="wrap">
-    <div class="out-actions">
-      <button class="btn btn-gold" id="dl">Download as PDF</button>
-      <button class="btn" id="cp">Copy to Clipboard</button>
-      <button class="btn" id="rs">Start Over</button>
-    </div>
-    <div id="out-doc"><!-- JS --></div>
-    <div class="handoff">
-      <p>You have the plan.</p>
-      <p>Now you need the execution.</p>
-      <p>That is what Energise AI is for.</p>
-    </div>
-  </div>
-</section>
+<!-- ══ 3 · THE STAGE — everything the user does happens here ══ -->
+<div class="wrap"><div id="stage" style="display:none"></div></div>
 
 <!-- ══ 6 · CTA ══ -->
 <section id="cta" class="sec">
@@ -1480,6 +1730,8 @@ section {
 </footer>
 
 </div><!-- /shell -->
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 'use strict';
@@ -1874,114 +2126,289 @@ var FUNNEL = [
 ];
 
 /* ══════════════════════════════════════════════════════════
-   STATE
+   STATE — one object, one mutator
 ══════════════════════════════════════════════════════════ */
-var bAns = BRAND.map(function(s) { return s.questions.map(function() { return ''; }); });
-var fAns = FUNNEL.map(function(s) { return s.questions.map(function() { return ''; }); });
-var fPick = FUNNEL.map(function() { return -1; });
-var bStep = 0, fStep = 0;
-var phase = 'intro';   // intro | brand | summary | funnel | output
+var S = {
+  screen: 'intro',   // intro | brand | summary | funnel | output
+  bStep: 0,          // 0..5
+  fStep: 0,          // 0..4
+  panel: 0,          // funnel sub-panel: 0 learn · 1 choose · 2 write
+  name: '',
+  bAns: BRAND.map(function(s) { return s.questions.map(function() { return ''; }); }),
+  fAns: FUNNEL.map(function(s) { return s.questions.map(function() { return ''; }); }),
+  fPick: FUNNEL.map(function() { return -1; })
+};
 
-/* ══════════════════════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════════════════════ */
+var PANELS = ['Learn', 'Choose', 'Write'];
+var SAVE_KEY = 'energise-ai-plan-v1';
+
+function $(id) { return document.getElementById(id); }
 function esc(v) {
   return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-function $(id) { return document.getElementById(id); }
 
-/* Brand answers referenced inside funnel questions */
+/* ══════════════════════════════════════════════════════════
+   PERSISTENCE — nothing is ever lost
+══════════════════════════════════════════════════════════ */
+var saveTimer = null;
+function save() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function() {
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify({
+        screen: S.screen, bStep: S.bStep, fStep: S.fStep, panel: S.panel,
+        name: S.name, bAns: S.bAns, fAns: S.fAns, fPick: S.fPick, at: Date.now()
+      }));
+    } catch (e) {}
+  }, 400);
+}
+
+function loadSaved() {
+  try {
+    var raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return null;
+    var d = JSON.parse(raw);
+    if (!d || !d.bAns || !d.fAns) return null;
+    return d;
+  } catch (e) { return null; }
+}
+
+function applySaved(d) {
+  S.name = d.name || '';
+  for (var i = 0; i < S.bAns.length; i++)
+    for (var j = 0; j < S.bAns[i].length; j++)
+      if (d.bAns[i] && typeof d.bAns[i][j] === 'string') S.bAns[i][j] = d.bAns[i][j];
+  for (var k = 0; k < S.fAns.length; k++)
+    for (var m = 0; m < S.fAns[k].length; m++)
+      if (d.fAns[k] && typeof d.fAns[k][m] === 'string') S.fAns[k][m] = d.fAns[k][m];
+  if (Array.isArray(d.fPick)) S.fPick = d.fPick.slice(0, FUNNEL.length);
+  S.bStep = Math.min(d.bStep || 0, BRAND.length - 1);
+  S.fStep = Math.min(d.fStep || 0, FUNNEL.length - 1);
+  S.panel = Math.min(d.panel || 0, 2);
+}
+
+function wipe() { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} }
+
+/* ══════════════════════════════════════════════════════════
+   COMPLETION — what counts as done
+══════════════════════════════════════════════════════════ */
+function bDone(i) {
+  return S.bAns[i].every(function(a) { return a.trim().length > 0; });
+}
+function bAny(i) {
+  return S.bAns[i].some(function(a) { return a.trim().length > 0; });
+}
+function bMissing(i) {
+  var n = 0;
+  S.bAns[i].forEach(function(a) { if (!a.trim()) n++; });
+  return n;
+}
+function brandComplete() {
+  return BRAND.every(function(_, i) { return bDone(i); });
+}
+function fDone(i) {
+  return S.fPick[i] > -1 && S.fAns[i].every(function(a) { return a.trim().length > 0; });
+}
+function fAny(i) {
+  return S.fPick[i] > -1 || S.fAns[i].some(function(a) { return a.trim().length > 0; });
+}
+function fMissing(i) {
+  var n = 0;
+  S.fAns[i].forEach(function(a) { if (!a.trim()) n++; });
+  return n;
+}
+
+/* Which stops the spine will allow */
+function stopUnlocked(i) {
+  if (i <= 1) return true;
+  if (!brandComplete()) return false;
+  for (var k = 0; k < i - 2; k++) if (!fDone(k)) return false;
+  return true;
+}
+function lockReason(i) {
+  if (!brandComplete()) return 'Finish Part One — Brand first';
+  for (var k = 0; k < i - 2; k++) if (!fDone(k)) return 'Finish ' + FUNNEL[k].name + ' first';
+  return '';
+}
+
+/* ══════════════════════════════════════════════════════════
+   BRAND TOKENS — recognition, never recall
+══════════════════════════════════════════════════════════ */
 var TOKENS = {
-  feeling:   { s: 0, q: 0, label: 'Brand · The Feeling' },
-  knownFor:  { s: 1, q: 1, label: 'Brand · Association' },
-  arc:       { s: 1, q: 2, label: 'Brand · Association' },
-  enemy:     { s: 2, q: 0, label: 'Brand · The Enemy' },
-  community: { s: 4, q: 0, label: 'Brand · Community' }
+  feeling:   { s: 0, q: 0, label: 'The Feeling' },
+  knownFor:  { s: 1, q: 1, label: 'Association' },
+  arc:       { s: 1, q: 2, label: 'Association' },
+  enemy:     { s: 2, q: 0, label: 'The Enemy' },
+  community: { s: 4, q: 0, label: 'Community' }
 };
 
 function tokenText(key) {
   var t = TOKENS[key];
-  if (!t) return '';
-  return (bAns[t.s][t.q] || '').trim();
+  return t ? (S.bAns[t.s][t.q] || '').trim() : '';
 }
 
-/* Never interpolate raw prose into a sentence blindly — quote it,
-   and fall back to a pointer when the brand answer is still empty. */
 function fillTokens(text) {
   return text.replace(/\{\{(\w+)\}\}/g, function(_, key) {
-    var val = tokenText(key);
-    var t = TOKENS[key];
-    if (!val) {
-      return '<span class="tok-empty">[not answered yet — ' + (t ? t.label : 'Brand') + ']</span>';
-    }
-    return '<span class="tok">“' + esc(val) + '”</span>';
+    var v = tokenText(key), t = TOKENS[key];
+    if (!v) return '<span class="tok-empty">[not answered — Brand · ' + (t ? t.label : '') + ']</span>';
+    return '<span class="tok">“' + esc(v) + '”</span>';
   });
 }
-
-/* Same, for plain text export */
-function fillTokensPlain(text) {
+function fillPlain(text) {
   return text.replace(/\{\{(\w+)\}\}/g, function(_, key) {
-    var val = tokenText(key);
-    var t = TOKENS[key];
-    if (!val) return '[not answered: ' + (t ? t.label : 'Brand') + ']';
-    return '"' + val + '"';
+    var v = tokenText(key), t = TOKENS[key];
+    return v ? '"' + v + '"' : '[not answered: Brand · ' + (t ? t.label : '') + ']';
   });
 }
-
-function userName() {
-  var el = $('uname');
-  var v = el ? el.value.trim() : '';
-  return v;
+function tokensUsedBy(si) {
+  var keys = {};
+  FUNNEL[si].questions.forEach(function(o) {
+    var m = o.q.match(/\{\{(\w+)\}\}/g) || [];
+    m.forEach(function(x) { keys[x.replace(/[{}]/g, '')] = 1; });
+  });
+  return Object.keys(keys);
 }
 
 /* ══════════════════════════════════════════════════════════
-   SPINE + MAP
+   THE ONE MUTATOR
+══════════════════════════════════════════════════════════ */
+function goto(screen, opts) {
+  opts = opts || {};
+  var prev = S.screen;
+  S.screen = screen;
+  if (typeof opts.bStep === 'number') S.bStep = opts.bStep;
+  if (typeof opts.fStep === 'number') S.fStep = opts.fStep;
+  S.panel = typeof opts.panel === 'number' ? opts.panel : 0;
+
+  render();
+  save();
+  syncHash();
+
+  /* Always land at the top of the new thing, never mid-scroll */
+  if (!opts.quiet) {
+    var anchor = (screen === 'intro') ? 'principle' : 'stage-top';
+    var el = $(anchor) || $('stage-top');
+    if (el) {
+      var y = el.getBoundingClientRect().top + window.pageYOffset - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64) - 12;
+      window.scrollTo({ top: y, behavior: prev === screen ? 'smooth' : 'auto' });
+    }
+  }
+  if (opts.focus !== false) focusFirstField();
+}
+
+function focusFirstField() {
+  setTimeout(function() {
+    var live = document.querySelector('.panel.on textarea, .panel.on input[type=text]');
+    if (live && window.innerWidth > 760) { try { live.focus({ preventScroll: true }); } catch (e) { } }
+  }, 60);
+}
+
+function syncHash() {
+  var h = S.screen;
+  if (S.screen === 'brand') h += '-' + (S.bStep + 1);
+  if (S.screen === 'funnel') h += '-' + (S.fStep + 1) + '-' + (S.panel + 1);
+  if (location.hash.slice(1) !== h) history.replaceState(null, '', '#' + h);
+}
+
+function readHash() {
+  var p = location.hash.slice(1).split('-');
+  if (!p[0]) return;
+  if (p[0] === 'brand') { S.screen = 'brand'; S.bStep = Math.max(0, Math.min(5, (+p[1] || 1) - 1)); }
+  else if (p[0] === 'funnel') {
+    S.screen = 'funnel';
+    S.fStep = Math.max(0, Math.min(4, (+p[1] || 1) - 1));
+    S.panel = Math.max(0, Math.min(2, (+p[2] || 1) - 1));
+  }
+  else if (p[0] === 'summary' || p[0] === 'bridge' || p[0] === 'output') S.screen = p[0];
+}
+
+/* ══════════════════════════════════════════════════════════
+   FOCUS MODE — the page becomes an app
+══════════════════════════════════════════════════════════ */
+function setFocusMode(on) {
+  document.body.classList.toggle('working', on);
+  ['hero', 'principle', 'cta', 'foot'].forEach(function(id) {
+    var el = $(id);
+    if (!el) return;
+    if (on) { el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true'); }
+    else { el.removeAttribute('inert'); el.removeAttribute('aria-hidden'); }
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   SPINE
 ══════════════════════════════════════════════════════════ */
 function renderSpine() {
   $('stops').innerHTML = STOPS.map(function(s, i) {
-    return '<button class="stop" data-stop="' + i + '" onclick="goStop(' + i + ')">' +
-      '<span class="stop-name">' + s.name + '</span>' +
+    return '<button class="stop" data-stop="' + i + '" onclick="jumpStop(' + i + ')">' +
+      '<span class="stop-name">' + s.name + '<span class="stop-lock" aria-hidden="true"> </span></span>' +
       '<span class="stop-dest">' + s.dest + '</span>' +
       '</button>';
   }).join('');
-  updateSpine();
 }
 
 function currentStop() {
-  if (phase === 'intro') return 0;
-  if (phase === 'brand' || phase === 'summary') return 1;
-  if (phase === 'funnel') return 2 + fStep;
+  if (S.screen === 'intro') return 0;
+  if (S.screen === 'brand' || S.screen === 'summary' || S.screen === 'bridge') return 1;
+  if (S.screen === 'funnel') return 2 + S.fStep;
   return 6;
+}
+
+function stopComplete(i) {
+  if (i === 0) return S.screen !== 'intro';
+  if (i === 1) return brandComplete();
+  return fDone(i - 2);
 }
 
 function updateSpine() {
   var now = currentStop();
-  var done = phase === 'output' ? 7 : now;
   document.querySelectorAll('.stop').forEach(function(el, i) {
-    el.classList.toggle('now', i === now && phase !== 'output');
-    el.classList.toggle('done', i < done || (phase === 'output'));
+    var open = stopUnlocked(i);
+    el.classList.toggle('now', i === now && S.screen !== 'output');
+    el.classList.toggle('done', stopComplete(i));
+    el.classList.toggle('locked', !open);
+    el.setAttribute('title', open ? STOPS[i].dest : lockReason(i));
+    var lk = el.querySelector('.stop-lock');
+    if (lk) lk.textContent = open ? ' ' : ' •';
   });
 }
 
-function goStop(i) {
-  if (i === 0) { document.getElementById('principle').scrollIntoView(); return; }
-  if (i === 1) {
-    phase = 'brand';
-    showBrandBuilder();
-    $('brand').scrollIntoView();
-  } else if (i >= 2 && i <= 6) {
-    if (phase === 'output') { $('funnel').style.display = ''; }
-    phase = 'funnel';
-    setFunnelStep(i - 2);
-    $('funnel').scrollIntoView();
-  }
-  updateSpine();
+function jumpStop(i) {
+  if (!stopUnlocked(i)) { flashLock(i); return; }
+  if (i === 0) { setFocusMode(false); goto('intro'); return; }
+  if (i === 1) { goto('brand', { bStep: S.bStep }); return; }
+  goto('funnel', { fStep: i - 2, panel: 0 });
 }
 
+function flashLock(i) {
+  var el = document.querySelectorAll('.stop')[i];
+  if (!el) return;
+  el.classList.remove('shake');
+  void el.offsetWidth;
+  el.classList.add('shake');
+  toast(lockReason(i));
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOAST — one quiet line, never a modal
+══════════════════════════════════════════════════════════ */
+var toastTimer = null;
+function toast(msg) {
+  var t = $('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { t.classList.remove('on'); }, 3200);
+}
+
+/* ══════════════════════════════════════════════════════════
+   STATIC RENDERS
+══════════════════════════════════════════════════════════ */
 function renderMap() {
-  var el = $('map');
-  el.insertAdjacentHTML('beforeend', STOPS.map(function(s, i) {
+  var m = $('map');
+  if (!m) return;
+  m.insertAdjacentHTML('beforeend', STOPS.map(function(s, i) {
     return '<div class="map-row">' +
       '<span class="map-n">' + (i === 0 ? '·' : String(i).padStart(2, '0')) + '</span>' +
       '<span class="map-name">' + s.name + '</span>' +
@@ -1990,304 +2417,440 @@ function renderMap() {
   }).join(''));
 }
 
-function renderFour() {
-  $('four').innerHTML = FOUR.map(function(f) {
-    return '<div class="four-row">' +
-      '<span class="four-name">' + f.name + '</span>' +
-      '<span class="four-text">' + f.text + '</span>' +
-      '</div>';
-  }).join('');
+function fourHTML() {
+  return '<div class="four">' + FOUR.map(function(f) {
+    return '<div class="four-row"><span class="four-name">' + f.name + '</span>' +
+      '<span class="four-text">' + f.text + '</span></div>';
+  }).join('') + '</div>';
 }
 
 /* ══════════════════════════════════════════════════════════
-   BRAND BUILDER
+   THE STAGE — everything the user is doing renders here
 ══════════════════════════════════════════════════════════ */
-function renderBrand() {
-  $('brand-steps').innerHTML = BRAND.map(function(s, si) {
-    var emo = '';
-    if (s.emotions) {
-      emo = '<ul class="emo-list">' + s.emotions.map(function(e) {
-        return '<li><b>' + e.n + '</b> — ' + e.t + '</li>';
-      }).join('') + '</ul>';
-    }
-    var qs = s.questions.map(function(o, qi) {
-      return '<div class="q" id="bq-' + si + '-' + qi + '">' +
-        '<div class="q-n">Q' + (qi + 1) + '</div>' +
-        '<label for="ba-' + si + '-' + qi + '">' + o.q + '</label>' +
-        '<textarea id="ba-' + si + '-' + qi + '" rows="3" placeholder="' + esc(o.ph) + '"' +
-          ' oninput="onBrand(' + si + ',' + qi + ',this)">' + esc(bAns[si][qi]) + '</textarea>' +
-        '</div>';
-    }).join('');
+function render() {
+  setFocusMode(S.screen !== 'intro');
+  var host = $('stage');
 
-    return '<div class="step' + (si === 0 ? ' on' : '') + '" id="bs-' + si + '">' +
-      '<p class="step-n">Section ' + (si + 1) + ' of 6</p>' +
-      '<h3 class="step-title">' + s.name + '</h3>' +
-      '<p class="step-q">' + s.ask + '</p>' +
-      '<div class="step-explain">' + s.explain + emo + '</div>' +
-      '<p class="zone-label">Your answers</p>' + qs +
-      '<button class="ex-btn" id="bx-' + si + '" onclick="toggleEx(\'b\',' + si + ')"' +
-        ' aria-expanded="false" aria-controls="bd-' + si + '">' +
+  if (S.screen === 'intro') { host.innerHTML = ''; host.style.display = 'none'; updateSpine(); return; }
+  host.style.display = '';
+
+  if (S.screen === 'brand')   host.innerHTML = viewBrand();
+  if (S.screen === 'summary') host.innerHTML = viewSummary();
+  if (S.screen === 'bridge')  host.innerHTML = viewBridge();
+  if (S.screen === 'funnel')  host.innerHTML = viewFunnel();
+  if (S.screen === 'output')  host.innerHTML = viewOutput();
+
+  updateSpine();
+  wireStage();
+}
+
+/* ── shared chrome ────────────────────────────────────── */
+function crumb(part, title, meta) {
+  return '<div class="crumb">' +
+    '<span class="crumb-part">' + part + '</span>' +
+    '<span class="crumb-sep" aria-hidden="true">/</span>' +
+    '<span class="crumb-title">' + title + '</span>' +
+    (meta ? '<span class="crumb-meta">' + meta + '</span>' : '') +
+    '</div>';
+}
+
+function ticks(n, cur, done) {
+  var out = '';
+  for (var i = 0; i < n; i++) {
+    out += '<span class="tick' + (i === cur ? ' now' : '') + (done(i) ? ' done' : '') + '"></span>';
+  }
+  return '<div class="ticks" aria-hidden="true">' + out + '</div>';
+}
+
+/* ── Part One: brand ──────────────────────────────────── */
+function viewBrand() {
+  var i = S.bStep, s = BRAND[i];
+  var emo = s.emotions ? '<ul class="emo-list">' + s.emotions.map(function(e) {
+    return '<li><b>' + e.n + '</b> — ' + e.t + '</li>';
+  }).join('') + '</ul>' : '';
+
+  var qs = s.questions.map(function(o, qi) {
+    var v = S.bAns[i][qi];
+    return '<div class="q' + (v.trim() ? ' answered' : '') + '" id="q-' + qi + '" data-qi="' + qi + '">' +
+      '<div class="q-n">Question ' + (qi + 1) + ' of ' + s.questions.length + '</div>' +
+      '<label for="a-' + qi + '">' + o.q + '</label>' +
+      '<textarea id="a-' + qi + '" rows="3" placeholder="' + esc(o.ph) + '" data-b="' + qi + '">' + esc(v) + '</textarea>' +
+      '</div>';
+  }).join('');
+
+  var left = bMissing(i);
+  return '<div id="stage-top"></div>' +
+    '<div class="stage-head">' +
+      crumb('Part One — Brand', s.name, 'Section ' + (i + 1) + ' of 6 · 3 questions') +
+      ticks(BRAND.length, i, bDone) +
+    '</div>' +
+    '<div class="panel on">' +
+      '<h2 class="stage-title">' + s.name + '</h2>' +
+      '<p class="stage-ask">' + s.ask + '</p>' +
+      '<div class="read">' + s.explain + emo + '</div>' +
+      '<div class="qs" id="qs">' + qs + '</div>' +
+      '<button class="ex-btn" id="exb" aria-expanded="false" aria-controls="exd">' +
         '<span class="ex-icon" aria-hidden="true">+</span> See example — ' + s.example.person +
       '</button>' +
-      '<div class="drawer" id="bd-' + si + '">' +
+      '<div class="drawer" id="exd">' +
         '<div class="ex-card">' +
           '<p class="ex-card-label">Example</p>' +
           '<p class="ex-card-person">' + s.example.person + '</p>' +
           '<p class="body">' + s.example.text + '</p>' +
         '</div>' +
       '</div>' +
-      '</div>';
-  }).join('');
-  renderPips('b', BRAND.length);
-  syncBrandMarks();
+    '</div>' +
+    footer(
+      i > 0 ? 'Back' : 'Back to the principle',
+      i === BRAND.length - 1 ? 'See your brand profile' : 'Next — ' + BRAND[i + 1].name,
+      left
+    );
 }
 
-function onBrand(si, qi, el) {
-  bAns[si][qi] = el.value;
-  var b = $('bq-' + si + '-' + qi);
-  if (b) b.classList.toggle('answered', el.value.trim().length > 0);
-  updatePips('b');
-  /* brand answers feed the funnel questions live */
-  renderFunnelQuestionLabels();
-}
-
-function syncBrandMarks() {
-  BRAND.forEach(function(s, si) {
-    s.questions.forEach(function(_, qi) {
-      var b = $('bq-' + si + '-' + qi);
-      if (b) b.classList.toggle('answered', bAns[si][qi].trim().length > 0);
-    });
-  });
-}
-
-function setBrandStep(i) {
-  var cur = $('bs-' + bStep);
-  if (cur) cur.classList.remove('on');
-  bStep = i;
-  var nxt = $('bs-' + bStep);
-  if (nxt) nxt.classList.add('on');
-  $('b-now').textContent = bStep + 1;
-  $('b-name').textContent = BRAND[bStep].name;
-  $('b-back').style.display = bStep > 0 ? '' : 'none';
-  $('b-next').textContent = bStep === BRAND.length - 1 ? 'See Your Brand Profile' : 'Next Section';
-  updatePips('b');
-  updateSpine();
-}
-
-function showBrandBuilder() {
-  $('brand-builder').style.display = '';
-  $('brand-summary').style.display = 'none';
-  phase = 'brand';
-  updateSpine();
-}
-
-function showSummary() {
-  phase = 'summary';
-  $('brand-builder').style.display = 'none';
-  $('brand-summary').style.display = '';
-  renderProfile();
-  $('brand').scrollIntoView();
-  updateSpine();
-}
-
-function renderProfile() {
-  var n = userName();
-  $('pf-title').textContent = n ? n : 'Your Brand';
-  $('pf-body').innerHTML = BRAND.map(function(s, si) {
-    var qa = s.questions.map(function(o, qi) {
-      var a = bAns[si][qi].trim();
-      return '<div class="pf-qa">' +
-        '<p class="pf-q">' + o.q + '</p>' +
-        '<p class="pf-a' + (a ? '' : ' none') + '">' + (a ? esc(a) : 'Not answered') + '</p>' +
-        '</div>';
-    }).join('');
+/* ── brand profile ────────────────────────────────────── */
+function viewSummary() {
+  var rows = BRAND.map(function(s, si) {
     return '<div class="pf-row">' +
-      '<p class="pf-key">' + (si + 1) + ' · ' + s.name + '</p>' + qa +
+      '<p class="pf-key">' + (si + 1) + ' · ' + s.name + '</p>' +
+      s.questions.map(function(o, qi) {
+        var a = S.bAns[si][qi].trim();
+        return '<div class="pf-qa"><p class="pf-q">' + o.q + '</p>' +
+          '<p class="pf-a' + (a ? '' : ' none') + '">' + (a ? esc(a) : 'Not answered') + '</p></div>';
+      }).join('') +
       '</div>';
   }).join('');
+
+  return '<div id="stage-top"></div>' +
+    '<div class="stage-head">' + crumb('Part One — Brand', 'Your brand profile', 'Complete') + '</div>' +
+    '<div class="panel on">' +
+      '<div class="profile">' +
+        '<p class="profile-label">Your Brand Profile</p>' +
+        '<h2 id="pf-title">' + (S.name ? esc(S.name) : 'Your Brand') + '</h2>' +
+        '<div class="name-field">' +
+          '<label for="uname">Your name or brand name</label>' +
+          '<input type="text" id="uname" placeholder="e.g. Alex Morgan" autocomplete="name" value="' + esc(S.name) + '">' +
+        '</div>' +
+        '<div style="margin-top:1.5rem">' + rows + '</div>' +
+      '</div>' +
+    '</div>' +
+    footer('Back to Entertainment', 'Start Part Two — The Funnel', 0);
 }
 
-/* ══════════════════════════════════════════════════════════
-   FUNNEL BUILDER
-══════════════════════════════════════════════════════════ */
-function renderFunnel() {
-  $('funnel-steps').innerHTML = FUNNEL.map(function(s, si) {
-    var cases = '<div class="cases">' +
+/* ── the bridge into Part Two ──────────────────────────── */
+function viewBridge() {
+  return '<div id="stage-top"></div>' +
+    '<div class="stage-head">' +
+      crumb('Part Two — Funnel', 'Before you start', 'Read this once · 2 min') +
+    '</div>' +
+    '<div class="panel on">' +
+      '<h2 class="stage-title">The Psychology of Attention</h2>' +
+      '<p class="stage-ask">Move people from strangers to paying customers. Five stages. Each one building on the last.</p>' +
+      '<div class="read">' +
+        '<p>Attention is the most saturated marketplace in human history. But money does not follow attention directly. It follows a journey — attention that became interest, interest that became trust, trust that became community, community that converted.</p>' +
+        '<p style="margin-top:1.25rem">The brain is not passively receiving content. It is actively rejecting almost everything. Its filter asks one question — is this relevant to me right now. It does not care about volume, production quality or posting frequency.</p>' +
+        '<p style="margin-top:1.25rem">So the most powerful way to become relevant is to stop trying to reach an audience and start being the person you needed when you were looking for someone like you. Be who you wanted to see. If you felt something, others feel it. Human feelings are not unique — they are shared.</p>' +
+      '</div>' +
+      '<p class="bridge-stat">The human brain processes 11 million bits of information per second. It consciously processes 40.</p>' +
+      '<h3 class="four-head">The Five Stages</h3>' +
+      '<p class="panel-hint">You will walk these one at a time. Each stage takes three steps — read how it works, choose your approach, write your plan.</p>' +
+      fourHTML() +
+    '</div>' +
+    footer('Back to brand profile', 'Start Stage 1 — Awareness', 0);
+}
+
+/* ── Part Two: funnel, three panels per stage ─────────── */
+function viewFunnel() {
+  var i = S.fStep, s = FUNNEL[i], p = S.panel;
+  var body = '';
+
+  if (p === 0) {
+    body = '<h2 class="stage-title">' + s.name + '</h2>' +
+      '<p class="dest">' + s.dest + '</p>' +
+      '<p class="principle">' + s.principle + '</p>' +
+      '<div class="read">' + s.explain + '</div>' +
       '<p class="cases-label">How they did it</p>' +
+      '<p class="panel-hint">Three people, three completely different answers to the same problem. Open the ones you want.</p>' +
       s.cases.map(function(c, ci) {
-        var body = c.body.map(function(p) { return '<p>' + p + '</p>'; }).join('') +
-          (c.lesson ? '<p class="lesson"><b style="color:var(--gold);font-weight:600">The lesson</b> — ' + c.lesson + '</p>' : '');
-        return '<div class="case" id="c-' + si + '-' + ci + '">' +
-          '<button class="case-btn" onclick="toggleCase(' + si + ',' + ci + ')"' +
-            ' aria-expanded="false" aria-controls="cb-' + si + '-' + ci + '">' +
+        var inner = c.body.map(function(x) { return '<p>' + x + '</p>'; }).join('') +
+          (c.lesson ? '<p class="lesson"><b>The lesson</b> — ' + c.lesson + '</p>' : '');
+        return '<div class="case" id="c-' + ci + '">' +
+          '<button class="case-btn" data-case="' + ci + '" aria-expanded="false" aria-controls="cb-' + ci + '">' +
             '<span class="case-main">' +
               '<span class="case-name">' + c.person + '</span>' +
               '<span class="case-desc">' + c.desc + '</span>' +
-            '</span>' +
-            '<span class="case-icon" aria-hidden="true">+</span>' +
+            '</span><span class="case-icon" aria-hidden="true">+</span>' +
           '</button>' +
-          '<div class="case-body" id="cb-' + si + '-' + ci + '">' +
-            '<div class="case-inner">' + body + '</div>' +
-          '</div>' +
+          '<div class="case-body" id="cb-' + ci + '"><div class="case-inner">' + inner + '</div></div>' +
           '</div>';
-      }).join('') +
-      '</div>';
+      }).join('');
+  }
 
-    var opts = '<div class="options">' +
-      '<p class="options-label">Your options</p>' +
-      '<p class="options-hint">Pick one. Not all of them. One done consistently beats all of them done occasionally.</p>' +
-      s.options.map(function(o, oi) {
-        return '<button class="opt" id="o-' + si + '-' + oi + '" onclick="pickOpt(' + si + ',' + oi + ')"' +
-          ' aria-pressed="false">' +
+  if (p === 1) {
+    body = '<h2 class="stage-title">Choose your approach</h2>' +
+      '<p class="stage-ask">' + s.name + ' — ' + s.dest + '</p>' +
+      '<p class="panel-hint">Pick one. Not all of them. One done consistently beats all of them done occasionally.</p>' +
+      '<div class="opts">' + s.options.map(function(o, oi) {
+        return '<button class="opt' + (S.fPick[i] === oi ? ' picked' : '') + '" data-opt="' + oi + '"' +
+          ' aria-pressed="' + (S.fPick[i] === oi) + '">' +
           '<span class="opt-mark" aria-hidden="true"></span>' +
           '<span class="opt-body">' +
             '<span class="opt-name">' + o.n + '</span>' +
             '<span class="opt-detail">' + o.d + '</span>' +
-          '</span>' +
-          '</button>';
-      }).join('') +
-      (s.note ? '<p class="options-hint" style="margin:1.25rem 0 0">' + s.note + '</p>' : '') +
-      '</div>';
+          '</span></button>';
+      }).join('') + '</div>' +
+      (s.note ? '<p class="panel-note">' + s.note + '</p>' : '');
+  }
 
-    var qs = s.questions.map(function(o, qi) {
-      return '<div class="q" id="fq-' + si + '-' + qi + '">' +
-        '<div class="q-n">Q' + (qi + 1) + '</div>' +
-        '<label for="fa-' + si + '-' + qi + '" id="fl-' + si + '-' + qi + '">' + fillTokens(o.q) + '</label>' +
-        '<textarea id="fa-' + si + '-' + qi + '" rows="3" placeholder="' + esc(o.ph) + '"' +
-          ' oninput="onFunnel(' + si + ',' + qi + ',this)">' + esc(fAns[si][qi]) + '</textarea>' +
-        '</div>';
-    }).join('');
+  if (p === 2) {
+    var keys = tokensUsedBy(i);
+    var ctx = keys.length ? '<div class="ctx" id="ctx">' +
+      '<button class="ctx-head" id="ctx-btn" aria-expanded="true" aria-controls="ctx-body">' +
+        '<span>Your brand, for reference</span>' +
+        '<span class="ctx-icon" aria-hidden="true">–</span>' +
+      '</button>' +
+      '<div class="ctx-body" id="ctx-body">' + keys.map(function(k) {
+        var v = tokenText(k), t = TOKENS[k];
+        return '<div class="ctx-row">' +
+          '<span class="ctx-key">' + t.label + '</span>' +
+          '<span class="ctx-val' + (v ? '' : ' none') + '">' + (v ? esc(v) : 'Not answered') + '</span>' +
+          '</div>';
+      }).join('') + '</div></div>' : '';
 
-    return '<div class="step' + (si === 0 ? ' on' : '') + '" id="fs-' + si + '">' +
-      '<p class="step-n">Stage ' + (si + 1) + ' of 5</p>' +
-      '<h3 class="step-title">' + s.name + '</h3>' +
-      '<p class="dest">' + s.dest + '</p>' +
-      '<p class="principle">' + s.principle + '</p>' +
-      '<div class="step-explain">' + s.explain + '</div>' +
-      cases + opts +
-      '<p class="zone-label">Your ' + s.name.toLowerCase() + ' plan</p>' + qs +
-      '</div>';
-  }).join('');
-  renderPips('f', FUNNEL.length);
-  syncFunnelMarks();
+    var pick = S.fPick[i] > -1
+      ? '<p class="chosen">Your approach — <b>' + s.options[S.fPick[i]].n + '</b></p>' : '';
+
+    body = '<h2 class="stage-title">Your ' + s.name.toLowerCase() + ' plan</h2>' +
+      '<p class="stage-ask">' + s.dest + '</p>' + pick + ctx +
+      '<div class="qs" id="qs">' + s.questions.map(function(o, qi) {
+        var v = S.fAns[i][qi];
+        return '<div class="q' + (v.trim() ? ' answered' : '') + '" id="q-' + qi + '" data-qi="' + qi + '">' +
+          '<div class="q-n">Question ' + (qi + 1) + ' of ' + s.questions.length + '</div>' +
+          '<label for="a-' + qi + '">' + fillTokens(o.q) + '</label>' +
+          '<textarea id="a-' + qi + '" rows="3" placeholder="' + esc(o.ph) + '" data-f="' + qi + '">' + esc(v) + '</textarea>' +
+          '</div>';
+      }).join('') + '</div>';
+  }
+
+  var nextLabel;
+  if (p === 0) nextLabel = 'Choose your approach';
+  else if (p === 1) nextLabel = 'Write your ' + s.name.toLowerCase() + ' plan';
+  else nextLabel = (i === FUNNEL.length - 1) ? 'See my complete plan' : 'Next stage — ' + FUNNEL[i + 1].name;
+
+  var backLabel = p > 0 ? 'Back' : (i > 0 ? 'Back to ' + FUNNEL[i - 1].name : 'Back to brand profile');
+  var left = p === 2 ? fMissing(i) : (p === 1 && S.fPick[i] < 0 ? -1 : 0);
+
+  return '<div id="stage-top"></div>' +
+    '<div class="stage-head">' +
+      crumb('Part Two — Funnel', s.name, 'Stage ' + (i + 1) + ' of 5 · ' + PANELS[p] + ' · step ' + (p + 1) + ' of 3') +
+      ticks(FUNNEL.length, i, fDone) +
+    '</div>' +
+    '<div class="panel on">' + body + '</div>' +
+    footer(backLabel, nextLabel, left);
 }
 
-function renderFunnelQuestionLabels() {
-  FUNNEL.forEach(function(s, si) {
-    s.questions.forEach(function(o, qi) {
-      var el = $('fl-' + si + '-' + qi);
-      if (el) el.innerHTML = fillTokens(o.q);
+/* ── footer bar: one primary action, always ───────────── */
+function footer(back, next, left) {
+  var note = '';
+  var blocked = false;
+  if (left === -1) { note = 'Pick one option to continue'; blocked = true; }
+  else if (left > 0) { note = left + (left === 1 ? ' question' : ' questions') + ' left'; }
+  return '<div class="bar">' +
+    '<button class="btn" id="go-back">← ' + back + '</button>' +
+    '<div class="bar-right">' +
+      (note ? '<span class="bar-note' + (blocked ? ' warn' : '') + '">' + note + '</span>' : '<span class="bar-note ok">All done</span>') +
+      '<button class="btn btn-gold" id="go-next">' + next + ' →</button>' +
+    '</div>' +
+    '</div>';
+}
+
+/* ══════════════════════════════════════════════════════════
+   STAGE WIRING
+══════════════════════════════════════════════════════════ */
+function wireStage() {
+  /* answers */
+  document.querySelectorAll('#stage textarea').forEach(function(t) {
+    t.addEventListener('input', function() {
+      var bi = t.getAttribute('data-b'), fi = t.getAttribute('data-f');
+      if (bi !== null) S.bAns[S.bStep][+bi] = t.value;
+      if (fi !== null) S.fAns[S.fStep][+fi] = t.value;
+      t.closest('.q').classList.toggle('answered', t.value.trim().length > 0);
+      refreshBar();
+      updateSpine();
+      save();
+    });
+    t.addEventListener('focus', function() { spotlight(t.closest('.q')); });
+    t.addEventListener('blur',  function() { spotlight(null); });
+  });
+
+  /* name */
+  var un = $('uname');
+  if (un) un.addEventListener('input', function() {
+    S.name = un.value;
+    var t = $('pf-title');
+    if (t) t.textContent = S.name.trim() || 'Your Brand';
+    save();
+  });
+
+  /* options */
+  document.querySelectorAll('#stage .opt').forEach(function(b) {
+    b.addEventListener('click', function() {
+      var oi = +b.getAttribute('data-opt');
+      S.fPick[S.fStep] = (S.fPick[S.fStep] === oi) ? -1 : oi;
+      document.querySelectorAll('#stage .opt').forEach(function(x, k) {
+        var on = S.fPick[S.fStep] === k;
+        x.classList.toggle('picked', on);
+        x.setAttribute('aria-pressed', String(on));
+      });
+      refreshBar(); updateSpine(); save();
     });
   });
-}
 
-function onFunnel(si, qi, el) {
-  fAns[si][qi] = el.value;
-  var b = $('fq-' + si + '-' + qi);
-  if (b) b.classList.toggle('answered', el.value.trim().length > 0);
-  updatePips('f');
-}
-
-function syncFunnelMarks() {
-  FUNNEL.forEach(function(s, si) {
-    s.questions.forEach(function(_, qi) {
-      var b = $('fq-' + si + '-' + qi);
-      if (b) b.classList.toggle('answered', fAns[si][qi].trim().length > 0);
+  /* case studies */
+  document.querySelectorAll('#stage .case-btn').forEach(function(b) {
+    b.addEventListener('click', function() {
+      var c = b.closest('.case');
+      var open = !c.classList.contains('open');
+      c.classList.toggle('open', open);
+      b.setAttribute('aria-expanded', String(open));
     });
-    if (fPick[si] > -1) markOpt(si, fPick[si]);
   });
+
+  /* example drawer */
+  var exb = $('exb');
+  if (exb) exb.addEventListener('click', function() {
+    var d = $('exd');
+    var open = !d.classList.contains('open');
+    d.classList.toggle('open', open);
+    exb.classList.toggle('open', open);
+    exb.setAttribute('aria-expanded', String(open));
+  });
+
+  /* context card */
+  var cb = $('ctx-btn');
+  if (cb) cb.addEventListener('click', function() {
+    var c = $('ctx');
+    var open = !c.classList.contains('shut');
+    c.classList.toggle('shut', open);
+    cb.setAttribute('aria-expanded', String(!open));
+    cb.querySelector('.ctx-icon').textContent = open ? '+' : '–';
+  });
+
+  /* nav */
+  var nb = $('go-next'), bb = $('go-back');
+  if (nb) nb.addEventListener('click', onNext);
+  if (bb) bb.addEventListener('click', onBack);
+
+  /* output buttons */
+  var dl = $('dl'), cp = $('cp'), rs = $('rs');
+  if (dl) dl.addEventListener('click', function() { window.print(); });
+  if (cp) cp.addEventListener('click', copyPlan);
+  if (rs) rs.addEventListener('click', restart);
 }
 
-function pickOpt(si, oi) {
-  fPick[si] = (fPick[si] === oi) ? -1 : oi;
-  FUNNEL[si].options.forEach(function(_, k) {
-    var el = $('o-' + si + '-' + k);
-    if (el) {
-      var on = fPick[si] === k;
-      el.classList.toggle('picked', on);
-      el.setAttribute('aria-pressed', String(on));
+/* Spotlight — the question you are on is lit, the rest recede */
+function spotlight(el) {
+  var qs = $('qs');
+  if (!qs) return;
+  qs.classList.toggle('dim', !!el);
+  qs.querySelectorAll('.q').forEach(function(q) { q.classList.toggle('lit', q === el); });
+}
+
+function refreshBar() {
+  var note = document.querySelector('.bar-note');
+  if (!note) return;
+  var left = 0, blocked = false;
+  if (S.screen === 'brand') left = bMissing(S.bStep);
+  else if (S.screen === 'funnel') {
+    if (S.panel === 1) { blocked = S.fPick[S.fStep] < 0; }
+    else if (S.panel === 2) left = fMissing(S.fStep);
+  }
+  note.classList.remove('warn', 'ok');
+  if (blocked) { note.textContent = 'Pick one option to continue'; note.classList.add('warn'); }
+  else if (left > 0) { note.textContent = left + (left === 1 ? ' question' : ' questions') + ' left'; }
+  else { note.textContent = 'All done'; note.classList.add('ok'); }
+}
+
+/* ══════════════════════════════════════════════════════════
+   NAVIGATION — with a repair path, never a dead end
+══════════════════════════════════════════════════════════ */
+function firstBlank() {
+  var arr = S.screen === 'brand' ? S.bAns[S.bStep] : S.fAns[S.fStep];
+  for (var i = 0; i < arr.length; i++) if (!arr[i].trim()) return i;
+  return -1;
+}
+
+function nudgeBlank() {
+  var i = firstBlank();
+  if (i < 0) return false;
+  var q = $('q-' + i);
+  if (q) {
+    q.classList.remove('flash'); void q.offsetWidth; q.classList.add('flash');
+    var y = q.getBoundingClientRect().top + window.pageYOffset - 140;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    var ta = q.querySelector('textarea');
+    if (ta) setTimeout(function() { try { ta.focus({ preventScroll: true }); } catch (e) {} }, 420);
+  }
+  return true;
+}
+
+function onNext() {
+  if (S.screen === 'brand') {
+    if (bMissing(S.bStep) > 0) {
+      toast('Answer all three to keep the profile useful — jumped you to the next blank.');
+      nudgeBlank(); return;
     }
-  });
-  updatePips('f');
+    if (S.bStep === BRAND.length - 1) goto('summary');
+    else goto('brand', { bStep: S.bStep + 1 });
+    return;
+  }
+
+  if (S.screen === 'summary') { goto('bridge'); return; }
+  if (S.screen === 'bridge')  { goto('funnel', { fStep: 0, panel: 0 }); return; }
+
+  if (S.screen === 'funnel') {
+    if (S.panel === 0) { goto('funnel', { fStep: S.fStep, panel: 1 }); return; }
+    if (S.panel === 1) {
+      if (S.fPick[S.fStep] < 0) { toast('Pick the one approach that fits you before writing the plan.'); return; }
+      goto('funnel', { fStep: S.fStep, panel: 2 }); return;
+    }
+    if (fMissing(S.fStep) > 0) {
+      toast('A few blanks left — jumped you to the first one.');
+      nudgeBlank(); return;
+    }
+    if (S.fStep === FUNNEL.length - 1) goto('output');
+    else goto('funnel', { fStep: S.fStep + 1, panel: 0 });
+    return;
+  }
 }
 
-function markOpt(si, oi) {
-  var el = $('o-' + si + '-' + oi);
-  if (el) { el.classList.add('picked'); el.setAttribute('aria-pressed', 'true'); }
-}
-
-function setFunnelStep(i) {
-  var cur = $('fs-' + fStep);
-  if (cur) cur.classList.remove('on');
-  fStep = i;
-  var nxt = $('fs-' + fStep);
-  if (nxt) nxt.classList.add('on');
-  $('f-now').textContent = fStep + 1;
-  $('f-name').textContent = FUNNEL[fStep].name;
-  $('f-back').style.display = fStep > 0 ? '' : 'none';
-  $('f-next').textContent = fStep === FUNNEL.length - 1 ? 'See My Complete Plan' : 'Next Stage';
-  renderFunnelQuestionLabels();
-  updatePips('f');
-  updateSpine();
-}
-
-/* ══════════════════════════════════════════════════════════
-   PIPS
-══════════════════════════════════════════════════════════ */
-function renderPips(kind, n) {
-  var arr = kind === 'b' ? BRAND : FUNNEL;
-  $(kind + '-pips').innerHTML = arr.map(function(s, i) {
-    return '<button class="pip" title="' + s.name + '" aria-label="Go to ' + s.name + '"' +
-      ' onclick="' + (kind === 'b' ? 'setBrandStep' : 'setFunnelStep') + '(' + i + ')"></button>';
-  }).join('');
-  updatePips(kind);
-}
-
-function hasContent(kind, i) {
-  if (kind === 'b') return bAns[i].some(function(a) { return a.trim().length > 0; });
-  return fPick[i] > -1 || fAns[i].some(function(a) { return a.trim().length > 0; });
-}
-
-function updatePips(kind) {
-  var cur = kind === 'b' ? bStep : fStep;
-  var pips = $(kind + '-pips').querySelectorAll('.pip');
-  pips.forEach(function(p, i) {
-    p.classList.toggle('now', i === cur);
-    p.classList.toggle('filled', hasContent(kind, i));
-  });
-}
-
-/* ══════════════════════════════════════════════════════════
-   TOGGLES
-══════════════════════════════════════════════════════════ */
-function toggleEx(kind, si) {
-  var d = $(kind + 'd-' + si), b = $(kind + 'x-' + si);
-  var open = !d.classList.contains('open');
-  d.classList.toggle('open', open);
-  b.classList.toggle('open', open);
-  b.setAttribute('aria-expanded', String(open));
-}
-
-function toggleCase(si, ci) {
-  var c = $('c-' + si + '-' + ci);
-  var open = !c.classList.contains('open');
-  c.classList.toggle('open', open);
-  c.querySelector('.case-btn').setAttribute('aria-expanded', String(open));
+function onBack() {
+  if (S.screen === 'brand') {
+    if (S.bStep === 0) { setFocusMode(false); goto('intro'); }
+    else goto('brand', { bStep: S.bStep - 1 });
+    return;
+  }
+  if (S.screen === 'summary') { goto('brand', { bStep: BRAND.length - 1 }); return; }
+  if (S.screen === 'bridge')  { goto('summary'); return; }
+  if (S.screen === 'funnel') {
+    if (S.panel > 0) { goto('funnel', { fStep: S.fStep, panel: S.panel - 1 }); return; }
+    if (S.fStep === 0) { goto('bridge'); return; }
+    goto('funnel', { fStep: S.fStep - 1, panel: 2 });
+    return;
+  }
+  if (S.screen === 'output') { goto('funnel', { fStep: FUNNEL.length - 1, panel: 2 }); }
 }
 
 /* ══════════════════════════════════════════════════════════
    OUTPUT
 ══════════════════════════════════════════════════════════ */
 function stopAnswer(i) {
-  if (i === 0) return userName() || '';
-  if (i === 1) return (bAns[0][0] || '').trim();
-  var s = FUNNEL[i - 2];
-  return (fAns[i - 2][s.summaryQ] || '').trim();
+  if (i === 0) return S.name.trim();
+  if (i === 1) return (S.bAns[0][0] || '').trim();
+  return (S.fAns[i - 2][FUNNEL[i - 2].summaryQ] || '').trim();
 }
 
-function showOutput() {
-  phase = 'output';
-  var n = userName();
+function viewOutput() {
+  var n = S.name.trim();
   var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   var journey = '<div class="journey">' +
@@ -2295,105 +2858,92 @@ function showOutput() {
     STOPS.map(function(s, i) {
       var a = stopAnswer(i);
       return '<div class="j-row">' +
-        '<div class="j-top">' +
-          '<span class="j-name">' + s.name + '</span>' +
-          '<span class="j-dest">' + s.dest + '</span>' +
-        '</div>' +
+        '<div class="j-top"><span class="j-name">' + s.name + '</span>' +
+        '<span class="j-dest">' + s.dest + '</span></div>' +
         '<p class="j-answer' + (a ? '' : ' none') + '">' +
-          (a ? esc(a) : 'Not yet written — go back and fill this one in.') +
-        '</p>' +
-        '</div>';
-    }).join('') +
-    '</div>';
+          (a ? esc(a) : 'Not yet written') + '</p></div>';
+    }).join('') + '</div>';
 
-  var brandOut = '<div class="out-part">' +
-      '<p class="eyebrow">Part One</p>' +
-      '<h3>Your Brand</h3>' +
-      '<p>Who you are, who you are for, and what you stand for.</p>' +
-    '</div>' +
+  var brandOut = '<div class="out-part"><p class="eyebrow">Part One</p><h3>Your Brand</h3>' +
+    '<p>Who you are, who you are for, and what you stand for.</p></div>' +
     BRAND.map(function(s, si) {
-      var qa = s.questions.map(function(o, qi) {
-        var a = bAns[si][qi].trim();
-        return '<div class="out-qa">' +
-          '<p class="out-q">' + o.q + '</p>' +
-          '<p class="out-a' + (a ? '' : ' none') + '">' + (a ? esc(a) : 'Not answered') + '</p>' +
-          '</div>';
-      }).join('');
       return '<div class="out-block">' +
         '<p class="eyebrow" style="font-size:0.62rem">Section ' + (si + 1) + ' of 6</p>' +
-        '<h4 class="out-block-name">' + s.name + '</h4>' + qa +
-        '</div>';
+        '<h4 class="out-block-name">' + s.name + '</h4>' +
+        s.questions.map(function(o, qi) {
+          var a = S.bAns[si][qi].trim();
+          return '<div class="out-qa"><p class="out-q">' + o.q + '</p>' +
+            '<p class="out-a' + (a ? '' : ' none') + '">' + (a ? esc(a) : 'Not answered') + '</p></div>';
+        }).join('') + '</div>';
     }).join('');
 
-  var funnelOut = '<div class="out-part" style="margin-top:3rem">' +
-      '<p class="eyebrow">Part Two</p>' +
-      '<h3>Your Funnel</h3>' +
-      '<p>How a stranger becomes someone who pays you.</p>' +
-    '</div>' +
+  var funnelOut = '<div class="out-part" style="margin-top:3rem"><p class="eyebrow">Part Two</p>' +
+    '<h3>Your Funnel</h3><p>How a stranger becomes someone who pays you.</p></div>' +
     FUNNEL.map(function(s, si) {
-      var pick = fPick[si] > -1
-        ? '<p class="out-pick">Chosen approach — ' + s.options[fPick[si]].n + '</p>'
-        : '<p class="out-pick" style="color:var(--text-3);border-color:var(--border)">No approach chosen yet</p>';
-      var qa = s.questions.map(function(o, qi) {
-        var a = fAns[si][qi].trim();
-        return '<div class="out-qa">' +
-          '<p class="out-q">' + fillTokens(o.q) + '</p>' +
-          '<p class="out-a' + (a ? '' : ' none') + '">' + (a ? esc(a) : 'Not answered') + '</p>' +
-          '</div>';
-      }).join('');
+      var pick = S.fPick[si] > -1
+        ? '<p class="out-pick">Chosen approach — ' + s.options[S.fPick[si]].n + '</p>'
+        : '<p class="out-pick none">No approach chosen</p>';
       return '<div class="out-block">' +
         '<p class="eyebrow" style="font-size:0.62rem">Stage ' + (si + 1) + ' of 5</p>' +
         '<h4 class="out-block-name">' + s.name + '</h4>' +
-        '<p class="out-q" style="font-style:italic;margin-bottom:1rem">' + s.dest + '</p>' +
-        pick + qa +
-        '</div>';
+        '<p class="out-q" style="font-style:italic;margin-bottom:1rem">' + s.dest + '</p>' + pick +
+        s.questions.map(function(o, qi) {
+          var a = S.fAns[si][qi].trim();
+          return '<div class="out-qa"><p class="out-q">' + fillTokens(o.q) + '</p>' +
+            '<p class="out-a' + (a ? '' : ' none') + '">' + (a ? esc(a) : 'Not answered') + '</p></div>';
+        }).join('') + '</div>';
     }).join('');
 
-  $('out-doc').innerHTML =
-    '<div class="out-head">' +
-      '<p class="eyebrow">Brand &amp; Funnel Plan</p>' +
-      '<h2>' + (n ? esc(n) + '’s Complete Plan' : 'Your Complete Plan') + '</h2>' +
-      '<p class="out-date">Generated ' + date + '</p>' +
-    '</div>' + journey + brandOut + funnelOut;
-
-  $('funnel').style.display = 'none';
-  $('output').classList.add('on');
-  $('nav-out').style.display = '';
-  $('output').scrollIntoView();
-  updateSpine();
+  return '<div id="stage-top"></div>' +
+    '<div class="panel on">' +
+      '<div class="out-actions">' +
+        '<button class="btn btn-gold" id="dl">Download as PDF</button>' +
+        '<button class="btn" id="cp">Copy to Clipboard</button>' +
+        '<button class="btn" id="rs">Start Over</button>' +
+      '</div>' +
+      '<div class="out-head">' +
+        '<p class="eyebrow">Brand &amp; Funnel Plan</p>' +
+        '<h2>' + (n ? esc(n) + '’s Complete Plan' : 'Your Complete Plan') + '</h2>' +
+        '<p class="out-date">Generated ' + date + '</p>' +
+      '</div>' + journey + brandOut + funnelOut +
+      '<div class="handoff">' +
+        '<p>You have the plan.</p><p>Now you need the execution.</p>' +
+        '<p>That is what Energise AI is for.</p>' +
+        '<a href="#cta" class="btn btn-gold" style="margin-top:2rem" id="to-cta">Work With Energise AI</a>' +
+      '</div>' +
+    '</div>' +
+    '<div class="bar"><button class="btn" id="go-back">← Back to Monetisation</button><div class="bar-right"></div></div>';
 }
 
 /* ══════════════════════════════════════════════════════════
    EXPORT
 ══════════════════════════════════════════════════════════ */
 function plain() {
-  var n = userName() || 'Your';
+  var n = S.name.trim();
   var date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  var L = '─'.repeat(56);
-  var out = (userName() ? userName().toUpperCase() + '’S' : 'YOUR') + ' COMPLETE PLAN\n';
-  out += 'Brand & Funnel · Energise AI · ' + date + '\n' + '═'.repeat(56) + '\n\n';
+  var L = '─'.repeat(56), H = '═'.repeat(56);
+  var out = (n ? n.toUpperCase() + '’S' : 'YOUR') + ' COMPLETE PLAN\n';
+  out += 'Brand & Funnel · Energise AI · ' + date + '\n' + H + '\n\n';
 
   out += 'THE JOURNEY\n' + L + '\n\n';
   STOPS.forEach(function(s, i) {
-    var a = stopAnswer(i);
-    out += s.name.toUpperCase() + ' — ' + s.dest + '\n';
-    out += (a || '[not yet written]') + '\n\n';
+    out += s.name.toUpperCase() + ' — ' + s.dest + '\n' + (stopAnswer(i) || '[not yet written]') + '\n\n';
   });
 
-  out += '\n' + '═'.repeat(56) + '\nPART ONE — YOUR BRAND\n' + '═'.repeat(56) + '\n\n';
+  out += '\n' + H + '\nPART ONE — YOUR BRAND\n' + H + '\n\n';
   BRAND.forEach(function(s, si) {
     out += (si + 1) + '. ' + s.name.toUpperCase() + ' — ' + s.ask + '\n' + L + '\n\n';
     s.questions.forEach(function(o, qi) {
-      out += o.q + '\n' + (bAns[si][qi].trim() || '[not answered]') + '\n\n';
+      out += o.q + '\n' + (S.bAns[si][qi].trim() || '[not answered]') + '\n\n';
     });
   });
 
-  out += '\n' + '═'.repeat(56) + '\nPART TWO — YOUR FUNNEL\n' + '═'.repeat(56) + '\n\n';
+  out += '\n' + H + '\nPART TWO — YOUR FUNNEL\n' + H + '\n\n';
   FUNNEL.forEach(function(s, si) {
     out += (si + 1) + '. ' + s.name.toUpperCase() + ' — ' + s.dest + '\n' + L + '\n';
-    out += 'Chosen approach: ' + (fPick[si] > -1 ? s.options[fPick[si]].n : '[none chosen]') + '\n\n';
+    out += 'Chosen approach: ' + (S.fPick[si] > -1 ? s.options[S.fPick[si]].n : '[none chosen]') + '\n\n';
     s.questions.forEach(function(o, qi) {
-      out += fillTokensPlain(o.q) + '\n' + (fAns[si][qi].trim() || '[not answered]') + '\n\n';
+      out += fillPlain(o.q) + '\n' + (S.fAns[si][qi].trim() || '[not answered]') + '\n\n';
     });
   });
 
@@ -2403,16 +2953,13 @@ function plain() {
 
 function copyPlan() {
   var txt = plain(), btn = $('cp'), orig = btn.textContent;
-  var done = function() {
-    btn.textContent = 'Copied';
-    setTimeout(function() { btn.textContent = orig; }, 2200);
-  };
+  var done = function() { btn.textContent = 'Copied'; setTimeout(function() { btn.textContent = orig; }, 2200); };
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(txt).then(done).catch(function() { fallback(txt, done); });
-  } else { fallback(txt, done); }
+    navigator.clipboard.writeText(txt).then(done).catch(function() { fallbackCopy(txt, done); });
+  } else fallbackCopy(txt, done);
 }
 
-function fallback(txt, cb) {
+function fallbackCopy(txt, cb) {
   var ta = document.createElement('textarea');
   ta.value = txt;
   ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
@@ -2423,22 +2970,17 @@ function fallback(txt, cb) {
 }
 
 function restart() {
-  bAns = BRAND.map(function(s) { return s.questions.map(function() { return ''; }); });
-  fAns = FUNNEL.map(function(s) { return s.questions.map(function() { return ''; }); });
-  fPick = FUNNEL.map(function() { return -1; });
-  bStep = 0; fStep = 0;
-  var un = $('uname'); if (un) un.value = '';
-  $('output').classList.remove('on');
-  $('funnel').style.display = '';
-  $('nav-out').style.display = 'none';
-  renderBrand(); renderFunnel();
-  setBrandStep(0); setFunnelStep(0);
-  showBrandBuilder();
-  $('brand').scrollIntoView();
+  S.bAns = BRAND.map(function(s) { return s.questions.map(function() { return ''; }); });
+  S.fAns = FUNNEL.map(function(s) { return s.questions.map(function() { return ''; }); });
+  S.fPick = FUNNEL.map(function() { return -1; });
+  S.name = ''; S.bStep = 0; S.fStep = 0; S.panel = 0;
+  wipe();
+  setFocusMode(false);
+  goto('intro');
 }
 
 /* ══════════════════════════════════════════════════════════
-   REVEAL + NAV HIGHLIGHT
+   REVEAL
 ══════════════════════════════════════════════════════════ */
 function initReveal() {
   if (!window.IntersectionObserver) {
@@ -2453,71 +2995,60 @@ function initReveal() {
   document.querySelectorAll('.reveal').forEach(function(e) { o.observe(e); });
 }
 
-function initNavSpy() {
-  if (!window.IntersectionObserver) return;
-  var o = new IntersectionObserver(function(es) {
-    es.forEach(function(e) {
-      if (!e.isIntersecting) return;
-      document.querySelectorAll('.nav-links a').forEach(function(a) {
-        a.classList.toggle('on', a.getAttribute('data-nav') === e.target.id);
-      });
-    });
-  }, { rootMargin: '-' + (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64) + 'px 0px -72% 0px' });
-  ['principle', 'brand', 'funnel', 'output'].forEach(function(id) {
-    var el = $(id); if (el) o.observe(el);
-  });
-}
-
 /* ══════════════════════════════════════════════════════════
    INIT
 ══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function() {
   renderSpine();
   renderMap();
-  renderFour();
-  renderBrand();
-  renderFunnel();
-  setBrandStep(0);
-  setFunnelStep(0);
 
-  $('b-next').addEventListener('click', function() {
-    if (bStep === BRAND.length - 1) { showSummary(); }
-    else { setBrandStep(bStep + 1); $('brand').scrollIntoView(); }
+  var saved = loadSaved();
+  var hasWork = saved && (
+    saved.bAns.some(function(r) { return r.some(function(a) { return a && a.trim(); }); }) ||
+    saved.fAns.some(function(r) { return r.some(function(a) { return a && a.trim(); }); })
+  );
+
+  if (hasWork) {
+    var when = saved.at ? new Date(saved.at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : '';
+    $('resume').classList.add('on');
+    $('resume-when').textContent = when ? 'Saved ' + when : '';
+    $('resume-go').addEventListener('click', function() {
+      applySaved(saved);
+      $('resume').classList.remove('on');
+      goto(saved.screen === 'intro' ? 'brand' : saved.screen,
+           { bStep: S.bStep, fStep: S.fStep, panel: S.panel });
+    });
+    $('resume-new').addEventListener('click', function() {
+      wipe(); $('resume').classList.remove('on');
+    });
+  }
+
+  readHash();
+  render();
+
+  $('start-cta').addEventListener('click', function(e) {
+    e.preventDefault();
+    goto('brand', { bStep: 0 });
   });
-  $('b-back').addEventListener('click', function() {
-    if (bStep > 0) { setBrandStep(bStep - 1); $('brand').scrollIntoView(); }
-  });
-  $('pf-back').addEventListener('click', function() {
-    showBrandBuilder(); setBrandStep(BRAND.length - 1); $('brand').scrollIntoView();
-  });
-  $('pf-next').addEventListener('click', function() {
-    phase = 'funnel';
-    renderFunnelQuestionLabels();
-    setFunnelStep(0);
-    $('funnel').scrollIntoView();
-  });
-  $('f-next').addEventListener('click', function() {
-    if (fStep === FUNNEL.length - 1) { showOutput(); }
-    else { setFunnelStep(fStep + 1); $('funnel').scrollIntoView(); }
-  });
-  $('f-back').addEventListener('click', function() {
-    if (fStep > 0) { setFunnelStep(fStep - 1); $('funnel').scrollIntoView(); }
+  $('exit').addEventListener('click', function() {
+    setFocusMode(false);
+    goto('intro');
   });
 
-  $('uname').addEventListener('input', function() {
-    $('pf-title').textContent = userName() || 'Your Brand';
+  /* ⌘/Ctrl + Enter advances */
+  document.addEventListener('keydown', function(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && document.body.classList.contains('working')) {
+      e.preventDefault(); onNext();
+    }
   });
 
-  $('dl').addEventListener('click', function() { window.print(); });
-  $('cp').addEventListener('click', copyPlan);
-  $('rs').addEventListener('click', restart);
-
-  $('hero-cta').addEventListener('click', function() {
-    phase = 'brand'; updateSpine();
+  window.addEventListener('hashchange', function() {
+    var before = S.screen + S.bStep + S.fStep + S.panel;
+    readHash();
+    if (S.screen + S.bStep + S.fStep + S.panel !== before) { render(); }
   });
 
   requestAnimationFrame(function() { requestAnimationFrame(initReveal); });
-  initNavSpy();
 });
 </script>
 </body>
