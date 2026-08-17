@@ -112,6 +112,17 @@ textarea, input { font-family: inherit; }
 }
 .nav-logo span { color: var(--gold); }
 
+.nav-brand-tag {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-left: 0.875rem;
+  padding-left: 0.875rem;
+  border-left: 1px solid var(--border-2);
+  white-space: nowrap;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -221,11 +232,41 @@ textarea, input { font-family: inherit; }
 }
 .stop.now .stop-dest { color: var(--text-2); }
 
+/* Spine collapse toggle — desktop only */
+.spine-tab {
+  display: none; /* shown only at ≥1081px */
+  position: fixed;
+  top: calc(var(--nav-h) + 2rem);
+  left: var(--spine-w);
+  z-index: 350;
+  width: 20px;
+  height: 44px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  color: var(--text-3);
+  font-size: 0.65rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: left 0.28s ease, color 0.2s;
+}
+.spine-tab:hover { color: var(--gold); }
+.spine-tab .st-arr { display: inline-block; transition: transform 0.28s ease; }
+
+body.spine-collapsed .spine-tab { left: 0; }
+body.spine-collapsed .spine-tab .st-arr { transform: rotate(180deg); }
+body.spine-collapsed #spine { width: 0; padding: 0; border-right: none; overflow: hidden; }
+#spine { transition: width 0.28s ease, padding 0.28s ease; }
+
 /* Content offset for the fixed nav and the spine */
 .shell {
   margin-left: var(--spine-w);
   padding-top: var(--nav-h);
+  transition: margin-left 0.28s ease;
 }
+body.spine-collapsed .shell { margin-left: 0; }
 
 /* ══════════════════════════════════════════════════════════
    SECTIONS
@@ -1229,40 +1270,26 @@ section {
 .out-a.none { color: var(--text-3); font-style: italic; }
 
 .handoff {
-  margin-top: 4rem;
-  padding-top: 3rem;
+  margin-top: 5rem;
+  padding: 3.5rem 0 0;
   border-top: 1px solid var(--border-2);
 }
-.handoff p {
+.handoff-h {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-  color: var(--white);
-  line-height: 1.5;
-  max-width: 30ch;
-}
-.handoff p + p { margin-top: 0.5rem; }
-.handoff p:last-child { color: var(--gold); font-style: italic; }
-
-/* ══════════════════════════════════════════════════════════
-   6 — CTA
-══════════════════════════════════════════════════════════ */
-#cta { border-bottom: none; }
-
-.cta-h2 {
-  font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
   color: var(--white);
   font-weight: 700;
   margin: 0.75rem 0 1.5rem;
-  max-width: 24ch;
+  max-width: 26ch;
 }
-
-.cta-body {
-  font-size: 1.1rem;
+.handoff-body {
+  font-size: 1.05rem;
   color: var(--text-2);
   line-height: 1.9;
   max-width: 50ch;
-  margin-bottom: 2.75rem;
+  margin-bottom: 1.25rem;
 }
+
 
 /* ══════════════════════════════════════════════════════════
    FOOTER
@@ -1311,7 +1338,6 @@ section {
 ══════════════════════════════════════════════════════════ */
 body.working #hero,
 body.working #principle,
-body.working #cta,
 body.working #foot { display: none; }
 
 .exit {
@@ -1659,7 +1685,7 @@ body.working .nav-links { display: none; }
    PRINT
 ══════════════════════════════════════════════════════════ */
 @media print {
-  #nav, #spine, #hero, #principle, #cta, #foot, .resume, .toast,
+  #nav, #spine, .spine-tab, #hero, #principle, #foot, .resume, .toast,
   .bar, .stage-head, .out-actions, .handoff { display: none !important; }
   .shell { margin-left: 0 !important; }
   #stage { display: block !important; padding: 0 !important; }
@@ -1688,6 +1714,10 @@ body.working .nav-links { display: none; }
 /* ══════════════════════════════════════════════════════════
    RESPONSIVE — spine becomes a top bar
 ══════════════════════════════════════════════════════════ */
+@media (min-width: 1081px) {
+  .spine-tab { display: flex; }
+}
+
 @media (max-width: 1080px) {
   :root { --spine-w: 0px; }
 
@@ -1828,17 +1858,23 @@ body.working .nav-links { display: none; }
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Energise<span>AI</span></a>
+  <div style="display:flex;align-items:center">
+    <a href="#" class="nav-logo">Energise<span>AI</span></a>
+    <span class="nav-brand-tag">Build a brand</span>
+  </div>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#principle">Principle</a></li>
-      <li><a href="#cta">Energise AI</a></li>
+      <li><a href="https://energiseai.co.uk" target="_blank" rel="noopener">Energise AI</a></li>
     </ul>
     <button class="exit" id="exit" aria-label="Leave the builder and return to the overview">Exit builder</button>
   </div>
 </nav>
 
 <!-- ══ THE SPINE ══ -->
+<button class="spine-tab" id="spine-tab" onclick="toggleSpine()" aria-label="Collapse sidebar">
+  <span class="st-arr" aria-hidden="true">‹</span>
+</button>
 <aside id="spine" aria-label="Journey progress">
   <p class="spine-title">The Journey</p>
   <div class="stops" id="stops"><!-- JS --></div>
@@ -1905,20 +1941,6 @@ body.working .nav-links { display: none; }
 
 <!-- ══ 3 · THE STAGE — everything the user does happens here ══ -->
 <div class="wrap"><div id="stage" style="display:none"></div></div>
-
-<!-- ══ 6 · CTA ══ -->
-<section id="cta" class="sec">
-  <div class="wrap">
-    <div class="reveal">
-      <p class="eyebrow">Energise AI</p>
-      <div class="rule" aria-hidden="true"></div>
-      <h2 class="cta-h2">The plan is yours. The execution is where we come in.</h2>
-      <p class="cta-body">Energise AI builds the systems that turn a plan like this into something that actually runs — the content, the funnel, the follow through, powered by AI and built around who you already are.</p>
-      <p class="cta-body" style="margin-bottom:2.75rem">We build the systems. You show up as yourself.</p>
-      <a href="https://energiseai.co.uk" target="_blank" rel="noopener" class="btn btn-gold">Work With Energise AI</a>
-    </div>
-  </div>
-</section>
 
 <!-- ══ FOOTER ══ -->
 <footer id="foot">
@@ -2553,6 +2575,13 @@ function setFocusMode(on) {
 /* ══════════════════════════════════════════════════════════
    SPINE
 ══════════════════════════════════════════════════════════ */
+function toggleSpine() {
+  var collapsed = document.body.classList.toggle('spine-collapsed');
+  var btn = document.getElementById('spine-tab');
+  if (btn) btn.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+  try { localStorage.setItem('spine-c', collapsed ? '1' : '0'); } catch(e) {}
+}
+
 function renderSpine() {
   $('stops').innerHTML = STOPS.map(function(s, i) {
     return '<button class="stop" data-stop="' + i + '" onclick="jumpStop(' + i + ')">' +
@@ -3167,9 +3196,12 @@ function viewOutput() {
         '<p class="out-date">Generated ' + date + '</p>' +
       '</div>' + journey + brandOut + funnelOut +
       '<div class="handoff">' +
-        '<p>You have the plan.</p><p>Now you need the execution.</p>' +
-        '<p>That is what Energise AI is for.</p>' +
-        '<a href="#cta" class="btn btn-gold" style="margin-top:2rem" id="to-cta">Work With Energise AI</a>' +
+        '<p class="eyebrow">Energise AI</p>' +
+        '<div class="rule" aria-hidden="true"></div>' +
+        '<h3 class="handoff-h">The plan is yours. The execution is where we come in.</h3>' +
+        '<p class="handoff-body">Energise AI builds the systems that turn a plan like this into something that actually runs — the content, the funnel, the follow through, powered by AI and built around who you already are.</p>' +
+        '<p class="handoff-body" style="margin-bottom:2.5rem">We build the systems. You show up as yourself.</p>' +
+        '<a href="https://energiseai.co.uk" target="_blank" rel="noopener" class="btn btn-gold">Work With Energise AI</a>' +
       '</div>' +
     '</div>' +
     '<div class="bar"><button class="btn" id="go-back">← Back to Monetisation</button><div class="bar-right"></div></div>';
@@ -3259,6 +3291,7 @@ function initReveal() {
    INIT
 ══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function() {
+  try { if (localStorage.getItem('spine-c') === '1') document.body.classList.add('spine-collapsed'); } catch(e) {}
   renderSpine();
   renderViz();
   renderMap();
