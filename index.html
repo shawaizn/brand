@@ -464,17 +464,30 @@ section {
 /* ══════════════════════════════════════════════════════════
    FACES SECTION
 ══════════════════════════════════════════════════════════ */
-#faces {
-  padding: 0 0 5rem;
-  text-align: center;
+#faces { text-align: left; }
+
+.faces-intro { margin-bottom: 3.5rem; }
+
+.faces-h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  color: var(--white);
+  font-weight: 700;
+  margin: 0.75rem 0 1rem;
+  max-width: 26ch;
+}
+
+.faces-sub {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  line-height: 1.85;
+  max-width: 46ch;
 }
 
 .faces-row {
   display: flex;
   gap: 3.5rem;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
 }
 
 .face-card {
@@ -516,11 +529,6 @@ section {
   color: var(--text-2);
 }
 
-.faces-caption {
-  font-size: 0.78rem;
-  color: var(--text-3);
-  letter-spacing: 0.06em;
-}
 
 /* Inline avatar — next to person name in builder */
 .face-av {
@@ -1892,7 +1900,8 @@ body.working .nav-links { display: none; }
 
   .faces-row { gap: 1.75rem; }
   .face-ring { width: 96px; height: 96px; }
-  #faces { padding: 0 0 3.5rem; }
+  .faces-h2 { font-size: clamp(1.6rem, 6vw, 2rem); }
+  .faces-sub { font-size: 0.95rem; }
 
   .vband { min-height: 76px; }
   .vb-name { font-size: 1.05rem; }
@@ -1988,9 +1997,15 @@ body.working .nav-links { display: none; }
 </section>
 
 <!-- ══ 1b · FACES ══ -->
-<section id="faces">
+<section id="faces" class="sec">
   <div class="wrap">
-    <div class="faces-row">
+    <div class="reveal faces-intro">
+      <p class="eyebrow">The examples</p>
+      <div class="rule" aria-hidden="true"></div>
+      <h2 class="faces-h2">Three brands. The same questions you're about to answer.</h2>
+      <p class="faces-sub">Every step of the builder, one of them shows you how they did it. Not to copy — to calibrate.</p>
+    </div>
+    <div class="faces-row reveal">
       <div class="face-card">
         <div class="face-ring">
           <img class="face-img face-normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVc4AehikguyKT9eEid_ej-Do1RTH2WDOrr_rCudzPXA&s=10" alt="Andrew Tate" loading="lazy">
@@ -2012,7 +2027,6 @@ body.working .nav-links { display: none; }
         <p class="face-name">MrBeast</p>
       </div>
     </div>
-    <p class="faces-caption">The same path. Different brands.</p>
   </div>
 </section>
 
